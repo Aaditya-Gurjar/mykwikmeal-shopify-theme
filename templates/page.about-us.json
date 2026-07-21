@@ -1,0 +1,129 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-about-us",
+      "custom_css": [],
+      "settings": {}
+    },
+    "image_with_text_pyMTXc": {
+      "type": "image-with-text",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "item_gap": 60,
+        "item_gap_mobile": 30,
+        "layout": "left",
+        "image_column_size": "6",
+        "image_overlap": false,
+        "show_image_reverse": false,
+        "hover_effect": false,
+        "image_animation": "none",
+        "image": "shopify://shop_images/young-woman-practicing-yoga-relax.gif",
+        "link": "",
+        "link_2": "",
+        "second_image_offset_top": 10,
+        "title": "About Us",
+        "sub_title": "",
+        "text": "<p>At <strong>Avoiding Anxiety</strong>, we understand that anxiety can feel overwhelming and exhausting. That’s why we’ve created a practical, supportive approach to managing stress and anxiety with our <strong>Toolkit to Avoid Anxiety</strong>. Designed with care and backed by research, our toolkit provides simple yet effective tools—journaling prompts, breathing exercises, aromatherapy, and mindful practices—to help individuals regain a sense of calm and control.</p><p>We believe that managing anxiety should be accessible, natural, and empowering. Our goal is to help people <strong>navigate life’s challenges with confidence</strong> by offering thoughtfully curated products that promote relaxation, mindfulness, and self-care.</p>",
+        "text_size": "medium",
+        "content_alignment": "left",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "m-button--link",
+        "button_size": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "image_with_text_qTdVYr": {
+      "type": "image-with-text",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "container": "container-fluid",
+        "color_scheme": "badge-hot",
+        "item_gap": 60,
+        "item_gap_mobile": 30,
+        "layout": "right",
+        "image_column_size": "6",
+        "image_overlap": false,
+        "show_image_reverse": false,
+        "hover_effect": false,
+        "image_animation": "none",
+        "image": "shopify://shop_images/0250306121433.png",
+        "link": "",
+        "link_2": "",
+        "second_image_offset_top": 10,
+        "title": "Our Mission",
+        "sub_title": "",
+        "text": "<p>Our mission at <strong>Avoiding Anxiety</strong> is to provide individuals with the tools and knowledge needed to manage anxiety naturally. We strive to make self-care simple, accessible, and effective by offering practical solutions that fit seamlessly into daily life. Through our <strong>Toolkit to Avoid Anxiety</strong>, we aim to empower people with techniques that encourage mindfulness, relaxation, and emotional well-being.</p><p>We are committed to promoting <strong>holistic wellness</strong> and helping individuals build resilience against stress through science-backed methods and thoughtfully designed products.</p>",
+        "text_size": "medium",
+        "content_alignment": "left",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "m-button--link",
+        "button_size": "",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "image_with_text_i7P94E": {
+      "type": "image-with-text",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "item_gap": 60,
+        "item_gap_mobile": 30,
+        "layout": "left",
+        "image_column_size": "6",
+        "image_overlap": false,
+        "show_image_reverse": false,
+        "hover_effect": false,
+        "image_animation": "none",
+        "image": "shopify://shop_images/attractive-boy-sharing-experience-attend-group-therapy-edification.png",
+        "link": "",
+        "link_2": "",
+        "second_image_offset_top": 10,
+        "title": "Our Vision",
+        "sub_title": "",
+        "text": "<p>Our vision is to create a world where managing anxiety is not a struggle but a journey toward <strong>self-awareness, balance, and inner peace</strong>. We envision a future where everyone has access to the tools they need to support their mental well-being—without relying solely on medication or temporary fixes.</p><p>At <strong>Avoiding Anxiety</strong>, we are dedicated to fostering a community that <strong>prioritizes mental health</strong>, encourages open conversations about anxiety, and provides resources for long-term well-being. We believe that small, consistent steps toward self-care can create a lasting impact, helping individuals live a more <strong>calm, confident, and fulfilling life</strong>.</p>",
+        "text_size": "medium",
+        "content_alignment": "left",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "m-button--link",
+        "button_size": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_pyMTXc",
+    "image_with_text_qTdVYr",
+    "image_with_text_i7P94E"
+  ]
+}

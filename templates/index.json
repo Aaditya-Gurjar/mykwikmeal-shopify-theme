@@ -1,0 +1,536 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1621243260e1af0c20": {
+      "type": "slider",
+      "blocks": {
+        "1621243260e1af0c20-2": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/Slide_9.jpg",
+            "mb_background": "shopify://shop_images/phone_8.jpg",
+            "content_in_container": false,
+            "content_position": "right middle",
+            "text_alignment": "right",
+            "text_size": "large",
+            "text_color": "black",
+            "subheading": "",
+            "title": "",
+            "description": "",
+            "image_link": "shopify://collections/all",
+            "button_text": "",
+            "button_link": "shopify://collections/all",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "second_button_text": "",
+            "second_button_link": "",
+            "second_button_style": "m-button--primary",
+            "second_button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "The ReCotton Tee",
+            "footer_button": "Shop Now",
+            "footer_link": ""
+          }
+        },
+        "slider_item_BFR9db": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/Banner_2nd.jpg",
+            "mb_background": "shopify://shop_images/phone_9.jpg",
+            "content_in_container": false,
+            "content_position": "right middle",
+            "text_alignment": "right",
+            "text_size": "large",
+            "text_color": "black",
+            "subheading": "",
+            "title": "",
+            "description": "",
+            "image_link": "shopify://collections/all",
+            "button_text": "",
+            "button_link": "shopify://collections/all",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "second_button_text": "",
+            "second_button_link": "",
+            "second_button_style": "m-button--primary",
+            "second_button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "The ReCotton Tee",
+            "footer_button": "Shop Now",
+            "footer_link": ""
+          }
+        },
+        "slider_item_hqCmQC": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/Slide_10.jpg",
+            "mb_background": "shopify://shop_images/phone_7.png",
+            "content_in_container": false,
+            "content_position": "right middle",
+            "text_alignment": "right",
+            "text_size": "large",
+            "text_color": "black",
+            "subheading": "",
+            "title": "",
+            "description": "",
+            "image_link": "shopify://collections/all",
+            "button_text": "",
+            "button_link": "shopify://collections/all",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "second_button_text": "",
+            "second_button_link": "",
+            "second_button_style": "m-button--primary",
+            "second_button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "The ReCotton Tee",
+            "footer_button": "Shop Now",
+            "footer_link": ""
+          }
+        },
+        "slider_item_EmXxFQ": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/Slide_8.jpg",
+            "mb_background": "shopify://shop_images/phone_6.jpg",
+            "content_in_container": false,
+            "content_position": "right middle",
+            "text_alignment": "right",
+            "text_size": "large",
+            "text_color": "black",
+            "subheading": "",
+            "title": "",
+            "description": "",
+            "image_link": "shopify://collections/all",
+            "button_text": "",
+            "button_link": "shopify://collections/all",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "second_button_text": "",
+            "second_button_link": "",
+            "second_button_style": "m-button--primary",
+            "second_button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "The ReCotton Tee",
+            "footer_button": "Shop Now",
+            "footer_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1621243260e1af0c20-2",
+        "slider_item_BFR9db",
+        "slider_item_hqCmQC",
+        "slider_item_EmXxFQ"
+      ],
+      "settings": {
+        "container": "w-full",
+        "slideshow_height": "adapt",
+        "show_overlay": false,
+        "dots_position": "bottom",
+        "dots_color": "dark",
+        "show_dots": true,
+        "show_arrows": false,
+        "autorotate": true,
+        "autorotate_speed": 3,
+        "use_content_above": false,
+        "custom_class": "sf-home__slideshow",
+        "animations": "inherit"
+      }
+    },
+    "slider_zDt9nU": {
+      "type": "slider",
+      "blocks": {
+        "slider_item_emAHyt": {
+          "type": "slider_item",
+          "settings": {
+            "background": "shopify://shop_images/trust_badges.jpg",
+            "mb_background": "shopify://shop_images/trust_badges_1.jpg",
+            "content_in_container": false,
+            "content_position": "right middle",
+            "text_alignment": "right",
+            "text_size": "large",
+            "text_color": "black",
+            "subheading": "",
+            "title": "",
+            "description": "",
+            "image_link": "shopify://collections/all",
+            "button_text": "",
+            "button_link": "shopify://collections/all",
+            "button_style": "m-button--primary",
+            "button_size": "",
+            "second_button_text": "",
+            "second_button_link": "",
+            "second_button_style": "m-button--primary",
+            "second_button_size": "",
+            "show_footer": false,
+            "footer_alignment": "end",
+            "footer_text": "The ReCotton Tee",
+            "footer_button": "Shop Now",
+            "footer_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slider_item_emAHyt"
+      ],
+      "settings": {
+        "container": "w-full",
+        "slideshow_height": "adapt",
+        "show_overlay": false,
+        "dots_position": "bottom",
+        "dots_color": "dark",
+        "show_dots": true,
+        "show_arrows": false,
+        "autorotate": true,
+        "autorotate_speed": 3,
+        "use_content_above": false,
+        "custom_class": "sf-home__slideshow",
+        "animations": "inherit"
+      }
+    },
+    "icon_box_yGzPiU": {
+      "type": "icon-box",
+      "blocks": {
+        "iconbox_7mqicP": {
+          "type": "iconbox",
+          "settings": {
+            "image": "shopify://shop_images/icon_15.png",
+            "image_by_url": "",
+            "title": "Next Day Shipping",
+            "description": "",
+            "link": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--link",
+            "button_size": ""
+          }
+        },
+        "iconbox_bm9wYQ": {
+          "type": "iconbox",
+          "settings": {
+            "image": "shopify://shop_images/icon_16.png",
+            "image_by_url": "",
+            "title": "Free Shipping with Tracking",
+            "description": "",
+            "link": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--link",
+            "button_size": ""
+          }
+        },
+        "iconbox_wT3fFX": {
+          "type": "iconbox",
+          "settings": {
+            "image": "shopify://shop_images/icon_17.png",
+            "image_by_url": "",
+            "title": "Easy Returns",
+            "description": "",
+            "link": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--link",
+            "button_size": ""
+          }
+        },
+        "iconbox_Gh9wFG": {
+          "type": "iconbox",
+          "settings": {
+            "image": "shopify://shop_images/icon_19.png",
+            "image_by_url": "",
+            "title": "Secured Transaction",
+            "description": "",
+            "link": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--link",
+            "button_size": ""
+          }
+        },
+        "iconbox_ykNYG3": {
+          "type": "iconbox",
+          "settings": {
+            "image": "shopify://shop_images/icon_19.png",
+            "image_by_url": "",
+            "title": "Lowest Prices",
+            "description": "",
+            "link": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "m-button--link",
+            "button_size": ""
+          }
+        }
+      },
+      "block_order": [
+        "iconbox_7mqicP",
+        "iconbox_bm9wYQ",
+        "iconbox_wT3fFX",
+        "iconbox_Gh9wFG",
+        "iconbox_ykNYG3"
+      ],
+      "disabled": true,
+      "name": "Featured promotion",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "item_per_row": 5,
+        "item_gap": 30,
+        "item_gap_mobile": 10,
+        "card_color_scheme": "",
+        "card_style": "vertical",
+        "image_max_width": "70px",
+        "content_alignment": "center",
+        "hover_effect": "none",
+        "enable_slider": true,
+        "show_pagination": false,
+        "show_navigation": true,
+        "use_scroll_mobile": true,
+        "use_grid_column_mb": true,
+        "padding_top": 28,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "featured_collection_EYEMbM": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".m-product-card__name {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; /* number of lines */ overflow: hidden; text-overflow: ellipsis;}"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "heading": "Our Most Loved Tastes.",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "color_scheme": "",
+        "container": "container-fluid",
+        "collection": "our-most-loved-tastes",
+        "enable_flashsale": false,
+        "show_countdown": false,
+        "product_to_show": 8,
+        "items_per_row": 4,
+        "item_gap": 30,
+        "pcard_layout": "",
+        "pcard_image_ratio": "",
+        "show_vendor": false,
+        "hide_title": false,
+        "enable_slider": false,
+        "show_pagination": false,
+        "show_navigation": false,
+        "show_button_on_header": false,
+        "button_type": "link",
+        "button_text": "",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "infinite_load": false,
+        "max_page_load": 3,
+        "mobile_disable_slider": true,
+        "use_scroll_mobile": false,
+        "item_gap_mobile": 16,
+        "padding_top": 20,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "custom_content_z3JMpC": {
+      "type": "custom-content",
+      "blocks": {
+        "image_NP4d4B": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/e912caaf-f616-4acb-97ce-9cf100da6ac9.webp",
+            "link": "shopify://products/kwikmeal-tandoori-chicken-marinade",
+            "width": "50%",
+            "alignment": "center",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "image_FUx9Ch": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/67160e44-4e35-447c-b18a-1b7e489d654b.webp",
+            "link": "shopify://products/kwikmeal-thai-sweet-chili-sauce",
+            "width": "50%",
+            "alignment": "center",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        }
+      },
+      "block_order": [
+        "image_NP4d4B",
+        "image_FUx9Ch"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "content_color_scheme": "",
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "gap": 30,
+        "gap_mobile": 16,
+        "use_scroll_mobile": false,
+        "padding_top": 30,
+        "padding_bottom": 20,
+        "custom_class": ""
+      }
+    },
+    "custom_content_RQ6X7W": {
+      "type": "custom-content",
+      "blocks": {
+        "image_ywk9gw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/35a0ab14-6323-407f-9dcd-6163eb5b828e.webp",
+            "link": "shopify://products/kwikmeal-ramen-taste-master",
+            "width": "50%",
+            "alignment": "center",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        },
+        "image_3eNr4m": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ee551657-40f3-401f-b42f-056d88ac11c2.webp",
+            "link": "shopify://products/kwikmeal-cream-chicken-marinade-malai-tikka-marinade",
+            "width": "50%",
+            "alignment": "center",
+            "block_custom_class": "",
+            "animations": "inherit"
+          }
+        }
+      },
+      "block_order": [
+        "image_ywk9gw",
+        "image_3eNr4m"
+      ],
+      "name": "Custom content",
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "content_color_scheme": "",
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "gap": 30,
+        "gap_mobile": 16,
+        "use_scroll_mobile": false,
+        "padding_top": 30,
+        "padding_bottom": 20,
+        "custom_class": ""
+      }
+    },
+    "featured_collection_XfnwfF": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".m-product-card__name {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; /* number of lines */ overflow: hidden; text-overflow: ellipsis;}"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "heading": "Our Signature Products",
+        "heading_size": "h3",
+        "subheading": "",
+        "description": "",
+        "header_alignment": "center",
+        "color_scheme": "",
+        "container": "container-fluid",
+        "collection": "our-collections",
+        "enable_flashsale": false,
+        "show_countdown": false,
+        "product_to_show": 10,
+        "items_per_row": 5,
+        "item_gap": 30,
+        "pcard_layout": "",
+        "pcard_image_ratio": "",
+        "show_vendor": false,
+        "hide_title": false,
+        "enable_slider": false,
+        "show_pagination": false,
+        "show_navigation": false,
+        "show_button_on_header": false,
+        "button_type": "load",
+        "button_text": "View More",
+        "button_style": "m-button--primary",
+        "button_size": "",
+        "infinite_load": true,
+        "max_page_load": 3,
+        "mobile_disable_slider": true,
+        "use_scroll_mobile": false,
+        "item_gap_mobile": 16,
+        "padding_top": 20,
+        "padding_bottom": 0,
+        "custom_class": "",
+        "animations": "inherit"
+      }
+    },
+    "1769330948bd435b3f": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_featured_carousel_6WQkTJ": {
+          "type": "shopify://apps/judge-me-reviews/blocks/featured_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "maxwidth": 1080
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_featured_carousel_6WQkTJ"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h3",
+        "subheading": "",
+        "header_alignment": "center",
+        "container": "container",
+        "background_color": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "custom_class": ""
+      }
+    }
+  },
+  "order": [
+    "1621243260e1af0c20",
+    "slider_zDt9nU",
+    "icon_box_yGzPiU",
+    "featured_collection_EYEMbM",
+    "custom_content_z3JMpC",
+    "custom_content_RQ6X7W",
+    "featured_collection_XfnwfF",
+    "1769330948bd435b3f"
+  ]
+}
