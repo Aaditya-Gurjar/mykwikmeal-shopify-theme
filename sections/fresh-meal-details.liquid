@@ -1,0 +1,154 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Product Details Section
+{% endcomment %}
+
+{% liquid
+  assign calories = ''
+  assign protein = ''
+
+  for tag in product.tags
+    assign tag_lower = tag | downcase
+    if tag_lower contains 'calories:' or tag_lower contains 'cal:'
+      assign calories = tag | split: ':' | last
+    elsif tag_lower contains 'protein:'
+      assign protein = tag | split: ':' | last
+    endif
+  endfor
+
+  if calories == blank and product.metafields.custom.calories != blank
+    assign calories = product.metafields.custom.calories
+  endif
+  if protein == blank and product.metafields.custom.protein != blank
+    assign protein = product.metafields.custom.protein
+  endif
+%}
+
+<div class="fhe-product-details-section" style="padding: 50px 0; background: #ffffff;">
+  <div class="fhe-container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: start;">
+      <!-- Product Gallery -->
+      <div class="fhe-product-media">
+        <div style="border-radius: var(--fhe-radius-lg); overflow: hidden; border: 1px solid var(--fhe-border); box-shadow: var(--fhe-shadow-md);">
+          {% if product.featured_image != blank %}
+            <img src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.title | escape }}" style="width: 100%; height: auto; display: block;">
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag }}
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Product Meta & Form -->
+      <div class="fhe-product-info">
+        <div class="fhe-badge-pill" style="margin-bottom: 12px;">🍱 Fresh Heat-N-Eat Meal</div>
+
+        <h1 style="font-size: 32px; font-weight: 800; color: var(--fhe-dark); margin-bottom: 12px;">
+          {{ product.title }}
+        </h1>
+
+        <div style="font-size: 26px; font-weight: 800; color: var(--fhe-primary); margin-bottom: 16px;">
+          {{ product.price | money }}
+        </div>
+
+        {% if product.description != blank %}
+          <div style="font-size: 16px; color: var(--fhe-dark-muted); line-height: 1.6; margin-bottom: 24px;">
+            {{ product.description }}
+          </div>
+        {% endif %}
+
+        {% if calories != blank or protein != blank %}
+          <div class="fhe-meal-card__macros" style="font-size: 15px; margin-bottom: 24px; padding-bottom: 16px;">
+            {% if calories != blank %}
+              <div class="fhe-meal-card__macro-item">
+                <span>🔥</span> <strong>{{ calories }} Calories</strong>
+              </div>
+            {% endif %}
+            {% if protein != blank %}
+              <div class="fhe-meal-card__macro-item">
+                <span>🥩</span> <strong>{{ protein }} Protein</strong>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <!-- Expected Delivery Pill -->
+        <div class="fhe-cutoff-timer" style="margin-bottom: 28px; width: 100%; background: #ecfdf5; color: #065f46; border-color: rgba(16,185,129,0.3); padding: 10px 18px;">
+          <span>📦</span>
+          <span>Delivered: <strong class="fhe-calculated-delivery-date" style="color: #047857;">Friday Delivery</strong></span>
+        </div>
+
+        <!-- Add to Cart Form -->
+        <form method="post" action="/cart/add" style="background: var(--fhe-light-bg); border: 1px solid var(--fhe-border); border-radius: var(--fhe-radius-lg); padding: 24px; margin-bottom: 32px;">
+          <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+          <input type="hidden" name="properties[Add-ons]" id="fhe-pdp-addon-hidden" value="None">
+          <input type="hidden" name="properties[Expected Delivery Date]" class="fhe-delivery-date-hidden-input" value="">
+          <input type="hidden" name="properties[Delivery Week]" class="fhe-delivery-week-hidden-input" value="">
+
+          <div style="margin-bottom: 16px;">
+            <label style="font-size: 14px; font-weight: 700; color: var(--fhe-dark); display: block; margin-bottom: 6px;">Select Optional Add-ons:</label>
+            <select id="fhe-pdp-addon-picker" class="fhe-meal-card__addons-select" style="font-size: 15px; padding: 12px;">
+              <option value="None">None (Standard Meal)</option>
+              <option value="Extra Rice (+$2.50)">Extra Rice (+$2.50)</option>
+              <option value="Extra Garlic Naan (+$3.00)">Extra Garlic Naan (+$3.00)</option>
+              <option value="Extra Sauce (+$1.50)">Extra Sauce (+$1.50)</option>
+              <option value="Gulab Jamun Dessert (+$3.50)">Gulab Jamun Dessert (+$3.50)</option>
+              <option value="Mango Lassi Drink (+$4.00)">Mango Lassi Drink (+$4.00)</option>
+            </select>
+          </div>
+
+          <div style="display: flex; gap: 16px; align-items: center;">
+            <div style="width: 110px;">
+              <input type="number" name="quantity" value="1" min="1" style="width: 100%; padding: 12px; border: 2px solid var(--fhe-border); border-radius: var(--fhe-radius-full); text-align: center; font-weight: 700; font-size: 16px;">
+            </div>
+
+            <button type="submit" class="fhe-btn fhe-btn--primary" style="flex: 1; padding: 14px 28px; font-size: 16px;">
+              Add to Weekly Order
+            </button>
+          </div>
+        </form>
+
+        <!-- Heating & Storage Accordions -->
+        <div class="fhe-faq-list" style="max-width: 100%;">
+          <div class="fhe-faq-item is-open">
+            <button type="button" class="fhe-faq-question">
+              <span>🔥 Reheating Instructions</span>
+              <span>▼</span>
+            </button>
+            <div class="fhe-faq-answer">
+              <p><strong>Microwave:</strong> Remove outer sleeve, pierce film in 2 spots, and microwave on HIGH for 2.5 to 3 minutes until steaming hot (165°F). Let rest 1 minute before serving.</p>
+              <p style="margin-top: 8px;"><strong>Oven:</strong> Transfer meal to an oven-safe dish, cover loosely with foil, and bake at 350°F for 12-15 minutes.</p>
+            </div>
+          </div>
+
+          <div class="fhe-faq-item">
+            <button type="button" class="fhe-faq-question">
+              <span>❄️ Storage & Shelf Life</span>
+              <span>▼</span>
+            </button>
+            <div class="fhe-faq-answer">
+              Keep refrigerated at or below 40°F immediately upon arrival. Best enjoyed within 5 days of delivery date. Can be frozen for up to 30 days.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var picker = document.getElementById('fhe-pdp-addon-picker');
+    var hidden = document.getElementById('fhe-pdp-addon-hidden');
+    if (picker && hidden) {
+      picker.addEventListener('change', function() {
+        hidden.value = this.value;
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Fresh Meal Details",
+  "settings": []
+}
+{% endschema %}

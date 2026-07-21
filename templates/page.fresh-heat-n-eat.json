@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "landing": {
+      "type": "fresh-heat-eat-landing",
+      "settings": {}
+    }
+  },
+  "order": [
+    "landing"
+  ]
+}

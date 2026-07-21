@@ -744,9 +744,9 @@
     ]
   },
   {
-		"name": "Animations",
-		"settings": [
-			{
+    "name": "Animations",
+    "settings": [
+      {
         "type": "checkbox",
         "id": "page_transition",
         "default": true,
@@ -780,35 +780,50 @@
         "label": "Custom logo",
         "info": " Should use square sized images. Example: 64x64, 128x128"
       },
-			{
-				"type": "header",
-				"content": "Visible in the view"
-			},
-			{
-				"type": "select",
-				"id": "animations",
-				"label": "Animation",
-				"default": "none",
-				"options": [
-					{"value": "none", "label": "None"},
-					{"value": "fade-in", "label": "Fade in"},
-					{"value": "fade-in-up", "label": "Fade in up"},
-					{"value": "fade-in-left", "label": "Fade in left"},
-					{"value": "fade-in-right", "label": "Fade in right"}
-				]
-			},
-			{
-				"type": "range",
-				"id": "animation_duration",
-				"label": "Duration",
-				"default": 0.6,
-				"min": 0.1,
-				"max": 1,
-				"unit": "(s)",
-				"step": 0.1
-			}
-		]
-	},
+      {
+        "type": "header",
+        "content": "Visible in the view"
+      },
+      {
+        "type": "select",
+        "id": "animations",
+        "label": "Animation",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "fade-in",
+            "label": "Fade in"
+          },
+          {
+            "value": "fade-in-up",
+            "label": "Fade in up"
+          },
+          {
+            "value": "fade-in-left",
+            "label": "Fade in left"
+          },
+          {
+            "value": "fade-in-right",
+            "label": "Fade in right"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "animation_duration",
+        "label": "Duration",
+        "default": 0.6,
+        "min": 0.1,
+        "max": 1,
+        "unit": "(s)",
+        "step": 0.1
+      }
+    ]
+  },
   {
     "name": "Product card",
     "settings": [
@@ -2722,6 +2737,99 @@
         "id": "currency_code_enabled",
         "label": "Show currency codes",
         "default": false
+      }
+    ]
+  },
+  {
+    "name": "Fresh Heat-N-Eat",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Fresh Heat-N-Eat System Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "fhe_enable",
+        "label": "Enable Fresh Heat-N-Eat System",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "fhe_cutoff_day",
+        "label": "Weekly Cutoff Day",
+        "default": "Sunday",
+        "options": [
+          {
+            "value": "Sunday",
+            "label": "Sunday"
+          },
+          {
+            "value": "Monday",
+            "label": "Monday"
+          },
+          {
+            "value": "Tuesday",
+            "label": "Tuesday"
+          },
+          {
+            "value": "Wednesday",
+            "label": "Wednesday"
+          },
+          {
+            "value": "Thursday",
+            "label": "Thursday"
+          },
+          {
+            "value": "Friday",
+            "label": "Friday"
+          },
+          {
+            "value": "Saturday",
+            "label": "Saturday"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "fhe_cutoff_time",
+        "label": "Weekly Cutoff Time",
+        "default": "11:00 AM"
+      },
+      {
+        "type": "select",
+        "id": "fhe_delivery_day",
+        "label": "Weekly Delivery Day",
+        "default": "Friday",
+        "options": [
+          {
+            "value": "Friday",
+            "label": "Friday"
+          },
+          {
+            "value": "Saturday",
+            "label": "Saturday"
+          },
+          {
+            "value": "Sunday",
+            "label": "Sunday"
+          },
+          {
+            "value": "Monday",
+            "label": "Monday"
+          }
+        ]
+      },
+      {
+        "type": "textarea",
+        "id": "fhe_allowed_zips",
+        "label": "Allowed ZIP Codes (Comma or Newline Separated)",
+        "default": "48187, 48189, 48150, 48151, 48152, 48153, 48154, 48331, 48332, 48334, 48335, 48336, 48170, 48374, 48375, 48376, 48377, 48167, 48168"
+      },
+      {
+        "type": "text",
+        "id": "fhe_announcement_text",
+        "label": "Cutoff Announcement Text",
+        "default": "Order by Sunday 11:00 AM for Friday Delivery!"
       }
     ]
   }

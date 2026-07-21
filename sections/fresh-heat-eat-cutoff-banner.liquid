@@ -1,0 +1,33 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Cutoff Status Banner
+{% endcomment %}
+
+<div class="fhe-section" style="padding: 30px 0;">
+  <div class="fhe-container">
+    <div class="fhe-cutoff-bar">
+      <div class="fhe-cutoff-bar__info">
+        <div class="fhe-cutoff-bar__icon">🚚</div>
+        <div>
+          <div class="fhe-cutoff-bar__text">
+            Current Production Batch: Delivery on <span class="fhe-calculated-delivery-date fhe-cutoff-bar__date">Friday Delivery</span>
+          </div>
+          <div style="font-size: 13px; opacity: 0.85; margin-top: 2px;">
+            Orders placed after Sunday 11:00 AM automatically move to the following week's delivery.
+          </div>
+        </div>
+      </div>
+
+      <div class="fhe-cutoff-timer">
+        <span>⏳</span>
+        <span class="fhe-calculated-cutoff-timer">Calculating cutoff deadline...</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cutoff Banner",
+  "settings": []
+}
+{% endschema %}

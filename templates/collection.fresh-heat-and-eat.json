@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "hero": {
+      "type": "fresh-heat-eat-hero",
+      "settings": {
+        "headline": "Fresh Chef Prepared Meals Delivered Weekly",
+        "subheadline": "Freshly cooked. Delivered cold. Ready in minutes. Order before Sunday's cutoff."
+      }
+    },
+    "how_it_works": {
+      "type": "fresh-heat-eat-how-it-works",
+      "settings": {}
+    },
+    "cutoff_banner": {
+      "type": "fresh-heat-eat-cutoff-banner",
+      "settings": {}
+    },
+    "menu": {
+      "type": "fresh-heat-eat-menu",
+      "settings": {
+        "products_to_show": 16
+      }
+    },
+    "faq": {
+      "type": "fresh-heat-eat-faq",
+      "settings": {}
+    },
+    "delivery_checker": {
+      "type": "fresh-heat-eat-delivery-checker",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "how_it_works",
+    "cutoff_banner",
+    "menu",
+    "faq",
+    "delivery_checker"
+  ]
+}

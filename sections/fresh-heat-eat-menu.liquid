@@ -1,0 +1,71 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Meal Menu Section
+{% endcomment %}
+
+<div id="fhe-menu-section" class="fhe-section" style="padding: 60px 0; background: var(--fhe-light-bg);">
+  <div class="fhe-container">
+    <div style="text-align: center; margin-bottom: 36px;">
+      <div class="fhe-badge-pill" style="margin-bottom: 12px;">This Week's Menu</div>
+      <h2 class="fhe-title-section" style="margin: 0 auto 12px;">Chef-Prepared Heat-N-Eat Meals</h2>
+      <p class="fhe-subtitle" style="margin: 0 auto;">Chilled fresh, never frozen. Ready to heat and serve in 3 minutes.</p>
+    </div>
+
+    <!-- Dietary Filter Pills -->
+    <div class="fhe-filter-bar">
+      <div class="fhe-filter-pills">
+        <button type="button" class="fhe-filter-btn is-active" data-filter="all">All Meals</button>
+        <button type="button" class="fhe-filter-btn" data-filter="high protein">💪 High Protein</button>
+        <button type="button" class="fhe-filter-btn" data-filter="vegetarian">🌱 Vegetarian</button>
+        <button type="button" class="fhe-filter-btn" data-filter="vegan">🌿 Vegan</button>
+        <button type="button" class="fhe-filter-btn" data-filter="gluten free">🌾 Gluten Free</button>
+      </div>
+
+      <div style="font-size: 14px; font-weight: 600; color: var(--fhe-dark-muted);">
+        Delivering: <span class="fhe-calculated-delivery-date" style="color: var(--fhe-primary);">Friday</span>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    {% liquid
+      assign collection = collections[section.settings.collection]
+      if collection == blank or collection.products.size == 0
+        assign collection = collections['all']
+      endif
+      assign limit = section.settings.products_to_show | default: 12
+    %}
+
+    {% if collection.products.size > 0 %}
+      <div class="fhe-menu-grid">
+        {% for product in collection.products limit: limit %}
+          {% render 'fresh-meal-card', product: product %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div style="text-align: center; padding: 60px 20px; background: #ffffff; border-radius: var(--fhe-radius-lg);">
+        <p style="font-size: 18px; color: var(--fhe-dark-muted);">No meals available at the moment. Check back soon!</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fresh Heat Menu",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Meal Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to Show",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

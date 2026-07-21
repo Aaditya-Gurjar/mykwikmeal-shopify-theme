@@ -1,0 +1,137 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Meal Card Component
+  Accepts:
+  - product: {Object} Product object (required)
+{% endcomment %}
+
+{% liquid
+  assign calories = ''
+  assign protein = ''
+  assign dietary_tags = ''
+
+  for tag in product.tags
+    assign tag_lower = tag | downcase
+    if tag_lower contains 'calories:' or tag_lower contains 'cal:'
+      assign calories = tag | split: ':' | last
+    elsif tag_lower contains 'protein:'
+      assign protein = tag | split: ':' | last
+    elsif tag_lower == 'vegetarian' or tag_lower == 'veg'
+      assign dietary_tags = dietary_tags | append: ' Vegetarian'
+    elsif tag_lower == 'vegan'
+      assign dietary_tags = dietary_tags | append: ' Vegan'
+    elsif tag_lower == 'high protein'
+      assign dietary_tags = dietary_tags | append: ' High Protein'
+    elsif tag_lower == 'gluten free' or tag_lower == 'gluten-free'
+      assign dietary_tags = dietary_tags | append: ' Gluten Free'
+    endif
+  endfor
+
+  if calories == blank and product.metafields.custom.calories != blank
+    assign calories = product.metafields.custom.calories
+  endif
+  if protein == blank and product.metafields.custom.protein != blank
+    assign protein = product.metafields.custom.protein
+  endif
+%}
+
+<div class="fhe-meal-card" data-product-id="{{ product.id }}" data-dietary="{{ dietary_tags }}">
+  <div class="fhe-meal-card__media">
+    <a href="{{ product.url }}" aria-label="{{ product.title }}">
+      {% if product.featured_image != blank %}
+        <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy" class="fhe-meal-card__img">
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'fhe-meal-card__img' }}
+      {% endif %}
+    </a>
+
+    <div class="fhe-meal-card__badges">
+      {% for tag in product.tags %}
+        {% assign tag_lower = tag | downcase %}
+        {% if tag_lower == 'popular' or tag_lower == 'best seller' or tag_lower == 'new' %}
+          <span class="fhe-meal-card__tag">{{ tag }}</span>
+        {% elsif tag_lower == 'vegetarian' or tag_lower == 'veg' %}
+          <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Veg</span>
+        {% elsif tag_lower == 'high protein' %}
+          <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 High Protein</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="fhe-meal-card__content">
+    <div class="fhe-meal-card__header">
+      <a href="{{ product.url }}" class="fhe-meal-card__title">
+        {{ product.title }}
+      </a>
+
+      {% if product.description != blank %}
+        <div class="fhe-meal-card__desc">
+          {{ product.description | strip_html | truncate: 90 }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if calories != blank or protein != blank %}
+      <div class="fhe-meal-card__macros">
+        {% if calories != blank %}
+          <div class="fhe-meal-card__macro-item">
+            <span>🔥</span>
+            <span>{{ calories }} Cal</span>
+          </div>
+        {% endif %}
+        {% if protein != blank %}
+          <div class="fhe-meal-card__macro-item">
+            <span>🥩</span>
+            <span>{{ protein }} Protein</span>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <!-- Add-ons Selection -->
+    <div class="fhe-meal-card__addons-wrapper" style="margin-bottom: 12px;">
+      <label style="font-size: 12px; font-weight: 600; color: var(--fhe-dark-muted); display: block; margin-bottom: 4px;">Optional Add-on:</label>
+      <select class="fhe-meal-card__addons-select fhe-addon-picker" data-product-id="{{ product.id }}">
+        <option value="None">None (Standard Meal)</option>
+        <option value="Extra Rice (+$2.50)">Extra Rice (+$2.50)</option>
+        <option value="Extra Garlic Naan (+$3.00)">Extra Garlic Naan (+$3.00)</option>
+        <option value="Extra Sauce (+$1.50)">Extra Sauce (+$1.50)</option>
+        <option value="Gulab Jamun Dessert (+$3.50)">Gulab Jamun Dessert (+$3.50)</option>
+        <option value="Mango Lassi Drink (+$4.00)">Mango Lassi Drink (+$4.00)</option>
+      </select>
+    </div>
+
+    <form method="post" action="/cart/add" class="fhe-meal-card__form" style="margin-top: auto;">
+      <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+      <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
+      <input type="hidden" name="properties[Expected Delivery Date]" class="fhe-delivery-date-hidden-input" value="">
+      <input type="hidden" name="properties[Delivery Week]" class="fhe-delivery-week-hidden-input" value="">
+
+      <div class="fhe-meal-card__footer">
+        <div class="fhe-meal-card__price">
+          {{ product.price | money }}
+        </div>
+
+        <button type="submit" class="fhe-btn fhe-btn--primary" style="padding: 10px 18px; font-size: 14px;">
+          + Add to Order
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.fhe-addon-picker').forEach(function(select) {
+      select.addEventListener('change', function() {
+        var card = this.closest('.fhe-meal-card');
+        if (card) {
+          var hiddenInput = card.querySelector('.fhe-addon-hidden-input');
+          if (hiddenInput) {
+            hiddenInput.value = this.value;
+          }
+        }
+      });
+    });
+  });
+</script>

@@ -521,12 +521,23 @@
         "padding_bottom": 0,
         "custom_class": ""
       }
+    },
+    "fresh_heat_eat_banner": {
+      "type": "fresh-heat-eat-banner",
+      "settings": {
+        "subbrand_label": "KwikMeal Fresh Heat-N-Eat",
+        "title": "Chef Prepared Meals Delivered Fresh Every Week",
+        "subtitle": "Healthy • Fresh • Ready in Minutes",
+        "button_text": "Order Now",
+        "button_link": "/pages/fresh-heat-and-eat"
+      }
     }
   },
   "order": [
     "1621243260e1af0c20",
     "slider_zDt9nU",
     "icon_box_yGzPiU",
+    "fresh_heat_eat_banner",
     "featured_collection_EYEMbM",
     "custom_content_z3JMpC",
     "custom_content_RQ6X7W",

@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "fresh-meal-details",
+      "settings": {}
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "More Chef Prepared Meals",
+        "limit": 4
+      }
+    }
+  },
+  "order": [
+    "main",
+    "recommendations"
+  ]
+}

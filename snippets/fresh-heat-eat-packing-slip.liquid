@@ -1,0 +1,91 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Kitchen Packing Slip & Order Export Snippet
+  Accepts:
+  - order: {Object} Shopify Order object
+{% endcomment %}
+
+<div class="fhe-packing-slip" style="font-family: sans-serif; padding: 24px; border: 1px solid #ccc; background: #fff; color: #000; max-width: 800px; margin: 20px auto;">
+  <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 20px;">
+    <div>
+      <h2 style="margin: 0; font-size: 24px;">KwikMeal Fresh Heat-N-Eat</h2>
+      <p style="margin: 4px 0 0; font-size: 14px; color: #555;">Kitchen Packing Slip & Delivery Batch</p>
+    </div>
+    <div style="text-align: right;">
+      <h3 style="margin: 0; font-size: 18px;">Order {{ order.name }}</h3>
+      <p style="margin: 4px 0 0; font-size: 13px;">Date: {{ order.created_at | date: "%b %d, %Y" }}</p>
+    </div>
+  </div>
+
+  <!-- Customer Details -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; font-size: 14px;">
+    <div>
+      <strong>Shipping Address:</strong><br>
+      {{ order.shipping_address.name }}<br>
+      {{ order.shipping_address.street }}<br>
+      {{ order.shipping_address.city }}, {{ order.shipping_address.province_code }} {{ order.shipping_address.zip }}<br>
+      Phone: {{ order.shipping_address.phone | default: order.phone }}
+    </div>
+    <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; border: 1px solid #e9ecef;">
+      <strong>Delivery Batch Info:</strong><br>
+      {% for line_item in order.line_items %}
+        {% for prop in line_item.properties %}
+          {% if prop.first == 'Expected Delivery Date' %}
+            <div>Target Delivery: <strong>{{ prop.last }}</strong></div>
+          {% elsif prop.first == 'Delivery Week' %}
+            <div>Batch: <strong>{{ prop.last }}</strong></div>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Ordered Items Table -->
+  <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px;">
+    <thead>
+      <tr style="background: #0d5c46; color: #fff; text-align: left;">
+        <th style="padding: 10px;">Meal Name</th>
+        <th style="padding: 10px;">Qty</th>
+        <th style="padding: 10px;">Add-ons</th>
+        <th style="padding: 10px; text-align: center;">Packing Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.line_items %}
+        <tr style="border-bottom: 1px solid #eee;">
+          <td style="padding: 10px;">
+            <strong>{{ item.product.title }}</strong>
+            {% if item.variant.title != 'Default Title' %}
+              <br><small style="color: #666;">Variant: {{ item.variant.title }}</small>
+            {% endif %}
+          </td>
+          <td style="padding: 10px; font-weight: bold;">x{{ item.quantity }}</td>
+          <td style="padding: 10px;">
+            {% assign addons_found = false %}
+            {% for prop in item.properties %}
+              {% if prop.first == 'Add-ons' and prop.last != 'None' and prop.last != blank %}
+                <span style="background: #fff3cd; padding: 2px 6px; border-radius: 4px; font-weight: 600;">{{ prop.last }}</span>
+                {% assign addons_found = true %}
+              {% endif %}
+            {% endfor %}
+            {% unless addons_found %}
+              <span style="color: #888;">Standard Meal</span>
+            {% endunless %}
+          </td>
+          <td style="padding: 10px; text-align: center;">
+            <span style="display: inline-block; width: 20px; height: 20px; border: 2px solid #333; border-radius: 3px;"></span>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if order.note != blank %}
+    <div style="background: #fff8e1; border: 1px solid #ffe082; padding: 12px; border-radius: 6px; margin-bottom: 20px; font-size: 14px;">
+      <strong>Special Instructions:</strong> {{ order.note }}
+    </div>
+  {% endif %}
+
+  <div style="text-align: center; border-top: 1px solid #ddd; padding-top: 12px; font-size: 12px; color: #777;">
+    Thank you for choosing KwikMeal Fresh Heat-N-Eat! Contact 1-877 KWIKMEAL for support.
+  </div>
+</div>

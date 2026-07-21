@@ -1,0 +1,563 @@
+/* ==========================================================================
+   KWIKMEAL FRESH HEAT-N-EAT - PREMIUM DESIGN SYSTEM & COMPONENT STYLES
+   ========================================================================== */
+
+:root {
+  --fhe-primary: #0d5c46;
+  --fhe-primary-hover: #0a4635;
+  --fhe-primary-light: #e6f4f0;
+  --fhe-accent: #ea9849;
+  --fhe-accent-hover: #d88333;
+  --fhe-dark: #0f172a;
+  --fhe-dark-muted: #334155;
+  --fhe-light-bg: #f8fafc;
+  --fhe-card-bg: #ffffff;
+  --fhe-border: #e2e8f0;
+  --fhe-border-hover: #cbd5e1;
+  --fhe-success: #10b981;
+  --fhe-success-bg: #ecfdf5;
+  --fhe-error: #ef4444;
+  --fhe-error-bg: #fef2f2;
+  --fhe-warning-bg: #fffbe6;
+  --fhe-radius-sm: 8px;
+  --fhe-radius-md: 14px;
+  --fhe-radius-lg: 20px;
+  --fhe-radius-full: 9999px;
+  --fhe-shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --fhe-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --fhe-shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
+  --fhe-font-heading: 'Work Sans', sans-serif;
+  --fhe-font-body: 'Work Sans', sans-serif;
+}
+
+/* Base resets & typography */
+.fhe-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.fhe-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--fhe-radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: var(--fhe-primary-light);
+  color: var(--fhe-primary);
+  border: 1px solid rgba(13, 92, 70, 0.15);
+}
+
+.fhe-badge-pill.fhe-badge-pill--accent {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: rgba(217, 119, 6, 0.2);
+}
+
+.fhe-badge-pill.fhe-badge-pill--dark {
+  background: var(--fhe-dark);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.fhe-title-hero {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--fhe-dark);
+  margin-bottom: 20px;
+}
+
+.fhe-title-section {
+  font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--fhe-dark);
+  margin-bottom: 12px;
+}
+
+.fhe-subtitle {
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.6;
+  color: var(--fhe-dark-muted);
+  max-width: 680px;
+}
+
+/* Button Styles */
+.fhe-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--fhe-radius-full);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: 2px solid transparent;
+  outline: none;
+}
+
+.fhe-btn--primary {
+  background-color: var(--fhe-primary);
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(13, 92, 70, 0.25);
+}
+
+.fhe-btn--primary:hover {
+  background-color: var(--fhe-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(13, 92, 70, 0.35);
+}
+
+.fhe-btn--accent {
+  background-color: var(--fhe-accent);
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(234, 152, 73, 0.3);
+}
+
+.fhe-btn--accent:hover {
+  background-color: var(--fhe-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 152, 73, 0.4);
+}
+
+.fhe-btn--outline {
+  background: transparent;
+  border-color: var(--fhe-dark);
+  color: var(--fhe-dark) !important;
+}
+
+.fhe-btn--outline:hover {
+  background: var(--fhe-dark);
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+/* Cutoff & Delivery Date Pill Bar */
+.fhe-cutoff-bar {
+  background: linear-gradient(135deg, #0d5c46 0%, #083c2e 100%);
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: var(--fhe-radius-md);
+  box-shadow: var(--fhe-shadow-md);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.fhe-cutoff-bar__info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fhe-cutoff-bar__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.fhe-cutoff-bar__text {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.fhe-cutoff-bar__date {
+  font-weight: 700;
+  color: #fef08a;
+}
+
+.fhe-cutoff-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 16px;
+  border-radius: var(--fhe-radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ZIP Code Checker Modal / Box */
+.fhe-zip-box {
+  background: var(--fhe-card-bg);
+  border: 1px solid var(--fhe-border);
+  border-radius: var(--fhe-radius-lg);
+  padding: 24px;
+  box-shadow: var(--fhe-shadow-md);
+}
+
+.fhe-zip-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.fhe-zip-input {
+  flex: 1;
+  padding: 12px 18px;
+  border: 2px solid var(--fhe-border);
+  border-radius: var(--fhe-radius-full);
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.fhe-zip-input:focus {
+  border-color: var(--fhe-primary);
+}
+
+.fhe-zip-status {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  display: none;
+  padding: 10px 16px;
+  border-radius: var(--fhe-radius-sm);
+}
+
+.fhe-zip-status.is-valid {
+  display: block;
+  background: var(--fhe-success-bg);
+  color: var(--fhe-success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.fhe-zip-status.is-invalid {
+  display: block;
+  background: var(--fhe-error-bg);
+  color: var(--fhe-error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* Fresh Meal Card Grid & Component */
+.fhe-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.fhe-meal-card {
+  background: var(--fhe-card-bg);
+  border: 1px solid var(--fhe-border);
+  border-radius: var(--fhe-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--fhe-shadow-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.fhe-meal-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--fhe-shadow-lg);
+  border-color: var(--fhe-border-hover);
+}
+
+.fhe-meal-card__media {
+  position: relative;
+  width: 100%;
+  padding-top: 75%; /* 4:3 aspect ratio */
+  overflow: hidden;
+  background: var(--fhe-light-bg);
+}
+
+.fhe-meal-card__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.fhe-meal-card:hover .fhe-meal-card__img {
+  transform: scale(1.06);
+}
+
+.fhe-meal-card__badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  z-index: 2;
+}
+
+.fhe-meal-card__tag {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  color: var(--fhe-dark);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--fhe-radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.fhe-meal-card__tag--veg {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.fhe-meal-card__tag--protein {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.fhe-meal-card__content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.fhe-meal-card__header {
+  margin-bottom: 10px;
+}
+
+.fhe-meal-card__title {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--fhe-dark);
+  text-decoration: none;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.fhe-meal-card__title:hover {
+  color: var(--fhe-primary);
+}
+
+.fhe-meal-card__desc {
+  font-size: 14px;
+  color: var(--fhe-dark-muted);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.fhe-meal-card__macros {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fhe-dark-muted);
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.fhe-meal-card__macro-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fhe-meal-card__footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.fhe-meal-card__price {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--fhe-dark);
+}
+
+.fhe-meal-card__addons-select {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--fhe-border);
+  border-radius: var(--fhe-radius-sm);
+  font-size: 13px;
+  background: var(--fhe-light-bg);
+  outline: none;
+}
+
+/* Filter Bar */
+.fhe-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--fhe-border);
+}
+
+.fhe-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fhe-filter-btn {
+  padding: 8px 18px;
+  border-radius: var(--fhe-radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--fhe-light-bg);
+  color: var(--fhe-dark-muted);
+  border: 1px solid var(--fhe-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.fhe-filter-btn:hover,
+.fhe-filter-btn.is-active {
+  background: var(--fhe-primary);
+  color: #ffffff;
+  border-color: var(--fhe-primary);
+}
+
+/* 4-Step How It Works Grid */
+.fhe-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.fhe-step-card {
+  background: var(--fhe-card-bg);
+  border: 1px solid var(--fhe-border);
+  border-radius: var(--fhe-radius-lg);
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: var(--fhe-shadow-sm);
+  position: relative;
+  transition: transform 0.25s ease;
+}
+
+.fhe-step-card:hover {
+  transform: translateY(-4px);
+}
+
+.fhe-step-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--fhe-primary-light);
+  color: var(--fhe-primary);
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.fhe-step-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--fhe-dark);
+  margin-bottom: 8px;
+}
+
+.fhe-step-desc {
+  font-size: 14px;
+  color: var(--fhe-dark-muted);
+  line-height: 1.5;
+}
+
+/* Accordion FAQs */
+.fhe-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.fhe-faq-item {
+  background: var(--fhe-card-bg);
+  border: 1px solid var(--fhe-border);
+  border-radius: var(--fhe-radius-md);
+  overflow: hidden;
+}
+
+.fhe-faq-question {
+  width: 100%;
+  padding: 18px 24px;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fhe-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fhe-faq-answer {
+  padding: 0 24px 18px;
+  font-size: 15px;
+  color: var(--fhe-dark-muted);
+  line-height: 1.6;
+  display: none;
+}
+
+.fhe-faq-item.is-open .fhe-faq-answer {
+  display: block;
+}
+
+/* Mobile responsiveness adjustments */
+@media (max-width: 767px) {
+  .fhe-container {
+    padding: 0 16px;
+  }
+
+  .fhe-cutoff-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fhe-zip-form {
+    flex-direction: column;
+  }
+
+  .fhe-zip-input,
+  .fhe-btn {
+    width: 100%;
+  }
+
+  .fhe-filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

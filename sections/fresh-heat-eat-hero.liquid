@@ -1,0 +1,86 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Landing Page Hero Section
+{% endcomment %}
+
+<div class="fhe-hero-section" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); padding: 60px 0 40px; position: relative;">
+  <div class="fhe-container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: center;">
+      <div class="fhe-hero-content">
+        <div class="fhe-badge-pill" style="margin-bottom: 16px;">
+          <span>🌱</span> Fresh Chef-Prepared Meals
+        </div>
+
+        <h1 class="fhe-title-hero">
+          {{ section.settings.headline | default: "Fresh Chef Prepared Meals Delivered Weekly" }}
+        </h1>
+
+        <p class="fhe-subtitle" style="margin-bottom: 24px;">
+          {{ section.settings.subheadline | default: "Freshly cooked. Delivered cold. Ready in minutes. Order before Sunday's cutoff." }}
+        </p>
+
+        <!-- Delivery Date Badge -->
+        <div class="fhe-cutoff-timer" style="margin-bottom: 32px; background: #ecfdf5; color: #065f46; border-color: rgba(16,185,129,0.3);">
+          <span>📦</span>
+          <span>Next Delivery: <strong class="fhe-calculated-delivery-date" style="color: #047857;">Friday Delivery</strong></span>
+        </div>
+
+        <!-- Inline ZIP Code Validation Form -->
+        <div class="fhe-zip-box" style="max-width: 480px; margin-bottom: 24px;">
+          <label style="font-size: 14px; font-weight: 700; color: var(--fhe-dark); display: block; margin-bottom: 4px;">
+            Check Delivery Availability in Your Area:
+          </label>
+          <form class="fhe-zip-form">
+            <input type="text" class="fhe-zip-input" placeholder="Enter ZIP Code (e.g. 48187)" required>
+            <button type="submit" class="fhe-btn fhe-btn--primary" style="padding: 12px 24px;">
+              Check ZIP
+            </button>
+          </form>
+          <div class="fhe-zip-status"></div>
+        </div>
+
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="#fhe-menu-section" class="fhe-btn fhe-btn--accent" style="padding: 16px 36px; font-size: 17px;">
+            Browse Available Meals ↓
+          </a>
+        </div>
+      </div>
+
+      <div class="fhe-hero-media" style="position: relative; text-align: center;">
+        {% if section.settings.hero_image != blank %}
+          <img src="{{ section.settings.hero_image | image_url: width: 900 }}" alt="Fresh Chef Prepared Meals" loading="eager" style="width: 100%; border-radius: var(--fhe-radius-lg); box-shadow: var(--fhe-shadow-lg);">
+        {% else %}
+          <div style="background: linear-gradient(135deg, #0d5c46 0%, #1e293b 100%); border-radius: var(--fhe-radius-lg); padding: 60px 30px; color: #ffffff; text-align: center; box-shadow: var(--fhe-shadow-lg);">
+            <div style="font-size: 64px; margin-bottom: 16px;">🍛</div>
+            <h3 style="color: #ffffff; margin-bottom: 8px;">KwikMeal Fresh Heat-N-Eat</h3>
+            <p style="color: #cbd5e1; font-size: 15px;">Chef Prepared • Weekly Pre-Orders</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fresh Heat Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Fresh Chef Prepared Meals Delivered Weekly"
+    },
+    {
+      "type": "textarea",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "Freshly cooked. Delivered cold. Ready in minutes. Order before Sunday's cutoff."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    }
+  ]
+}
+{% endschema %}

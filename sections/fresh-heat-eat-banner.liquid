@@ -1,0 +1,99 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Homepage Banner Section
+{% endcomment %}
+
+<div class="fhe-banner-section m-section-my">
+  <div class="fhe-container">
+    <div class="fhe-banner-card" style="background: linear-gradient(135deg, #0d5c46 0%, #063125 100%); border-radius: var(--fhe-radius-lg); padding: 48px 36px; color: #ffffff; position: relative; overflow: hidden; box-shadow: var(--fhe-shadow-lg);">
+      <!-- Decorative background blur circle -->
+      <div style="position: absolute; top: -100px; right: -100px; width: 350px; height: 350px; background: rgba(234, 152, 73, 0.15); border-radius: 50%; filter: blur(60px); pointer-events: none;"></div>
+
+      <div class="fhe-banner-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px; align-items: center; position: relative; z-index: 2;">
+        <div class="fhe-banner-content">
+          <div class="fhe-badge-pill fhe-badge-pill--accent" style="margin-bottom: 16px;">
+            <span>✨</span> {{ section.settings.subbrand_label | default: "KwikMeal Fresh Heat-N-Eat" }}
+          </div>
+
+          <h2 style="font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.15; color: #ffffff; margin-bottom: 16px;">
+            {{ section.settings.title | default: "Chef Prepared Meals Delivered Fresh Every Week" }}
+          </h2>
+
+          <p style="font-size: 18px; color: #e2e8f0; line-height: 1.5; margin-bottom: 24px;">
+            {{ section.settings.subtitle | default: "Healthy • Fresh • Ready in Minutes" }}
+          </p>
+
+          <!-- Calculated Delivery Pill -->
+          <div class="fhe-cutoff-timer" style="margin-bottom: 28px; background: rgba(255,255,255,0.12); color: #fef08a; border-color: rgba(255,255,255,0.25);">
+            <span>⏰</span>
+            <span class="fhe-calculated-cutoff-timer">Order by Sunday 11:00 AM for Friday Delivery</span>
+          </div>
+
+          <div>
+            <a href="{{ section.settings.button_link | default: '/pages/fresh-heat-and-eat' }}" class="fhe-btn fhe-btn--accent" style="font-size: 17px; padding: 16px 36px;">
+              {{ section.settings.button_text | default: "Order Now" }} →
+            </a>
+          </div>
+        </div>
+
+        <div class="fhe-banner-image-wrap" style="text-align: center;">
+          {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | image_url: width: 800 }}" alt="Fresh Heat-N-Eat Meals" loading="lazy" style="width: 100%; max-width: 520px; border-radius: var(--fhe-radius-md); box-shadow: 0 20px 40px rgba(0,0,0,0.3); transform: rotate(1deg); transition: transform 0.3s ease;">
+          {% else %}
+            <div style="background: rgba(255,255,255,0.08); border: 2px dashed rgba(255,255,255,0.2); border-radius: var(--fhe-radius-md); padding: 40px 20px; text-align: center;">
+              <div style="font-size: 48px; margin-bottom: 12px;">🍱</div>
+              <h4 style="color: #ffffff; margin-bottom: 6px;">Fresh Weekly Pre-Order Meals</h4>
+              <p style="color: #cbd5e1; font-size: 14px;">Next Delivery: <strong class="fhe-calculated-delivery-date" style="color: #fef08a;">Friday Delivery</strong></p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fresh Heat Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subbrand_label",
+      "label": "Sub-brand Label",
+      "default": "KwikMeal Fresh Heat-N-Eat"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Chef Prepared Meals Delivered Fresh Every Week"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Healthy • Fresh • Ready in Minutes"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Label",
+      "default": "Order Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fresh Heat Banner"
+    }
+  ]
+}
+{% endschema %}

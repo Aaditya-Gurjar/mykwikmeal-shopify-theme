@@ -1,0 +1,40 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Delivery Locations & ZIP Checker Section
+{% endcomment %}
+
+<div class="fhe-section" style="padding: 70px 0; background: var(--fhe-light-bg);">
+  <div class="fhe-container">
+    <div style="max-width: 800px; margin: 0 auto; background: #ffffff; border: 1px solid var(--fhe-border); border-radius: var(--fhe-radius-lg); padding: 48px 36px; box-shadow: var(--fhe-shadow-md); text-align: center;">
+      <div class="fhe-badge-pill" style="margin-bottom: 12px;">Delivery Area</div>
+      <h2 class="fhe-title-section" style="margin-bottom: 12px;">Check Delivery Availability</h2>
+      <p class="fhe-subtitle" style="margin: 0 auto 28px;">Fresh Heat-N-Eat is currently available in select Michigan communities.</p>
+
+      <form class="fhe-zip-form" style="max-width: 440px; margin: 0 auto;">
+        <input type="text" class="fhe-zip-input" placeholder="Enter ZIP Code (e.g. 48187)" required>
+        <button type="submit" class="fhe-btn fhe-btn--primary" style="padding: 12px 28px;">
+          Check ZIP
+        </button>
+      </form>
+      <div class="fhe-zip-status" style="max-width: 440px; margin: 16px auto 0;"></div>
+
+      <div style="margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--fhe-border);">
+        <h4 style="font-size: 15px; font-weight: 700; color: var(--fhe-dark); margin-bottom: 12px;">Supported Delivery Cities:</h4>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+          <span class="fhe-badge-pill fhe-badge-pill--dark">Canton (48187, 48189)</span>
+          <span class="fhe-badge-pill fhe-badge-pill--dark">Livonia (48150 - 48154)</span>
+          <span class="fhe-badge-pill fhe-badge-pill--dark">Farmington Hills (48331 - 48336)</span>
+          <span class="fhe-badge-pill fhe-badge-pill--dark">Plymouth (48170)</span>
+          <span class="fhe-badge-pill fhe-badge-pill--dark">Novi (48374 - 48377)</span>
+          <span class="fhe-badge-pill fhe-badge-pill--dark">Northville (48167, 48168)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Zip Checker",
+  "settings": []
+}
+{% endschema %}
