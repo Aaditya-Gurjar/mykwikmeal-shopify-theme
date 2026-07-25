@@ -1,12 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
+
 {
   "sections": {
     "1621243260e1af0c20": {
@@ -525,11 +517,14 @@
     "fresh_heat_eat_banner": {
       "type": "fresh-heat-eat-banner",
       "settings": {
+        "container": "w-full",
         "subbrand_label": "KwikMeal Fresh Heat-N-Eat",
         "title": "Chef Prepared Meals Delivered Fresh Every Week",
         "subtitle": "Healthy • Fresh • Ready in Minutes",
         "button_text": "Order Now",
-        "button_link": "/pages/fresh-heat-and-eat"
+        "button_link": "/pages/fresh-heat-n-eat",
+        "margin_top": 32,
+        "margin_bottom": 32
       }
     }
   },

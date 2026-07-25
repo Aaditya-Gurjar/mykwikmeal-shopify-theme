@@ -1,48 +1,100 @@
 {% comment %}
   KwikMeal Fresh Heat-N-Eat Homepage Banner Section
+  Sleek compact height, full width edge-to-edge support, configurable margins.
 {% endcomment %}
 
-<div class="fhe-banner-section m-section-my">
-  <div class="fhe-container">
-    <div class="fhe-banner-card" style="background: linear-gradient(135deg, #0d5c46 0%, #063125 100%); border-radius: var(--fhe-radius-lg); padding: 48px 36px; color: #ffffff; position: relative; overflow: hidden; box-shadow: var(--fhe-shadow-lg);">
-      <!-- Decorative background blur circle -->
-      <div style="position: absolute; top: -100px; right: -100px; width: 350px; height: 350px; background: rgba(234, 152, 73, 0.15); border-radius: 50%; filter: blur(60px); pointer-events: none;"></div>
+{% liquid
+  assign container = section.settings.container | default: 'w-full'
+  if container == 'w-full' or container == 'container-full'
+    assign container_class = 'w-full p-0'
+  else
+    assign container_class = container
+  endif
 
-      <div class="fhe-banner-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 36px; align-items: center; position: relative; z-index: 2;">
+  assign bg_gradient = section.settings.bg_gradient
+  assign bg_color = section.settings.bg_color | default: '#0d5c46'
+  assign text_color = section.settings.text_color | default: '#ffffff'
+  assign button_bg = section.settings.button_bg | default: '#ea9849'
+  assign button_text_color = section.settings.button_text_color | default: '#ffffff'
+%}
+
+<style>
+  #fhe-banner-{{ section.id }} {
+    --fhe-banner-bg-color: {{ bg_color }};
+    {% if bg_gradient != blank %}
+      --fhe-banner-bg: {{ bg_gradient }};
+    {% else %}
+      --fhe-banner-bg: linear-gradient(135deg, {{ bg_color }} 0%, #063125 100%);
+    {% endif %}
+    --fhe-banner-text-color: {{ text_color }};
+    --fhe-banner-btn-bg: {{ button_bg }};
+    --fhe-banner-btn-text: {{ button_text_color }};
+    margin-top: {{ section.settings.margin_top | default: 32 }}px;
+    margin-bottom: {{ section.settings.margin_bottom | default: 32 }}px;
+    padding-top: {{ section.settings.padding_top | default: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | default: 0 }}px;
+  }
+</style>
+
+<div id="fhe-banner-{{ section.id }}" class="fhe-banner-section {{ section.settings.custom_class }}">
+  <div class="{{ container_class }}">
+    <div class="fhe-banner-card {% if container == 'w-full' or container == 'container-full' %}fhe-banner-card--full-width{% endif %}">
+      <!-- Decorative background elements -->
+      <div class="fhe-banner-card__glow fhe-banner-card__glow--1"></div>
+      <div class="fhe-banner-card__glow fhe-banner-card__glow--2"></div>
+
+      <div class="fhe-banner-grid">
         <div class="fhe-banner-content">
-          <div class="fhe-badge-pill fhe-badge-pill--accent" style="margin-bottom: 16px;">
-            <span>✨</span> {{ section.settings.subbrand_label | default: "KwikMeal Fresh Heat-N-Eat" }}
-          </div>
+          {% if section.settings.subbrand_label != blank %}
+            <div class="fhe-badge-pill fhe-badge-pill--accent">
+              <span>✨</span> {{ section.settings.subbrand_label }}
+            </div>
+          {% endif %}
 
-          <h2 style="font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.15; color: #ffffff; margin-bottom: 16px;">
+          <h2 class="fhe-banner-card__title">
             {{ section.settings.title | default: "Chef Prepared Meals Delivered Fresh Every Week" }}
           </h2>
 
-          <p style="font-size: 18px; color: #e2e8f0; line-height: 1.5; margin-bottom: 24px;">
-            {{ section.settings.subtitle | default: "Healthy • Fresh • Ready in Minutes" }}
-          </p>
+          {% if section.settings.subtitle != blank %}
+            <p class="fhe-banner-card__subtitle">
+              {{ section.settings.subtitle }}
+            </p>
+          {% endif %}
 
-          <!-- Calculated Delivery Pill -->
-          <div class="fhe-cutoff-timer" style="margin-bottom: 28px; background: rgba(255,255,255,0.12); color: #fef08a; border-color: rgba(255,255,255,0.25);">
+          <!-- Calculated Delivery Cutoff Pill -->
+          <div class="fhe-banner-card__cutoff-pill">
             <span>⏰</span>
             <span class="fhe-calculated-cutoff-timer">Order by Sunday 11:00 AM for Friday Delivery</span>
           </div>
 
-          <div>
-            <a href="{{ section.settings.button_link | default: '/pages/fresh-heat-and-eat' }}" class="fhe-btn fhe-btn--accent" style="font-size: 17px; padding: 16px 36px;">
+          <div class="fhe-banner-card__cta-wrap">
+            <a href="{{ section.settings.button_link | default: '/pages/fresh-heat-n-eat' }}" class="fhe-btn fhe-banner-card__cta">
               {{ section.settings.button_text | default: "Order Now" }} →
             </a>
           </div>
         </div>
 
-        <div class="fhe-banner-image-wrap" style="text-align: center;">
+        <div class="fhe-banner-image-wrap">
           {% if section.settings.image != blank %}
-            <img src="{{ section.settings.image | image_url: width: 800 }}" alt="Fresh Heat-N-Eat Meals" loading="lazy" style="width: 100%; max-width: 520px; border-radius: var(--fhe-radius-md); box-shadow: 0 20px 40px rgba(0,0,0,0.3); transform: rotate(1deg); transition: transform 0.3s ease;">
+            <img
+              src="{{ section.settings.image | image_url: width: 800 }}"
+              srcset="{{ section.settings.image | image_url: width: 400 }} 400w,
+                      {{ section.settings.image | image_url: width: 600 }} 600w,
+                      {{ section.settings.image | image_url: width: 800 }} 800w"
+              sizes="(max-width: 767px) 92vw, 40vw"
+              alt="{{ section.settings.title | escape }}"
+              loading="lazy"
+              width="800"
+              height="450"
+              class="fhe-banner-image-wrap__img"
+            >
           {% else %}
-            <div style="background: rgba(255,255,255,0.08); border: 2px dashed rgba(255,255,255,0.2); border-radius: var(--fhe-radius-md); padding: 40px 20px; text-align: center;">
-              <div style="font-size: 48px; margin-bottom: 12px;">🍱</div>
-              <h4 style="color: #ffffff; margin-bottom: 6px;">Fresh Weekly Pre-Order Meals</h4>
-              <p style="color: #cbd5e1; font-size: 14px;">Next Delivery: <strong class="fhe-calculated-delivery-date" style="color: #fef08a;">Friday Delivery</strong></p>
+            <div class="fhe-banner-image-wrap__placeholder">
+              <div class="fhe-banner-image-wrap__placeholder-icon">🍱</div>
+              <h4 class="fhe-banner-image-wrap__placeholder-title">Fresh Weekly Pre-Order Meals</h4>
+              <p class="fhe-banner-image-wrap__placeholder-delivery">
+                Next Delivery: <strong class="fhe-calculated-delivery-date">Friday Delivery</strong>
+              </p>
             </div>
           {% endif %}
         </div>
@@ -55,6 +107,34 @@
 {
   "name": "Fresh Heat Banner",
   "settings": [
+    {
+      "type": "header",
+      "content": "Layout & Width"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container Width",
+      "default": "w-full",
+      "options": [
+        {
+          "value": "w-full",
+          "label": "Full Width (100% Screen Edge-to-Edge)"
+        },
+        {
+          "value": "container-fluid",
+          "label": "Fluid Container"
+        },
+        {
+          "value": "container",
+          "label": "Boxed Container"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
     {
       "type": "text",
       "id": "subbrand_label",
@@ -88,6 +168,89 @@
       "type": "image_picker",
       "id": "image",
       "label": "Banner Image"
+    },
+    {
+      "type": "header",
+      "content": "Colors & Styling"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#0d5c46"
+    },
+    {
+      "type": "color_background",
+      "id": "bg_gradient",
+      "label": "Background Gradient",
+      "default": "linear-gradient(135deg, #0d5c46 0%, #063125 100%)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background Color",
+      "default": "#ea9849"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Section Margins & Padding"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin Top",
+      "default": 32,
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin Bottom",
+      "default": 32,
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS Class"
     }
   ],
   "presets": [

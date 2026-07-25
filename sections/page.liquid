@@ -5,11 +5,16 @@
     assign animated = true
   endif
 -%}
-{% render 'page-title', title: page.title, container: 'container' %}
-{%- if page.content != blank -%}
-  <div class="container">
-    <div class="m-page-content rte{% if animated %} m-scroll-trigger animate--{{ animation_effect }}{% endif %}">
-      {{ page.content }}
+{%- if page.handle contains 'fresh-heat' -%}
+  {% comment %} Render full Fresh Heat-N-Eat landing page via snippet (bypasses template assignment) {% endcomment %}
+  {% render 'fhe-page-content' %}
+{%- else -%}
+  {% render 'page-title', title: page.title, container: 'container' %}
+  {%- if page.content != blank -%}
+    <div class="container">
+      <div class="m-page-content rte{% if animated %} m-scroll-trigger animate--{{ animation_effect }}{% endif %}">
+        {{ page.content }}
+      </div>
     </div>
-  </div>
+  {%- endif -%}
 {%- endif -%}

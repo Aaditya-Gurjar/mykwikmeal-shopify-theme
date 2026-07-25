@@ -1,6 +1,7 @@
 /**
  * KWIKMEAL FRESH HEAT-N-EAT CORE ENGINE
- * Handles ZIP code validation, weekly cutoff & delivery calculation, and cart line-item properties.
+ * Handles ZIP code validation, weekly cutoff & delivery calculation,
+ * multi-addon checkboxes, quantity adjusters, search, sorting, and AJAX cart submission.
  */
 
 (function () {
@@ -36,6 +37,30 @@
       deliveryDay: globals.deliveryDay || DEFAULT_CONFIG.deliveryDay,
       allowedZips: globals.allowedZips || DEFAULT_CONFIG.allowedZips
     };
+  };
+
+  // Toast Notification Engine
+  FHEEngine.showToast = function (message, type = 'success') {
+    let container = document.querySelector('.fhe-toast-container');
+    if (!container) {
+      container = document.createElement('div');
+      container.className = 'fhe-toast-container';
+      document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `fhe-toast fhe-toast--${type}`;
+    toast.innerHTML = `<span>✨</span> <div>${message}</div>`;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.add('is-visible');
+    }, 10);
+
+    setTimeout(() => {
+      toast.classList.remove('is-visible');
+      setTimeout(() => toast.remove(), 300);
+    }, 4000);
   };
 
   // ZIP Code Engine
@@ -176,7 +201,81 @@
       });
     });
 
-    // Attach hidden line item properties to all cart forms for Heat-N-Eat products
+    // Realtime Add-on & Quantity Price Engine
+    function updateCardPrice(card) {
+      const basePrice = parseFloat(card.dataset.basePrice || card.dataset.price || 0);
+      const priceElem = card.querySelector('.fhe-meal-card__price');
+      const qtyInput = card.querySelector('.fhe-qty-input, input[name="quantity"]');
+      const qty = parseInt(qtyInput ? qtyInput.value : 1, 10) || 1;
+      const checkboxes = card.querySelectorAll('.fhe-addon-checkbox');
+
+      let addOnTotal = 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) {
+          addOnTotal += parseFloat(cb.dataset.price || 0);
+        }
+      });
+
+      const unitPrice = basePrice + addOnTotal;
+      if (priceElem) {
+        priceElem.textContent = '$' + unitPrice.toFixed(2);
+      }
+    }
+
+    // Quantity +/- picker handlers
+    document.querySelectorAll('.fhe-meal-card, .fhe-product-info').forEach(container => {
+      const minusBtn = container.querySelector('.fhe-qty-btn--minus');
+      const plusBtn = container.querySelector('.fhe-qty-btn--plus');
+      const qtyInput = container.querySelector('.fhe-qty-input, input[name="quantity"]');
+
+      if (minusBtn && qtyInput) {
+        minusBtn.addEventListener('click', function () {
+          let currentVal = parseInt(qtyInput.value, 10) || 1;
+          if (currentVal > 1) {
+            qtyInput.value = currentVal - 1;
+            updateCardPrice(container);
+          }
+        });
+      }
+
+      if (plusBtn && qtyInput) {
+        plusBtn.addEventListener('click', function () {
+          let currentVal = parseInt(qtyInput.value, 10) || 1;
+          qtyInput.value = currentVal + 1;
+          updateCardPrice(container);
+        });
+      }
+
+      if (qtyInput) {
+        qtyInput.addEventListener('input', function () {
+          updateCardPrice(container);
+        });
+      }
+    });
+
+    // Add-on checkboxes handler (Updates hidden input & triggers price calculation)
+    document.querySelectorAll('.fhe-meal-card, .fhe-product-info').forEach(card => {
+      const checkboxes = card.querySelectorAll('.fhe-addon-checkbox');
+      const hiddenInput = card.querySelector('.fhe-addon-hidden-input');
+
+      checkboxes.forEach(cb => {
+        cb.addEventListener('change', function () {
+          const selected = Array.from(checkboxes)
+            .filter(c => c.checked)
+            .map(c => c.value);
+
+          if (hiddenInput) {
+            hiddenInput.value = selected.length > 0 ? selected.join(', ') : 'None';
+          }
+          updateCardPrice(card);
+        });
+      });
+
+      // Initial price calculation on page load
+      updateCardPrice(card);
+    });
+
+    // AJAX Form submission logic with Multi-Item Payload & Cart Drawer Refresh
     document.querySelectorAll('form[action*="/cart/add"]').forEach(form => {
       if (form.classList.contains('fhe-processed-form')) return;
       form.classList.add('fhe-processed-form');
@@ -198,40 +297,190 @@
         form.appendChild(weekProp);
       }
       weekProp.value = calc.weekLabel;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const card = form.closest('.fhe-meal-card, .fhe-product-info') || form.parentElement;
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const variantInput = form.querySelector('input[name="id"]');
+        const qtyInput = form.querySelector('input[name="quantity"]');
+        const quantity = parseInt(qtyInput ? qtyInput.value : 1, 10) || 1;
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.classList.add('is-loading');
+        }
+
+        const mealVariantId = variantInput ? variantInput.value : 'demo-variant-1';
+        const selectedAddons = [];
+        const items = [];
+
+        // Collect checked add-on variants
+        const checkboxes = card ? card.querySelectorAll('.fhe-addon-checkbox:checked') : [];
+        checkboxes.forEach(cb => {
+          const addonTitle = cb.dataset.title || cb.value;
+          const addonVariantId = cb.dataset.variantId || null;
+          selectedAddons.push(addonTitle);
+
+          if (addonVariantId) {
+            items.push({
+              id: addonVariantId,
+              quantity: quantity
+            });
+          }
+        });
+
+        // Main meal variant item
+        const mainItem = {
+          id: mealVariantId,
+          quantity: quantity,
+          properties: {
+            'Add-ons': selectedAddons.length > 0 ? selectedAddons.join(', ') : 'None',
+            'Expected Delivery Date': calc.deliveryDateStr,
+            'Delivery Week': calc.weekLabel
+          }
+        };
+        items.unshift(mainItem);
+
+        // Submit via AJAX /cart/add.js
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ items: items })
+        })
+          .then(response => {
+            if (!response.ok) {
+              return response.json().then(err => { throw err; });
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.classList.remove('is-loading');
+            }
+
+            const mealTitle = card ? (card.querySelector('.fhe-meal-card__title, h1, h2, h3')?.textContent || 'Meal') : 'Meal';
+            FHEEngine.showToast(`Added ${quantity}× ${mealTitle} to your order!`);
+
+            // Refresh & open Minimog Cart Drawer
+            const cartDrawer = document.querySelector('m-cart-drawer');
+            if (cartDrawer) {
+              if (typeof cartDrawer.onCartDrawerUpdate === 'function') {
+                cartDrawer.onCartDrawerUpdate();
+              }
+              if (typeof cartDrawer.open === 'function') {
+                cartDrawer.open();
+              }
+            } else {
+              // Fallback cart count update
+              fetch('/cart.js')
+                .then(res => res.json())
+                .then(cart => {
+                  document.querySelectorAll('.m-cart-count-bubble, .cart-count, .cart-count-bubble').forEach(el => {
+                    el.textContent = cart.item_count;
+                    el.classList.remove('m:hidden', 'hidden');
+                  });
+                });
+            }
+          })
+          .catch(error => {
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.classList.remove('is-loading');
+            }
+            console.error('Cart Addition Exception:', error);
+            const errMessage = error.description || error.message || 'Could not add item to cart';
+
+            if (mealVariantId.toString().includes('demo')) {
+              const mealTitle = card ? (card.querySelector('.fhe-meal-card__title')?.textContent || 'Meal') : 'Meal';
+              FHEEngine.showToast(`Added ${quantity}× ${mealTitle} to your draft order!`);
+
+              const cartDrawer = document.querySelector('m-cart-drawer');
+              if (cartDrawer && typeof cartDrawer.open === 'function') {
+                cartDrawer.open();
+              }
+            } else {
+              FHEEngine.showToast(errMessage, true);
+            }
+          });
+      });
     });
 
-    // Accordion handler
+    // Accordion FAQ handler
     document.querySelectorAll('.fhe-faq-question').forEach(btn => {
       btn.addEventListener('click', function () {
         const item = this.parentElement;
         item.classList.toggle('is-open');
+        const isOpen = item.classList.contains('is-open');
+        this.setAttribute('aria-expanded', isOpen);
       });
     });
 
-    // Filter pills handler
+    // Search & Filter & Sort handlers
+    const searchInput = document.querySelector('.fhe-menu-search-input');
+    const sortSelect = document.querySelector('.fhe-menu-sort-select');
+
+    function filterAndSortMeals() {
+      const activeFilter = (document.querySelector('.fhe-filter-btn.is-active')?.getAttribute('data-filter') || 'all').toLowerCase();
+      const searchQuery = (searchInput?.value || '').trim().toLowerCase();
+      const sortValue = sortSelect?.value || 'default';
+
+      const grid = document.querySelector('.fhe-menu-grid');
+      if (!grid) return;
+
+      const cards = Array.from(grid.querySelectorAll('.fhe-meal-card'));
+
+      cards.forEach(card => {
+        const tags = (card.getAttribute('data-dietary') || '').toLowerCase();
+        const title = (card.querySelector('.fhe-meal-card__title')?.textContent || '').toLowerCase();
+        const desc = (card.querySelector('.fhe-meal-card__desc')?.textContent || '').toLowerCase();
+
+        const matchesFilter = activeFilter === 'all' || tags.includes(activeFilter);
+        const matchesSearch = !searchQuery || title.includes(searchQuery) || desc.includes(searchQuery);
+
+        if (matchesFilter && matchesSearch) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Sorting
+      if (sortValue === 'price-asc') {
+        cards.sort((a, b) => (parseFloat(a.getAttribute('data-price') || 0)) - (parseFloat(b.getAttribute('data-price') || 0)));
+      } else if (sortValue === 'price-desc') {
+        cards.sort((a, b) => (parseFloat(b.getAttribute('data-price') || 0)) - (parseFloat(a.getAttribute('data-price') || 0)));
+      } else if (sortValue === 'calories') {
+        cards.sort((a, b) => (parseInt(a.getAttribute('data-calories') || 0, 10)) - (parseInt(b.getAttribute('data-calories') || 0, 10)));
+      }
+
+      cards.forEach(card => grid.appendChild(card));
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', filterAndSortMeals);
+    }
+    if (sortSelect) {
+      sortSelect.addEventListener('change', filterAndSortMeals);
+    }
+
+    // Dietary Filter pills handler
     document.querySelectorAll('.fhe-filter-btn').forEach(btn => {
       btn.addEventListener('click', function () {
-        const filter = this.getAttribute('data-filter');
         document.querySelectorAll('.fhe-filter-btn').forEach(b => b.classList.remove('is-active'));
         this.classList.add('is-active');
-
-        document.querySelectorAll('.fhe-meal-card').forEach(card => {
-          if (filter === 'all') {
-            card.style.display = 'flex';
-          } else {
-            const tags = (card.getAttribute('data-dietary') || '').toLowerCase();
-            if (tags.includes(filter.toLowerCase())) {
-              card.style.display = 'flex';
-            } else {
-              card.style.display = 'none';
-            }
-          }
-        });
+        filterAndSortMeals();
       });
     });
   };
 
   document.addEventListener('DOMContentLoaded', function () {
     FHEEngine.initUI();
+    // Auto-refresh countdown every 60 seconds
+    setInterval(FHEEngine.initUI, 60000);
   });
 })();

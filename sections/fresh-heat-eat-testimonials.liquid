@@ -1,0 +1,213 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Testimonials & Reviews Section
+  Integrated with Judge.me widgets and custom review cards.
+{% endcomment %}
+
+{% liquid
+  assign container = section.settings.container | default: 'container-fluid'
+  if container == 'w-full' or container == 'container-full'
+    assign container_class = 'w-full p-0'
+  else
+    assign container_class = container
+  endif
+%}
+
+<div class="fhe-testimonials-section m-section-my">
+  <div class="{{ container_class }}">
+    <div class="fhe-section-header">
+      {% if section.settings.badge != blank %}
+        <div class="fhe-badge-pill">
+          {{ section.settings.badge }}
+        </div>
+      {% endif %}
+      <h2 class="fhe-title-section">
+        {{ section.settings.heading | default: "Loved by Busy Food Lovers" }}
+      </h2>
+      {% if section.settings.subheading != blank %}
+        <p class="fhe-subtitle">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+    </div>
+
+    <!-- Judge.me Featured Carousel / Widget Integration -->
+    <div class="fhe-judgeme-carousel-wrapper">
+      {% render 'judgeme_widgets', widget_type: 'judgeme_featured_carousel', concierge_install: true %}
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div class="fhe-testimonials-grid">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="fhe-testimonial-card" {{ block.shopify_attributes }}>
+            <div class="fhe-testimonial-card__rating">
+              {% assign rating = block.settings.rating | default: 5 %}
+              {% for i in (1..rating) %}★{% endfor %}
+            </div>
+            <p class="fhe-testimonial-card__quote">"{{ block.settings.quote }}"</p>
+            <div class="fhe-testimonial-card__author">
+              <div class="fhe-testimonial-card__avatar">
+                {{ block.settings.author_name | slice: 0 | uppercase }}
+              </div>
+              <div>
+                <strong class="fhe-testimonial-card__name">{{ block.settings.author_name }}</strong>
+                <span class="fhe-testimonial-card__location">{{ block.settings.author_location }}</span>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="fhe-testimonial-card">
+          <div class="fhe-testimonial-card__rating">★★★★★</div>
+          <p class="fhe-testimonial-card__quote">"The Butter Chicken heat-and-eat meal is resturant-quality! Delivered cold on Friday, heated in 3 minutes after work. Game changer!"</p>
+          <div class="fhe-testimonial-card__author">
+            <div class="fhe-testimonial-card__avatar">S</div>
+            <div>
+              <strong class="fhe-testimonial-card__name">Sarah M.</strong>
+              <span class="fhe-testimonial-card__location">Canton, MI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fhe-testimonial-card">
+          <div class="fhe-testimonial-card__rating">★★★★★</div>
+          <p class="fhe-testimonial-card__quote">"No subscriptions, no hidden fees, just ordering delicious weekly Indian meals before Sunday's cutoff. Highly recommended!"</p>
+          <div class="fhe-testimonial-card__author">
+            <div class="fhe-testimonial-card__avatar">R</div>
+            <div>
+              <strong class="fhe-testimonial-card__name">Rahul P.</strong>
+              <span class="fhe-testimonial-card__location">Novi, MI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fhe-testimonial-card">
+          <div class="fhe-testimonial-card__rating">★★★★★</div>
+          <p class="fhe-testimonial-card__quote">"Love the macro breakdown and high protein meals. Packaging keeps everything cold and fresh until Friday delivery."</p>
+          <div class="fhe-testimonial-card__author">
+            <div class="fhe-testimonial-card__avatar">A</div>
+            <div>
+              <strong class="fhe-testimonial-card__name">Amanda K.</strong>
+              <span class="fhe-testimonial-card__location">Plymouth, MI</span>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fresh Heat Testimonials",
+  "settings": [
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container Width",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container-fluid",
+          "label": "Fluid Container"
+        },
+        {
+          "value": "w-full",
+          "label": "Full Width"
+        },
+        {
+          "value": "container",
+          "label": "Boxed Container"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge Text",
+      "default": "Real Reviews"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Loved by Busy Food Lovers"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Over 1,000+ weekly pre-orders delivered across Michigan."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Customer Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review Quote",
+          "default": "Amazing chef-prepared meals!"
+        },
+        {
+          "type": "text",
+          "id": "author_name",
+          "label": "Customer Name",
+          "default": "Sarah M."
+        },
+        {
+          "type": "text",
+          "id": "author_location",
+          "label": "Location",
+          "default": "Canton, MI"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fresh Heat Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "The Butter Chicken heat-and-eat meal is restaurant quality! Delivered cold on Friday, heated in 3 minutes after work. Game changer!",
+            "author_name": "Sarah M.",
+            "author_location": "Canton, MI"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "No subscriptions, no hidden fees, just ordering delicious weekly Indian meals before Sunday's cutoff. Highly recommended!",
+            "author_name": "Rahul P.",
+            "author_location": "Novi, MI"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Love the macro breakdown and high protein meals. Packaging keeps everything cold and fresh until Friday delivery.",
+            "author_name": "Amanda K.",
+            "author_location": "Plymouth, MI"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

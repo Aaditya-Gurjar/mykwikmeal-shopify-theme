@@ -4,7 +4,37 @@
   - order: {Object} Shopify Order object
 {% endcomment %}
 
-<div class="fhe-packing-slip" style="font-family: sans-serif; padding: 24px; border: 1px solid #ccc; background: #fff; color: #000; max-width: 800px; margin: 20px auto;">
+<style>
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+    .fhe-packing-slip, .fhe-packing-slip * {
+      visibility: visible;
+    }
+    .fhe-packing-slip {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      margin: 0;
+      padding: 15px;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    .fhe-no-print {
+      display: none !important;
+    }
+  }
+</style>
+
+<div class="fhe-packing-slip" style="font-family: sans-serif; padding: 24px; border: 1px solid #ccc; background: #fff; color: #000; max-width: 800px; margin: 20px auto; border-radius: 8px;">
+  <div class="fhe-no-print" style="text-align: right; margin-bottom: 16px;">
+    <button type="button" onclick="window.print();" style="background: #0d5c46; color: #fff; border: none; padding: 8px 18px; border-radius: 20px; font-weight: 600; cursor: pointer;">
+      🖨️ Print Packing Slip
+    </button>
+  </div>
+
   <div style="display: flex; justify-content: space-between; border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 20px;">
     <div>
       <h2 style="margin: 0; font-size: 24px;">KwikMeal Fresh Heat-N-Eat</h2>

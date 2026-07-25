@@ -40,7 +40,7 @@
       {% if product.featured_image != blank %}
         <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy" class="fhe-meal-card__img">
       {% else %}
-        {{ 'product-1' | placeholder_svg_tag: 'fhe-meal-card__img' }}
+        <img src="{{ 'fhe_banner_meal.png' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" class="fhe-meal-card__img">
       {% endif %}
     </a>
 
@@ -60,6 +60,11 @@
 
   <div class="fhe-meal-card__content">
     <div class="fhe-meal-card__header">
+      <!-- Judge.me Rating Preview Badge -->
+      <div class="fhe-meal-card__rating">
+        {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+      </div>
+
       <a href="{{ product.url }}" class="fhe-meal-card__title">
         {{ product.title }}
       </a>
@@ -88,17 +93,23 @@
       </div>
     {% endif %}
 
-    <!-- Add-ons Selection -->
-    <div class="fhe-meal-card__addons-wrapper" style="margin-bottom: 12px;">
-      <label style="font-size: 12px; font-weight: 600; color: var(--fhe-dark-muted); display: block; margin-bottom: 4px;">Optional Add-on:</label>
-      <select class="fhe-meal-card__addons-select fhe-addon-picker" data-product-id="{{ product.id }}">
-        <option value="None">None (Standard Meal)</option>
-        <option value="Extra Rice (+$2.50)">Extra Rice (+$2.50)</option>
-        <option value="Extra Garlic Naan (+$3.00)">Extra Garlic Naan (+$3.00)</option>
-        <option value="Extra Sauce (+$1.50)">Extra Sauce (+$1.50)</option>
-        <option value="Gulab Jamun Dessert (+$3.50)">Gulab Jamun Dessert (+$3.50)</option>
-        <option value="Mango Lassi Drink (+$4.00)">Mango Lassi Drink (+$4.00)</option>
-      </select>
+    <!-- Add-ons Selection (Option B: Dynamic Products / Properties) -->
+    <div class="fhe-meal-card__addons-wrapper">
+      <label class="fhe-addon-label">Optional Add-ons:</label>
+      <div class="fhe-addon-checkboxes">
+        <label class="fhe-addon-checkbox-item">
+          <input type="checkbox" class="fhe-addon-checkbox" data-addon-title="Extra Basmati Rice" data-addon-price="2.50" value="Extra Rice (+$2.50)">
+          <span>Extra Basmati Rice (+$2.50)</span>
+        </label>
+        <label class="fhe-addon-checkbox-item">
+          <input type="checkbox" class="fhe-addon-checkbox" data-addon-title="Extra Garlic Naan" data-addon-price="3.00" value="Extra Naan (+$3.00)">
+          <span>Extra Garlic Naan (+$3.00)</span>
+        </label>
+        <label class="fhe-addon-checkbox-item">
+          <input type="checkbox" class="fhe-addon-checkbox" data-addon-title="Gulab Jamun Dessert" data-addon-price="3.50" value="Dessert (+$3.50)">
+          <span>Gulab Jamun Dessert (+$3.50)</span>
+        </label>
+      </div>
     </div>
 
     <form method="post" action="/cart/add" class="fhe-meal-card__form" style="margin-top: auto;">
@@ -112,26 +123,18 @@
           {{ product.price | money }}
         </div>
 
-        <button type="submit" class="fhe-btn fhe-btn--primary" style="padding: 10px 18px; font-size: 14px;">
-          + Add to Order
-        </button>
+        <div class="fhe-meal-card__actions">
+          <div class="fhe-qty-picker">
+            <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
+            <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
+            <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
+          </div>
+
+          <button type="submit" class="fhe-btn fhe-btn--primary fhe-add-to-cart-btn">
+            + Add to Order
+          </button>
+        </div>
       </div>
     </form>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.fhe-addon-picker').forEach(function(select) {
-      select.addEventListener('change', function() {
-        var card = this.closest('.fhe-meal-card');
-        if (card) {
-          var hiddenInput = card.querySelector('.fhe-addon-hidden-input');
-          if (hiddenInput) {
-            hiddenInput.value = this.value;
-          }
-        }
-      });
-    });
-  });
-</script>

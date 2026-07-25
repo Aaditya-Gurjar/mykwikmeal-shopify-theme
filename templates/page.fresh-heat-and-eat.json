@@ -18,8 +18,13 @@
     "menu": {
       "type": "fresh-heat-eat-menu",
       "settings": {
+        "use_live_products": false,
         "products_to_show": 12
       }
+    },
+    "testimonials": {
+      "type": "fresh-heat-eat-testimonials",
+      "settings": {}
     },
     "faq": {
       "type": "fresh-heat-eat-faq",
@@ -28,6 +33,10 @@
     "delivery_checker": {
       "type": "fresh-heat-eat-delivery-checker",
       "settings": {}
+    },
+    "cta": {
+      "type": "fresh-heat-eat-cta",
+      "settings": {}
     }
   },
   "order": [
@@ -35,7 +44,9 @@
     "how_it_works",
     "cutoff_banner",
     "menu",
+    "testimonials",
     "faq",
-    "delivery_checker"
+    "delivery_checker",
+    "cta"
   ]
 }

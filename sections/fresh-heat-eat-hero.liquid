@@ -1,60 +1,98 @@
 {% comment %}
-  KwikMeal Fresh Heat-N-Eat Landing Page Hero Section
+  KwikMeal Fresh Heat-N-Eat Hero Section
 {% endcomment %}
 
-<div class="fhe-hero-section" style="background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); padding: 60px 0 40px; position: relative;">
-  <div class="fhe-container">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: center;">
-      <div class="fhe-hero-content">
-        <div class="fhe-badge-pill" style="margin-bottom: 16px;">
-          <span>🌱</span> Fresh Chef-Prepared Meals
-        </div>
+{% liquid
+  assign container = section.settings.container | default: 'container-fluid'
+  if container == 'w-full' or container == 'container-full'
+    assign container_class = 'w-full p-0'
+  else
+    assign container_class = container
+  endif
+%}
 
-        <h1 class="fhe-title-hero">
-          {{ section.settings.headline | default: "Fresh Chef Prepared Meals Delivered Weekly" }}
-        </h1>
-
-        <p class="fhe-subtitle" style="margin-bottom: 24px;">
-          {{ section.settings.subheadline | default: "Freshly cooked. Delivered cold. Ready in minutes. Order before Sunday's cutoff." }}
-        </p>
-
-        <!-- Delivery Date Badge -->
-        <div class="fhe-cutoff-timer" style="margin-bottom: 32px; background: #ecfdf5; color: #065f46; border-color: rgba(16,185,129,0.3);">
-          <span>📦</span>
-          <span>Next Delivery: <strong class="fhe-calculated-delivery-date" style="color: #047857;">Friday Delivery</strong></span>
-        </div>
-
-        <!-- Inline ZIP Code Validation Form -->
-        <div class="fhe-zip-box" style="max-width: 480px; margin-bottom: 24px;">
-          <label style="font-size: 14px; font-weight: 700; color: var(--fhe-dark); display: block; margin-bottom: 4px;">
-            Check Delivery Availability in Your Area:
-          </label>
-          <form class="fhe-zip-form">
-            <input type="text" class="fhe-zip-input" placeholder="Enter ZIP Code (e.g. 48187)" required>
-            <button type="submit" class="fhe-btn fhe-btn--primary" style="padding: 12px 24px;">
-              Check ZIP
-            </button>
-          </form>
-          <div class="fhe-zip-status"></div>
-        </div>
-
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          <a href="#fhe-menu-section" class="fhe-btn fhe-btn--accent" style="padding: 16px 36px; font-size: 17px;">
-            Browse Available Meals ↓
-          </a>
-        </div>
-      </div>
-
-      <div class="fhe-hero-media" style="position: relative; text-align: center;">
-        {% if section.settings.hero_image != blank %}
-          <img src="{{ section.settings.hero_image | image_url: width: 900 }}" alt="Fresh Chef Prepared Meals" loading="eager" style="width: 100%; border-radius: var(--fhe-radius-lg); box-shadow: var(--fhe-shadow-lg);">
-        {% else %}
-          <div style="background: linear-gradient(135deg, #0d5c46 0%, #1e293b 100%); border-radius: var(--fhe-radius-lg); padding: 60px 30px; color: #ffffff; text-align: center; box-shadow: var(--fhe-shadow-lg);">
-            <div style="font-size: 64px; margin-bottom: 16px;">🍛</div>
-            <h3 style="color: #ffffff; margin-bottom: 8px;">KwikMeal Fresh Heat-N-Eat</h3>
-            <p style="color: #cbd5e1; font-size: 15px;">Chef Prepared • Weekly Pre-Orders</p>
+<div class="fhe-hero-section m-section-my">
+  <div class="{{ container_class }}">
+    <div class="fhe-hero-card">
+      <div class="fhe-hero-grid">
+        <div class="fhe-hero-content">
+          <div class="fhe-badge-pill fhe-badge-pill--accent">
+            <span>🌱</span> {{ section.settings.badge | default: "Fresh Chef-Prepared Meals" }}
           </div>
-        {% endif %}
+
+          <h1 class="fhe-hero-title">
+            {{ section.settings.headline | default: "Fresh Chef Prepared Meals Delivered Weekly" }}
+          </h1>
+
+          <p class="fhe-hero-subtitle">
+            {{ section.settings.subheadline | default: "Freshly cooked. Delivered cold. Ready in minutes. Order before Sunday's cutoff." }}
+          </p>
+
+          <!-- Delivery Date Badge -->
+          <div class="fhe-hero-delivery-badge">
+            <span>📦</span>
+            <span>Next Delivery: <strong class="fhe-calculated-delivery-date">Friday Delivery</strong></span>
+          </div>
+
+          <!-- Inline ZIP Code Validation Form -->
+          <div class="fhe-zip-box fhe-hero-zip-box">
+            <label class="fhe-hero-zip-label">
+              Check Delivery Availability in Your Area:
+            </label>
+            <form class="fhe-zip-form">
+              <input type="text" class="fhe-zip-input" placeholder="Enter ZIP Code (e.g. 48187)" required>
+              <button type="submit" class="fhe-btn fhe-btn--primary">
+                Check ZIP
+              </button>
+            </form>
+            <div class="fhe-zip-status"></div>
+          </div>
+
+          <div class="fhe-hero-actions">
+            <a href="#fhe-menu-section" class="fhe-btn fhe-btn--accent">
+              Browse Available Meals ↓
+            </a>
+          </div>
+
+          <!-- Trust Badges Strip -->
+          <div class="fhe-hero-trust-strip">
+            <div class="fhe-hero-trust-item">
+              <span>👨‍🍳</span> Chef Prepared
+            </div>
+            <div class="fhe-hero-trust-item">
+              <span>❄️</span> Chilled Fresh (Never Frozen)
+            </div>
+            <div class="fhe-hero-trust-item">
+              <span>⏱️</span> Ready in 3 Minutes
+            </div>
+          </div>
+        </div>
+
+        <div class="fhe-hero-media">
+          {% if section.settings.hero_image != blank %}
+            <img
+              src="{{ section.settings.hero_image | image_url: width: 900 }}"
+              srcset="{{ section.settings.hero_image | image_url: width: 400 }} 400w,
+                      {{ section.settings.hero_image | image_url: width: 600 }} 600w,
+                      {{ section.settings.hero_image | image_url: width: 900 }} 900w"
+              sizes="(max-width: 767px) 92vw, 45vw"
+              alt="Fresh Chef Prepared Meals"
+              loading="eager"
+              width="900"
+              height="600"
+              class="fhe-hero-img"
+            >
+          {% else %}
+            <img
+              src="{{ 'fhe_banner_meal.png' | asset_url }}"
+              alt="Fresh Chef Prepared Heat-N-Eat Meals"
+              loading="eager"
+              width="900"
+              height="600"
+              class="fhe-hero-img"
+            >
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
@@ -64,6 +102,32 @@
 {
   "name": "Fresh Heat Hero",
   "settings": [
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container Width",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container-fluid",
+          "label": "Fluid Container"
+        },
+        {
+          "value": "w-full",
+          "label": "Full Width"
+        },
+        {
+          "value": "container",
+          "label": "Boxed Container"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge Text",
+      "default": "Fresh Chef-Prepared Meals"
+    },
     {
       "type": "text",
       "id": "headline",
@@ -80,6 +144,11 @@
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fresh Heat Hero"
     }
   ]
 }

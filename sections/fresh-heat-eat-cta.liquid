@@ -1,0 +1,103 @@
+{% comment %}
+  KwikMeal Fresh Heat-N-Eat Bottom CTA Section
+{% endcomment %}
+
+{% liquid
+  assign container = section.settings.container | default: 'container-fluid'
+  if container == 'w-full' or container == 'container-full'
+    assign container_class = 'w-full p-0'
+  else
+    assign container_class = container
+  endif
+%}
+
+<div class="fhe-cta-section m-section-my">
+  <div class="{{ container_class }}">
+    <div class="fhe-cta-card">
+      <div class="fhe-cta-card__glow"></div>
+      
+      <div class="fhe-cta-content">
+        <div class="fhe-badge-pill fhe-badge-pill--accent">
+          <span>⏰</span> {{ section.settings.badge | default: "Weekly Pre-Order System" }}
+        </div>
+
+        <h2 class="fhe-cta-title">
+          {{ section.settings.heading | default: "Ready to Eat Fresh Chef-Prepared Meals This Friday?" }}
+        </h2>
+
+        <p class="fhe-cta-subtitle">
+          {{ section.settings.subheading | default: "Order before Sunday's cutoff. Delivered fresh & chilled to your door." }}
+        </p>
+
+        <!-- Countdown Pill -->
+        <div class="fhe-cta-cutoff-pill">
+          <span>📦</span>
+          <span class="fhe-calculated-cutoff-timer">Order by Sunday 11:00 AM for Friday Delivery</span>
+        </div>
+
+        <div class="fhe-cta-actions">
+          <a href="#fhe-menu-section" class="fhe-btn fhe-btn--accent fhe-cta-btn">
+            {{ section.settings.button_label | default: "Browse This Week's Menu" }} →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fresh Heat Bottom CTA",
+  "settings": [
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container Width",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container-fluid",
+          "label": "Fluid Container"
+        },
+        {
+          "value": "w-full",
+          "label": "Full Width"
+        },
+        {
+          "value": "container",
+          "label": "Boxed Container"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge Text",
+      "default": "Weekly Pre-Order System"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ready to Eat Fresh Chef-Prepared Meals This Friday?"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Order before Sunday's cutoff. Delivered fresh & chilled to your door."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Browse This Week's Menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fresh Heat Bottom CTA"
+    }
+  ]
+}
+{% endschema %}

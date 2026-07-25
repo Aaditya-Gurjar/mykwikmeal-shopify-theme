@@ -1,72 +1,238 @@
 {% comment %}
   KwikMeal Fresh Heat-N-Eat FAQ Section
+  Supports customizable blocks and outputs Google FAQPage JSON-LD schema.
 {% endcomment %}
 
-<div class="fhe-section" style="padding: 70px 0; background: #ffffff;">
-  <div class="fhe-container">
-    <div style="text-align: center; margin-bottom: 48px;">
-      <div class="fhe-badge-pill" style="margin-bottom: 12px;">Got Questions?</div>
-      <h2 class="fhe-title-section" style="margin: 0 auto 12px;">Frequently Asked Questions</h2>
-      <p class="fhe-subtitle" style="margin: 0 auto;">Everything you need to know about KwikMeal Fresh Heat-N-Eat.</p>
+{% liquid
+  assign container = section.settings.container | default: 'container-fluid'
+  if container == 'w-full' or container == 'container-full'
+    assign container_class = 'w-full p-0'
+  else
+    assign container_class = container
+  endif
+%}
+
+<div class="fhe-faq-section m-section-my">
+  <div class="{{ container_class }}">
+    <div class="fhe-section-header">
+      {% if section.settings.badge != blank %}
+        <div class="fhe-badge-pill">
+          {{ section.settings.badge }}
+        </div>
+      {% endif %}
+      <h2 class="fhe-title-section">
+        {{ section.settings.heading | default: "Frequently Asked Questions" }}
+      </h2>
+      {% if section.settings.subheading != blank %}
+        <p class="fhe-subtitle">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
     </div>
 
     <div class="fhe-faq-list">
-      <div class="fhe-faq-item is-open">
-        <button type="button" class="fhe-faq-question">
-          <span>How does weekly pre-ordering work?</span>
-          <span>▼</span>
-        </button>
-        <div class="fhe-faq-answer">
-          We operate on a weekly production cycle. Place your order before Sunday 11:00 AM, and our chefs prepare your fresh meals for delivery on Friday. Orders after the cutoff automatically move to the following week's delivery.
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="fhe-faq-item {% if forloop.first %}is-open{% endif %}" {{ block.shopify_attributes }}>
+            <button type="button" class="fhe-faq-question" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}">
+              <span>{{ block.settings.question }}</span>
+              <span class="fhe-faq-chevron">▼</span>
+            </button>
+            <div class="fhe-faq-answer">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="fhe-faq-item is-open">
+          <button type="button" class="fhe-faq-question">
+            <span>How does weekly pre-ordering work?</span>
+            <span class="fhe-faq-chevron">▼</span>
+          </button>
+          <div class="fhe-faq-answer">
+            We operate on a weekly production cycle. Place your order before Sunday 11:00 AM, and our chefs prepare your fresh meals for delivery on Friday. Orders after the cutoff automatically move to the following week's delivery.
+          </div>
         </div>
-      </div>
 
-      <div class="fhe-faq-item">
-        <button type="button" class="fhe-faq-question">
-          <span>Is this a subscription service?</span>
-          <span>▼</span>
-        </button>
-        <div class="fhe-faq-answer">
-          No! Unlike BlueApron or Factor, there are no subscriptions or recurring fees. Order as many or as few meals as you'd like whenever you want.
+        <div class="fhe-faq-item">
+          <button type="button" class="fhe-faq-question">
+            <span>Is this a subscription service?</span>
+            <span class="fhe-faq-chevron">▼</span>
+          </button>
+          <div class="fhe-faq-answer">
+            No! Unlike BlueApron or Factor, there are no mandatory subscriptions or recurring commitments. Order as many or as few meals as you'd like whenever you want.
+          </div>
         </div>
-      </div>
 
-      <div class="fhe-faq-item">
-        <button type="button" class="fhe-faq-question">
-          <span>How are the meals packaged and delivered?</span>
-          <span>▼</span>
-        </button>
-        <div class="fhe-faq-answer">
-          Meals are delivered fresh and chilled (never frozen) in insulated temperature-controlled packaging with ice packs to ensure maximum freshness.
+        <div class="fhe-faq-item">
+          <button type="button" class="fhe-faq-question">
+            <span>How are meals packaged and delivered?</span>
+            <span class="fhe-faq-chevron">▼</span>
+          </button>
+          <div class="fhe-faq-answer">
+            Meals are delivered fresh and chilled (never frozen) in insulated temperature-controlled packaging with ice packs to ensure maximum freshness.
+          </div>
         </div>
-      </div>
 
-      <div class="fhe-faq-item">
-        <button type="button" class="fhe-faq-question">
-          <span>How do I reheat my meals?</span>
-          <span>▼</span>
-        </button>
-        <div class="fhe-faq-answer">
-          Simply remove the outer sleeve, peel back a corner of the film, and microwave for 2.5 to 3 minutes. Alternatively, heat in a preheated oven at 350°F for 12-15 minutes in an oven-safe dish.
+        <div class="fhe-faq-item">
+          <button type="button" class="fhe-faq-question">
+            <span>How do I reheat my meals?</span>
+            <span class="fhe-faq-chevron">▼</span>
+          </button>
+          <div class="fhe-faq-answer">
+            Simply remove outer sleeve, peel back a corner of film, and microwave for 2.5 to 3 minutes until hot (165°F). Alternatively, heat in a preheated oven at 350°F for 12-15 minutes.
+          </div>
         </div>
-      </div>
 
-      <div class="fhe-faq-item">
-        <button type="button" class="fhe-faq-question">
-          <span>Which ZIP codes do you deliver to?</span>
-          <span>▼</span>
-        </button>
-        <div class="fhe-faq-answer">
-          We currently deliver to select ZIP codes in Michigan including Canton (48187, 48189), Livonia (48150-48154), Farmington Hills (48331-48336), Plymouth (48170), Novi (48374-48377), and Northville (48167, 48168). Check your ZIP code in our availability checker above!
+        <div class="fhe-faq-item">
+          <button type="button" class="fhe-faq-question">
+            <span>Which ZIP codes do you deliver to?</span>
+            <span class="fhe-faq-chevron">▼</span>
+          </button>
+          <div class="fhe-faq-answer">
+            We currently deliver to select ZIP codes in Michigan including Canton (48187, 48189), Livonia (48150-48154), Farmington Hills (48331-48336), Plymouth (48170), Novi (48374-48377), and Northville (48167, 48168). Check your ZIP code in our availability checker above!
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
   </div>
 </div>
 
+{% comment %} Output Google FAQPage JSON-LD Structured Data {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks %}
+        {
+          "@type": "Question",
+          "name": {{ block.settings.question | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ block.settings.answer | strip_html | json }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    {% else %}
+      {
+        "@type": "Question",
+        "name": "How does weekly pre-ordering work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Place your order before Sunday 11:00 AM, and our chefs prepare your fresh meals for delivery on Friday."
+        }
+      }
+    {% endif %}
+  ]
+}
+</script>
+
 {% schema %}
 {
   "name": "Fresh Heat FAQ",
-  "settings": []
+  "settings": [
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container Width",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container-fluid",
+          "label": "Fluid Container"
+        },
+        {
+          "value": "w-full",
+          "label": "Full Width"
+        },
+        {
+          "value": "container",
+          "label": "Boxed Container"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge Text",
+      "default": "Got Questions?"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Everything you need to know about KwikMeal Fresh Heat-N-Eat."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How does weekly pre-ordering work?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Place your order before Sunday 11:00 AM for current week delivery."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fresh Heat FAQ",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does weekly pre-ordering work?",
+            "answer": "We operate on a weekly production cycle. Place your order before Sunday 11:00 AM, and our chefs prepare your fresh meals for delivery on Friday. Orders after the cutoff automatically move to the following week's delivery."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is this a subscription service?",
+            "answer": "No! Unlike BlueApron or Factor, there are no mandatory subscriptions or recurring commitments. Order as many or as few meals as you'd like whenever you want."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How are meals packaged and delivered?",
+            "answer": "Meals are delivered fresh and chilled (never frozen) in insulated temperature-controlled packaging with ice packs to ensure maximum freshness."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I reheat my meals?",
+            "answer": "Simply remove outer sleeve, peel back a corner of film, and microwave for 2.5 to 3 minutes until hot (165°F). Alternatively, heat in a preheated oven at 350°F for 12-15 minutes."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Which ZIP codes do you deliver to?",
+            "answer": "We currently deliver to select ZIP codes in Michigan including Canton (48187, 48189), Livonia (48150-48154), Farmington Hills (48331-48336), Plymouth (48170), Novi (48374-48377), and Northville (48167, 48168)."
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

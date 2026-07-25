@@ -3,6 +3,13 @@
 {% endcomment %}
 
 {% liquid
+  assign container = section.settings.container | default: 'container-fluid'
+  if container == 'w-full' or container == 'container-full'
+    assign container_class = 'w-full p-0'
+  else
+    assign container_class = container
+  endif
+
   assign calories = ''
   assign protein = ''
 
@@ -23,40 +30,55 @@
   endif
 %}
 
-<div class="fhe-product-details-section" style="padding: 50px 0; background: #ffffff;">
-  <div class="fhe-container">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 48px; align-items: start;">
+<div class="fhe-product-details-section m-section-my">
+  <div class="{{ container_class }}">
+    <div class="fhe-pdp-grid">
       <!-- Product Gallery -->
       <div class="fhe-product-media">
-        <div style="border-radius: var(--fhe-radius-lg); overflow: hidden; border: 1px solid var(--fhe-border); box-shadow: var(--fhe-shadow-md);">
+        <div class="fhe-pdp-main-image-wrap">
           {% if product.featured_image != blank %}
-            <img src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.title | escape }}" style="width: 100%; height: auto; display: block;">
+            <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.title | escape }}" loading="eager" class="fhe-pdp-main-img">
           {% else %}
-            {{ 'product-1' | placeholder_svg_tag }}
+            <img src="{{ 'fhe_banner_meal.png' | asset_url }}" alt="{{ product.title | escape }}" loading="eager" class="fhe-pdp-main-img">
           {% endif %}
         </div>
+
+        {% if product.images.size > 1 %}
+          <div class="fhe-pdp-thumbnails">
+            {% for image in product.images %}
+              <div class="fhe-pdp-thumb-item {% if forloop.first %}is-active{% endif %}">
+                <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | escape }}" loading="lazy">
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
 
-      <!-- Product Meta & Form -->
+      <!-- Product Info & Add-to-Cart Form -->
       <div class="fhe-product-info">
-        <div class="fhe-badge-pill" style="margin-bottom: 12px;">🍱 Fresh Heat-N-Eat Meal</div>
+        <div class="fhe-badge-pill">🍱 Chef-Prepared Heat-N-Eat Meal</div>
 
-        <h1 style="font-size: 32px; font-weight: 800; color: var(--fhe-dark); margin-bottom: 12px;">
+        <h1 class="fhe-pdp-title">
           {{ product.title }}
         </h1>
 
-        <div style="font-size: 26px; font-weight: 800; color: var(--fhe-primary); margin-bottom: 16px;">
+        <!-- Judge.me Rating Badge -->
+        <div class="fhe-pdp-rating">
+          {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+        </div>
+
+        <div class="fhe-pdp-price">
           {{ product.price | money }}
         </div>
 
         {% if product.description != blank %}
-          <div style="font-size: 16px; color: var(--fhe-dark-muted); line-height: 1.6; margin-bottom: 24px;">
+          <div class="fhe-pdp-description">
             {{ product.description }}
           </div>
         {% endif %}
 
         {% if calories != blank or protein != blank %}
-          <div class="fhe-meal-card__macros" style="font-size: 15px; margin-bottom: 24px; padding-bottom: 16px;">
+          <div class="fhe-meal-card__macros fhe-pdp-macros">
             {% if calories != blank %}
               <div class="fhe-meal-card__macro-item">
                 <span>🔥</span> <strong>{{ calories }} Calories</strong>
@@ -71,50 +93,62 @@
         {% endif %}
 
         <!-- Expected Delivery Pill -->
-        <div class="fhe-cutoff-timer" style="margin-bottom: 28px; width: 100%; background: #ecfdf5; color: #065f46; border-color: rgba(16,185,129,0.3); padding: 10px 18px;">
+        <div class="fhe-cutoff-timer fhe-pdp-delivery-pill">
           <span>📦</span>
-          <span>Delivered: <strong class="fhe-calculated-delivery-date" style="color: #047857;">Friday Delivery</strong></span>
+          <span>Delivered Fresh: <strong class="fhe-calculated-delivery-date">Friday Delivery</strong></span>
         </div>
 
-        <!-- Add to Cart Form -->
-        <form method="post" action="/cart/add" style="background: var(--fhe-light-bg); border: 1px solid var(--fhe-border); border-radius: var(--fhe-radius-lg); padding: 24px; margin-bottom: 32px;">
+        <!-- Add to Cart Form (Option B Multi-Addons) -->
+        <form method="post" action="/cart/add" class="fhe-pdp-form">
           <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
-          <input type="hidden" name="properties[Add-ons]" id="fhe-pdp-addon-hidden" value="None">
+          <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
           <input type="hidden" name="properties[Expected Delivery Date]" class="fhe-delivery-date-hidden-input" value="">
           <input type="hidden" name="properties[Delivery Week]" class="fhe-delivery-week-hidden-input" value="">
 
-          <div style="margin-bottom: 16px;">
-            <label style="font-size: 14px; font-weight: 700; color: var(--fhe-dark); display: block; margin-bottom: 6px;">Select Optional Add-ons:</label>
-            <select id="fhe-pdp-addon-picker" class="fhe-meal-card__addons-select" style="font-size: 15px; padding: 12px;">
-              <option value="None">None (Standard Meal)</option>
-              <option value="Extra Rice (+$2.50)">Extra Rice (+$2.50)</option>
-              <option value="Extra Garlic Naan (+$3.00)">Extra Garlic Naan (+$3.00)</option>
-              <option value="Extra Sauce (+$1.50)">Extra Sauce (+$1.50)</option>
-              <option value="Gulab Jamun Dessert (+$3.50)">Gulab Jamun Dessert (+$3.50)</option>
-              <option value="Mango Lassi Drink (+$4.00)">Mango Lassi Drink (+$4.00)</option>
-            </select>
+          <div class="fhe-meal-card__addons-wrapper">
+            <label class="fhe-addon-label">Customize Optional Add-ons:</label>
+            <div class="fhe-addon-checkboxes">
+              <label class="fhe-addon-checkbox-item">
+                <input type="checkbox" class="fhe-addon-checkbox" value="Extra Rice (+$2.50)">
+                <span>Extra Basmati Rice (+$2.50)</span>
+              </label>
+              <label class="fhe-addon-checkbox-item">
+                <input type="checkbox" class="fhe-addon-checkbox" value="Extra Naan (+$3.00)">
+                <span>Extra Garlic Naan (+$3.00)</span>
+              </label>
+              <label class="fhe-addon-checkbox-item">
+                <input type="checkbox" class="fhe-addon-checkbox" value="Extra Sauce (+$1.50)">
+                <span>Extra Sauce (+$1.50)</span>
+              </label>
+              <label class="fhe-addon-checkbox-item">
+                <input type="checkbox" class="fhe-addon-checkbox" value="Dessert (+$3.50)">
+                <span>Gulab Jamun Dessert (+$3.50)</span>
+              </label>
+            </div>
           </div>
 
-          <div style="display: flex; gap: 16px; align-items: center;">
-            <div style="width: 110px;">
-              <input type="number" name="quantity" value="1" min="1" style="width: 100%; padding: 12px; border: 2px solid var(--fhe-border); border-radius: var(--fhe-radius-full); text-align: center; font-weight: 700; font-size: 16px;">
+          <div class="fhe-pdp-form-row">
+            <div class="fhe-qty-picker">
+              <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
+              <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
+              <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
             </div>
 
-            <button type="submit" class="fhe-btn fhe-btn--primary" style="flex: 1; padding: 14px 28px; font-size: 16px;">
-              Add to Weekly Order
+            <button type="submit" class="fhe-btn fhe-btn--primary fhe-pdp-submit-btn">
+              + Add to Weekly Order
             </button>
           </div>
         </form>
 
         <!-- Heating & Storage Accordions -->
-        <div class="fhe-faq-list" style="max-width: 100%;">
+        <div class="fhe-faq-list fhe-pdp-accordions">
           <div class="fhe-faq-item is-open">
             <button type="button" class="fhe-faq-question">
               <span>🔥 Reheating Instructions</span>
-              <span>▼</span>
+              <span class="fhe-faq-chevron">▼</span>
             </button>
             <div class="fhe-faq-answer">
-              <p><strong>Microwave:</strong> Remove outer sleeve, pierce film in 2 spots, and microwave on HIGH for 2.5 to 3 minutes until steaming hot (165°F). Let rest 1 minute before serving.</p>
+              <p><strong>Microwave:</strong> Remove outer sleeve, peel back a corner of film, and microwave on HIGH for 2.5 to 3 minutes until steaming hot (165°F). Let rest 1 minute before serving.</p>
               <p style="margin-top: 8px;"><strong>Oven:</strong> Transfer meal to an oven-safe dish, cover loosely with foil, and bake at 350°F for 12-15 minutes.</p>
             </div>
           </div>
@@ -122,7 +156,7 @@
           <div class="fhe-faq-item">
             <button type="button" class="fhe-faq-question">
               <span>❄️ Storage & Shelf Life</span>
-              <span>▼</span>
+              <span class="fhe-faq-chevron">▼</span>
             </button>
             <div class="fhe-faq-answer">
               Keep refrigerated at or below 40°F immediately upon arrival. Best enjoyed within 5 days of delivery date. Can be frozen for up to 30 days.
@@ -131,24 +165,38 @@
         </div>
       </div>
     </div>
+
+    <!-- Judge.me Main Review Widget -->
+    <div class="fhe-pdp-reviews-widget" style="margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--fhe-border);">
+      {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
+    </div>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var picker = document.getElementById('fhe-pdp-addon-picker');
-    var hidden = document.getElementById('fhe-pdp-addon-hidden');
-    if (picker && hidden) {
-      picker.addEventListener('change', function() {
-        hidden.value = this.value;
-      });
-    }
-  });
-</script>
 
 {% schema %}
 {
   "name": "Fresh Meal Details",
-  "settings": []
+  "settings": [
+    {
+      "type": "select",
+      "id": "container",
+      "label": "Container Width",
+      "default": "container-fluid",
+      "options": [
+        {
+          "value": "container-fluid",
+          "label": "Fluid Container"
+        },
+        {
+          "value": "w-full",
+          "label": "Full Width"
+        },
+        {
+          "value": "container",
+          "label": "Boxed Container"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}
