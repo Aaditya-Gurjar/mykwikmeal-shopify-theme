@@ -74,7 +74,9 @@
         <!-- Meal 1: Butter Chicken with Rice -->
         <div class="fhe-meal-card" data-product-id="demo-1" data-dietary="high protein" data-base-price="13.99" data-price="13.99" data-calories="580">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_butter_chicken.png' | asset_url }}" alt="Butter Chicken with Basmati Rice" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Butter Chicken with Basmati Rice">
+              <img src="{{ 'fhe_butter_chicken.png' | asset_url }}" alt="Butter Chicken with Basmati Rice" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag">Popular</span>
               <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 High Protein</span>
@@ -83,7 +85,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(48 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Butter Chicken with Basmati Rice</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Butter Chicken with Basmati Rice</a>
+              </h3>
               <p class="fhe-meal-card__desc">Tender chicken breast simmered in rich creamy tomato butter sauce served with aged basmati rice.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -118,7 +122,9 @@
         <!-- Meal 2: Paneer Tikka Masala -->
         <div class="fhe-meal-card" data-product-id="demo-2" data-dietary="vegetarian" data-base-price="12.99" data-price="12.99" data-calories="520">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_paneer_tikka.png' | asset_url }}" alt="Paneer Tikka Masala & Jeera Rice" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Paneer Tikka Masala & Jeera Rice">
+              <img src="{{ 'fhe_paneer_tikka.png' | asset_url }}" alt="Paneer Tikka Masala & Jeera Rice" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag">Best Seller</span>
               <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Vegetarian</span>
@@ -127,7 +133,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(36 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Paneer Tikka Masala & Jeera Rice</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Paneer Tikka Masala & Jeera Rice</a>
+              </h3>
               <p class="fhe-meal-card__desc">Char-grilled cottage cheese cubes in spiced onion tomato gravy with cumin basmati rice.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -162,7 +170,9 @@
         <!-- Meal 3: Chicken Alfredo Pasta -->
         <div class="fhe-meal-card" data-product-id="demo-3" data-dietary="high protein" data-base-price="14.49" data-price="14.49" data-calories="640">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_chicken_alfredo.png' | asset_url }}" alt="Creamy Chicken Alfredo Penne" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Creamy Chicken Alfredo Penne">
+              <img src="{{ 'fhe_chicken_alfredo.png' | asset_url }}" alt="Creamy Chicken Alfredo Penne" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag">New</span>
               <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 High Protein</span>
@@ -171,7 +181,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(29 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Creamy Chicken Alfredo Penne</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Creamy Chicken Alfredo Penne</a>
+              </h3>
               <p class="fhe-meal-card__desc">Penne pasta tossed in garlic parmesan cream sauce topped with grilled chicken breast & broccoli florets.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -206,7 +218,9 @@
         <!-- Meal 4: Grilled Chicken Power Bowl -->
         <div class="fhe-meal-card" data-product-id="demo-4" data-dietary="high protein gluten free" data-base-price="13.49" data-price="13.49" data-calories="490">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_grilled_chicken.png' | asset_url }}" alt="Grilled Chicken & Quinoa Power Bowl" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Grilled Chicken & Quinoa Power Bowl">
+              <img src="{{ 'fhe_grilled_chicken.png' | asset_url }}" alt="Grilled Chicken & Quinoa Power Bowl" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 45g Protein</span>
               <span class="fhe-meal-card__tag">🌾 Gluten Free</span>
@@ -215,7 +229,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(52 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Grilled Chicken & Quinoa Power Bowl</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Grilled Chicken & Quinoa Power Bowl</a>
+              </h3>
               <p class="fhe-meal-card__desc">Herb marinated grilled chicken breast served over fluffy quinoa, roasted sweet potatoes & green beans.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -250,7 +266,9 @@
         <!-- Meal 5: Teriyaki Chicken Bowl -->
         <div class="fhe-meal-card" data-product-id="demo-5" data-dietary="high protein" data-base-price="13.99" data-price="13.99" data-calories="510">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_teriyaki_chicken.png' | asset_url }}" alt="Teriyaki Chicken & Jasmine Rice" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Teriyaki Chicken & Jasmine Rice">
+              <img src="{{ 'fhe_teriyaki_chicken.png' | asset_url }}" alt="Teriyaki Chicken & Jasmine Rice" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag">Popular</span>
             </div>
@@ -258,7 +276,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(31 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Teriyaki Chicken & Jasmine Rice</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Teriyaki Chicken & Jasmine Rice</a>
+              </h3>
               <p class="fhe-meal-card__desc">Glazed teriyaki chicken thigh with steamed jasmine rice, sesame broccoli, and carrots.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -292,7 +312,9 @@
         <!-- Meal 6: Mediterranean Falafel Bowl -->
         <div class="fhe-meal-card" data-product-id="demo-6" data-dietary="vegan vegetarian gluten free" data-base-price="12.49" data-price="12.49" data-calories="460">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_falafel_bowl.png' | asset_url }}" alt="Mediterranean Crispy Falafel Bowl" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Mediterranean Crispy Falafel Bowl">
+              <img src="{{ 'fhe_falafel_bowl.png' | asset_url }}" alt="Mediterranean Crispy Falafel Bowl" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌿 Vegan</span>
               <span class="fhe-meal-card__tag">🌾 Gluten Free</span>
@@ -301,7 +323,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(27 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Mediterranean Crispy Falafel Bowl</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Mediterranean Crispy Falafel Bowl</a>
+              </h3>
               <p class="fhe-meal-card__desc">Crispy chickpea falafels served over saffron rice with cucumber salad, hummus, and tahini drizzle.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -335,7 +359,9 @@
         <!-- Meal 7: Thai Green Curry -->
         <div class="fhe-meal-card" data-product-id="demo-7" data-dietary="high protein gluten free" data-base-price="13.99" data-price="13.99" data-calories="530">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_thai_green_curry.png' | asset_url }}" alt="Thai Green Curry Chicken & Rice" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Thai Green Curry Chicken & Rice">
+              <img src="{{ 'fhe_thai_green_curry.png' | asset_url }}" alt="Thai Green Curry Chicken & Rice" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag">🌶️ Spicy</span>
             </div>
@@ -343,7 +369,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(19 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Thai Green Curry Chicken & Rice</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Thai Green Curry Chicken & Rice</a>
+              </h3>
               <p class="fhe-meal-card__desc">Authentic coconut green curry with chicken, bamboo shoots, Thai basil, and fragrant jasmine rice.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -377,7 +405,9 @@
         <!-- Meal 8: Veggie Burrito Bowl -->
         <div class="fhe-meal-card" data-product-id="demo-8" data-dietary="vegetarian gluten free" data-base-price="11.99" data-price="11.99" data-calories="440">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_burrito_bowl.png' | asset_url }}" alt="Black Bean & Corn Burrito Bowl" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Black Bean & Corn Burrito Bowl">
+              <img src="{{ 'fhe_burrito_bowl.png' | asset_url }}" alt="Black Bean & Corn Burrito Bowl" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Vegetarian</span>
             </div>
@@ -385,7 +415,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(41 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Black Bean & Corn Burrito Bowl</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Black Bean & Corn Burrito Bowl</a>
+              </h3>
               <p class="fhe-meal-card__desc">Cilantro lime rice, seasoned black beans, roasted corn salsa, bell peppers & pico de gallo.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -419,7 +451,9 @@
         <!-- Meal 9: BBQ Chicken Meal -->
         <div class="fhe-meal-card" data-product-id="demo-9" data-dietary="high protein" data-base-price="14.99" data-price="14.99" data-calories="610">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_bbq_chicken.png' | asset_url }}" alt="Smokey BBQ Chicken & Roasted Potatoes" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Smokey BBQ Chicken & Roasted Potatoes">
+              <img src="{{ 'fhe_bbq_chicken.png' | asset_url }}" alt="Smokey BBQ Chicken & Roasted Potatoes" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag">Popular</span>
             </div>
@@ -427,7 +461,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(38 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Smokey BBQ Chicken & Roasted Potatoes</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Smokey BBQ Chicken & Roasted Potatoes</a>
+              </h3>
               <p class="fhe-meal-card__desc">Smokey barbecue breast of chicken served with garlic herb roasted potatoes and sweet corn.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -461,7 +497,9 @@
         <!-- Meal 10: Mexican Fiesta Rice Bowl -->
         <div class="fhe-meal-card" data-product-id="demo-10" data-dietary="vegetarian" data-base-price="12.99" data-price="12.99" data-calories="480">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_mexican_rice.png' | asset_url }}" alt="Mexican Fiesta Fajita Rice Bowl" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Mexican Fiesta Fajita Rice Bowl">
+              <img src="{{ 'fhe_mexican_rice.png' | asset_url }}" alt="Mexican Fiesta Fajita Rice Bowl" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Vegetarian</span>
             </div>
@@ -469,7 +507,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(24 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Mexican Fiesta Fajita Rice Bowl</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Mexican Fiesta Fajita Rice Bowl</a>
+              </h3>
               <p class="fhe-meal-card__desc">Sautéed peppers and onions over seasoned rice, black beans, shredded cheese, and salsa verde.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -503,7 +543,9 @@
         <!-- Meal 11: Protein Power Salad Bowl -->
         <div class="fhe-meal-card" data-product-id="demo-11" data-dietary="high protein gluten free" data-base-price="13.99" data-price="13.99" data-calories="420">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_protein_salad.png' | asset_url }}" alt="Lean Protein Power Salad" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Lean Protein Power Salad">
+              <img src="{{ 'fhe_protein_salad.png' | asset_url }}" alt="Lean Protein Power Salad" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 50g Protein</span>
             </div>
@@ -511,7 +553,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(33 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Lean Protein Power Salad</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Lean Protein Power Salad</a>
+              </h3>
               <p class="fhe-meal-card__desc">Double grilled chicken breast over mixed greens, hard-boiled egg, cherry tomatoes, and vinaigrette.</p>
             </div>
             <div class="fhe-meal-card__macros">
@@ -545,7 +589,9 @@
         <!-- Meal 12: Classic Veg Thali Combo -->
         <div class="fhe-meal-card" data-product-id="demo-12" data-dietary="vegetarian" data-base-price="14.99" data-price="14.99" data-calories="590">
           <div class="fhe-meal-card__media">
-            <img src="{{ 'fhe_veg_thali.png' | asset_url }}" alt="Classic Royal Veg Thali Meal" loading="lazy" class="fhe-meal-card__img">
+            <a href="{{ product.url | default: '#' }}" aria-label="Classic Royal Veg Thali Meal">
+              <img src="{{ 'fhe_veg_thali.png' | asset_url }}" alt="Classic Royal Veg Thali Meal" loading="lazy" class="fhe-meal-card__img">
+            </a>
             <div class="fhe-meal-card__badges">
               <span class="fhe-meal-card__tag">Best Seller</span>
               <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Vegetarian</span>
@@ -554,7 +600,9 @@
           <div class="fhe-meal-card__content">
             <div class="fhe-meal-card__header">
               <div class="fhe-meal-card__rating">★★★★★ <small>(64 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">Classic Royal Veg Thali Meal</h3>
+              <h3 class="fhe-meal-card__title">
+                <a href="{{ product.url | default: '#' }}">Classic Royal Veg Thali Meal</a>
+              </h3>
               <p class="fhe-meal-card__desc">Paneer tikka curry, Dal makhani, cumin basmati rice, 2 rotis, and sweet gulab jamun dessert.</p>
             </div>
             <div class="fhe-meal-card__macros">

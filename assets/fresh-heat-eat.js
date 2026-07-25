@@ -410,6 +410,108 @@
       });
     });
 
+    // Quick View Meal Details Modal Controller
+    (function initMealModal() {
+      const modal = document.querySelector('#fhe-meal-modal');
+      if (!modal) return;
+
+      const closeBtn = modal.querySelector('.fhe-modal-close');
+      const modalImg = modal.querySelector('#fhe-modal-img');
+      const modalTitle = modal.querySelector('#fhe-modal-title');
+      const modalDesc = modal.querySelector('#fhe-modal-desc');
+      const modalMacros = modal.querySelector('#fhe-modal-macros');
+      const modalIngredients = modal.querySelector('#fhe-modal-ingredients');
+      const modalVariantInput = modal.querySelector('#fhe-modal-variant-id');
+      const modalAddons = modal.querySelector('#fhe-modal-addons');
+
+      const ingredientsMap = {
+        'demo-1': 'Boneless chicken breast, aged basmati rice, tomato puree, butter, cream, onions, garlic, ginger, garam masala, fenugreek, fresh coriander.',
+        'demo-2': 'Artisanal cottage cheese (paneer), jeera basmati rice, bell peppers, onion, tomato gravy, yogurt, cumin, turmeric, garlic, ginger.',
+        'demo-3': 'Durum wheat penne pasta, grilled chicken breast, broccoli florets, heavy cream, parmesan cheese, minced garlic, extra virgin olive oil, parsley.',
+        'demo-4': 'Herb-marinated grilled chicken breast, organic quinoa, roasted sweet potatoes, green beans, extra virgin olive oil, lemon herb dressing.',
+        'demo-5': 'Glazed tender chicken thighs, steamed jasmine rice, broccoli florets, julienne carrots, sesame seeds, teriyaki reduction sauce.',
+        'demo-6': 'Crispy chickpea falafel, saffron basmati rice, English cucumber, cherry tomatoes, house tahini sauce, hummus, fresh parsley.',
+        'demo-7': 'Tender chicken breast, coconut milk, green curry paste, bamboo shoots, Thai basil, red bell pepper, jasmine rice.',
+        'demo-8': 'Cilantro lime rice, seasoned black beans, sweet corn salsa, sautéed bell peppers, pico de gallo, lime dressing.',
+        'demo-9': 'Smokey BBQ marinated chicken breast, roasted Yukon gold potatoes, sweet corn, honey barbecue glaze.',
+        'demo-10': 'Seasoned rice, sautéed bell peppers & onions, black beans, shredded jack cheese, salsa verde.',
+        'demo-11': 'Double grilled chicken breast, romaine & baby spinach, hard-boiled egg, cherry tomatoes, cucumbers, house vinaigrette.',
+        'demo-12': 'Paneer tikka curry, Dal makhani, cumin basmati rice, 2 whole wheat rotis, sweet gulab jamun.'
+      };
+
+      function openModal(card) {
+        const productUrl = card.dataset.productUrl;
+        if (productUrl && productUrl !== '#' && productUrl !== '') {
+          window.location.href = productUrl;
+          return;
+        }
+
+        const productId = card.dataset.productId || 'demo-1';
+        const title = card.querySelector('.fhe-meal-card__title')?.textContent?.trim() || '';
+        const desc = card.querySelector('.fhe-meal-card__desc')?.textContent?.trim() || '';
+        const imgSrc = card.querySelector('.fhe-meal-card__img')?.src || '';
+        const macrosHtml = card.querySelector('.fhe-meal-card__macros')?.innerHTML || '';
+        const variantId = card.querySelector('input[name="id"]')?.value || 'demo-variant-1';
+        const basePrice = card.dataset.basePrice || card.dataset.price || '13.99';
+
+        if (modalImg) modalImg.src = imgSrc;
+        if (modalTitle) modalTitle.textContent = title;
+        if (modalDesc) modalDesc.textContent = desc;
+        if (modalMacros) modalMacros.innerHTML = macrosHtml;
+        if (modalVariantInput) modalVariantInput.value = variantId;
+        if (modalIngredients) {
+          modalIngredients.textContent = card.dataset.ingredients || ingredientsMap[productId] || 'Fresh chef-selected ingredients, premium spices, and quality seasonings.';
+        }
+
+        if (modalAddons) {
+          modalAddons.innerHTML = '';
+          const cardAddons = card.querySelectorAll('.fhe-addon-checkbox-item');
+          cardAddons.forEach(item => {
+            const clone = item.cloneNode(true);
+            modalAddons.appendChild(clone);
+          });
+        }
+
+        const qtyInput = modal.querySelector('.fhe-qty-input');
+        if (qtyInput) qtyInput.value = 1;
+
+        modal.dataset.basePrice = basePrice;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        updateCardPrice(modal);
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
+      });
+
+      document.querySelectorAll('.fhe-meal-card').forEach(card => {
+        const mediaLink = card.querySelector('.fhe-meal-card__media a');
+        const titleLink = card.querySelector('.fhe-meal-card__title a');
+
+        [mediaLink, titleLink].forEach(link => {
+          if (link) {
+            link.addEventListener('click', function (e) {
+              const href = link.getAttribute('href');
+              if (!href || href === '#' || href === 'javascript:void(0)') {
+                e.preventDefault();
+                openModal(card);
+              }
+            });
+          }
+        });
+      });
+    })();
+
     // Accordion FAQ handler
     document.querySelectorAll('.fhe-faq-question').forEach(btn => {
       btn.addEventListener('click', function () {
