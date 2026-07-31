@@ -89,12 +89,28 @@
               class="fhe-banner-image-wrap__img"
             >
           {% else %}
-            <div class="fhe-banner-image-wrap__placeholder">
-              <div class="fhe-banner-image-wrap__placeholder-icon">🍱</div>
-              <h4 class="fhe-banner-image-wrap__placeholder-title">Fresh Weekly Pre-Order Meals</h4>
-              <p class="fhe-banner-image-wrap__placeholder-delivery">
-                Next Delivery: <strong class="fhe-calculated-delivery-date">Friday Delivery</strong>
-              </p>
+            <div class="fhe-banner-hero-media">
+              <img
+                src="{{ 'fhe_banner_meal.png' | asset_url }}"
+                alt="Fresh Chef Prepared Heat-N-Eat Meals"
+                loading="eager"
+                width="800"
+                height="480"
+                class="fhe-banner-hero-media__img"
+              >
+              <!-- Interactive Floating Emoji Badges -->
+              <div class="fhe-banner-float-badge fhe-banner-float-badge--top-left fhe-emoji-float">
+                <span class="fhe-emoji-bounce">👩‍🍳</span>
+                <span>Chef Prepared</span>
+              </div>
+              <div class="fhe-banner-float-badge fhe-banner-float-badge--top-right fhe-emoji-wiggle">
+                <span>📦</span>
+                <span>Delivered Fresh</span>
+              </div>
+              <div class="fhe-banner-float-badge fhe-banner-float-badge--bottom-right fhe-emoji-bounce">
+                <span>⏱️</span>
+                <span>Ready in 3 Mins</span>
+              </div>
             </div>
           {% endif %}
         </div>
@@ -168,6 +184,22 @@
       "type": "image_picker",
       "id": "image",
       "label": "Banner Image"
+    },
+    {
+      "type": "header",
+      "content": "Live Shopify Products (Optional)"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_live_products",
+      "label": "Use Live Shopify Collection Products",
+      "default": false,
+      "info": "Enable to pull real dynamic product titles, images, and prices uploaded in Shopify Admin."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Meal Collection"
     },
     {
       "type": "header",

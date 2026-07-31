@@ -18,7 +18,8 @@
     "menu": {
       "type": "fresh-heat-eat-menu",
       "settings": {
-        "use_live_products": false,
+        "use_live_products": true,
+        "collection": "all",
         "products_to_show": 12
       }
     },

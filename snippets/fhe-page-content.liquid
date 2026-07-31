@@ -35,7 +35,7 @@
             </div>
             <div class="fhe-hero-trust-strip">
               <div class="fhe-hero-trust-item"><span>👨‍🍳</span> Chef Prepared</div>
-              <div class="fhe-hero-trust-item"><span>❄️</span> Chilled Fresh (Never Frozen)</div>
+              <div class="fhe-hero-trust-item"><span>📦</span> Delivered Fresh (Never Frozen)</div>
               <div class="fhe-hero-trust-item"><span>⏱️</span> Ready in 3 Minutes</div>
             </div>
           </div>
@@ -116,7 +116,7 @@
       <div class="fhe-section-header">
         <div class="fhe-badge-pill">This Week's Menu</div>
         <h2 class="fhe-title-section">Chef-Prepared Heat-N-Eat Meals</h2>
-        <p class="fhe-subtitle">Chilled fresh, never frozen. Ready to heat and serve in 3 minutes.</p>
+        <p class="fhe-subtitle">Delivered fresh, ready to heat and serve in 3 minutes.</p>
       </div>
 
       <!-- Filter, Search & Sort Toolbar -->
@@ -143,9 +143,21 @@
 
       <!-- Meal Cards Grid -->
       <div class="fhe-menu-grid">
+        {% assign fhe_collection = collections['fresh-heat-n-eat'] %}
+        {% if fhe_collection == blank or fhe_collection.products.size == 0 %}
+          {% assign fhe_collection = collections['heat-n-eat'] %}
+        {% endif %}
+        {% if fhe_collection == blank or fhe_collection.products.size == 0 %}
+          {% assign fhe_collection = collections['fresh-heat-eat'] %}
+        {% endif %}
 
-        <!-- Meal 1: Butter Chicken with Rice -->
-        <div class="fhe-meal-card" data-product-id="demo-1" data-dietary="high protein" data-base-price="13.99" data-price="13.99" data-calories="580">
+        {% if fhe_collection != blank and fhe_collection.products.size > 0 %}
+          {% for product in fhe_collection.products limit: 12 %}
+            {% render 'fresh-meal-card', product: product %}
+          {% endfor %}
+        {% else %}
+          <!-- Meal 1: Butter Chicken with Rice -->
+          <div class="fhe-meal-card" data-product-id="demo-1" data-dietary="high protein" data-base-price="13.99" data-price="13.99" data-calories="580">
           <div class="fhe-meal-card__media">
             <a href="{{ product.url | default: '#' }}" aria-label="Butter Chicken with Basmati Rice">
               <img src="{{ 'fhe_butter_chicken.png' | asset_url }}" alt="Butter Chicken with Basmati Rice" loading="lazy" class="fhe-meal-card__img">
@@ -705,6 +717,7 @@
             </form>
           </div>
         </div>
+        {% endif %}
 
       </div>
     </div>

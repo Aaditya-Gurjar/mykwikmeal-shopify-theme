@@ -578,6 +578,50 @@
         filterAndSortMeals();
       });
     });
+
+    // Initialize Banner Framer Motion Reel
+    if (typeof FHEEngine.initBannerFramerReel === 'function') {
+      FHEEngine.initBannerFramerReel();
+    }
+  };
+
+  // Framer Motion Infinite Reel Engine
+  FHEEngine.initBannerFramerReel = function () {
+    const reelCard = document.querySelector('.fhe-framer-reel-card');
+    if (!reelCard) return;
+    if (reelCard.dataset.initialized === 'true') return;
+    reelCard.dataset.initialized = 'true';
+
+    const track = reelCard.querySelector('.fhe-framer-track');
+    const tabs = reelCard.querySelectorAll('.fhe-framer-tab');
+    if (!track) return;
+
+    // Save original items
+    const originalItems = Array.from(track.children);
+
+    function setupLoop(filterCategory = 'all') {
+      track.innerHTML = '';
+      
+      let itemsToUse = originalItems;
+      if (filterCategory !== 'all') {
+        itemsToUse = originalItems.filter(item => item.dataset.category === filterCategory);
+      }
+
+      if (itemsToUse.length === 0) return;
+
+      itemsToUse.forEach(item => track.appendChild(item.cloneNode(true)));
+    }
+
+    setupLoop('all');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function () {
+        tabs.forEach(t => t.classList.remove('is-active'));
+        this.classList.add('is-active');
+        const filter = this.dataset.framerFilter || 'all';
+        setupLoop(filter);
+      });
+    });
   };
 
   document.addEventListener('DOMContentLoaded', function () {
