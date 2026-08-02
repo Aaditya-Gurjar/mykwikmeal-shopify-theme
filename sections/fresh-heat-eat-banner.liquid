@@ -1,4 +1,4 @@
-{% comment %}
+﻿{% comment %}
   KwikMeal Fresh Heat-N-Eat Homepage Banner Section
   Sleek compact height, full width edge-to-edge support, configurable margins.
 {% endcomment %}
@@ -47,7 +47,7 @@
         <div class="fhe-banner-content">
           {% if section.settings.subbrand_label != blank %}
             <div class="fhe-badge-pill fhe-badge-pill--accent">
-              <span>✨</span> {{ section.settings.subbrand_label }}
+              <span></span> {{ section.settings.subbrand_label }}
             </div>
           {% endif %}
 
@@ -63,13 +63,13 @@
 
           <!-- Calculated Delivery Cutoff Pill -->
           <div class="fhe-banner-card__cutoff-pill">
-            <span>⏰</span>
+            <span></span>
             <span class="fhe-calculated-cutoff-timer">Order by Sunday 11:00 AM for Friday Delivery</span>
           </div>
 
           <div class="fhe-banner-card__cta-wrap">
             <a href="{{ section.settings.button_link | default: '/pages/fresh-heat-n-eat' }}" class="fhe-btn fhe-banner-card__cta">
-              {{ section.settings.button_text | default: "Order Now" }} →
+              {{ section.settings.button_text | default: "Order Now" }} 
             </a>
           </div>
         </div>
@@ -100,15 +100,15 @@
               >
               <!-- Interactive Floating Emoji Badges -->
               <div class="fhe-banner-float-badge fhe-banner-float-badge--top-left fhe-emoji-float">
-                <span class="fhe-emoji-bounce">👩‍🍳</span>
+                <span class="fhe-emoji-bounce"></span>
                 <span>Chef Prepared</span>
               </div>
               <div class="fhe-banner-float-badge fhe-banner-float-badge--top-right fhe-emoji-wiggle">
-                <span>📦</span>
+                <span></span>
                 <span>Delivered Fresh</span>
               </div>
               <div class="fhe-banner-float-badge fhe-banner-float-badge--bottom-right fhe-emoji-bounce">
-                <span>⏱️</span>
+                <span></span>
                 <span>Ready in 3 Mins</span>
               </div>
             </div>
@@ -167,7 +167,7 @@
       "type": "textarea",
       "id": "subtitle",
       "label": "Subheading",
-      "default": "Healthy • Fresh • Ready in Minutes"
+      "default": "Healthy  Fresh  Ready in Minutes"
     },
     {
       "type": "text",
@@ -292,3 +292,4 @@
   ]
 }
 {% endschema %}
+

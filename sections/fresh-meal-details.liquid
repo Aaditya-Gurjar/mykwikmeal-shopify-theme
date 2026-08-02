@@ -1,4 +1,4 @@
-{% comment %}
+﻿{% comment %}
   KwikMeal Fresh Heat-N-Eat Product Details Section
 {% endcomment %}
 
@@ -56,15 +56,14 @@
 
       <!-- Product Info & Add-to-Cart Form -->
       <div class="fhe-product-info">
-        <div class="fhe-badge-pill">🍱 Chef-Prepared Heat-N-Eat Meal</div>
+        <div class="fhe-badge-pill">Chef-Prepared Heat-N-Eat Meal</div>
 
         <h1 class="fhe-pdp-title">
           {{ product.title }}
         </h1>
 
-        <!-- Judge.me Rating Badge -->
         <div class="fhe-pdp-rating">
-          {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+          {% render 'product-reviews-app__badge', product: product %}
         </div>
 
         <div class="fhe-pdp-price">
@@ -81,12 +80,12 @@
           <div class="fhe-meal-card__macros fhe-pdp-macros">
             {% if calories != blank %}
               <div class="fhe-meal-card__macro-item">
-                <span>🔥</span> <strong>{{ calories }} Calories</strong>
+                <span aria-hidden="true">&#128293;</span> <strong>{{ calories }} Calories</strong>
               </div>
             {% endif %}
             {% if protein != blank %}
               <div class="fhe-meal-card__macro-item">
-                <span>🥩</span> <strong>{{ protein }} Protein</strong>
+                <span aria-hidden="true">&#129385;</span> <strong>{{ protein }} Protein</strong>
               </div>
             {% endif %}
           </div>
@@ -94,7 +93,7 @@
 
         <!-- Expected Delivery Pill -->
         <div class="fhe-cutoff-timer fhe-pdp-delivery-pill">
-          <span>📦</span>
+          <span aria-hidden="true">&#128230;</span>
           <span>Delivered Fresh: <strong class="fhe-calculated-delivery-date">Friday Delivery</strong></span>
         </div>
 
@@ -144,31 +143,30 @@
         <div class="fhe-faq-list fhe-pdp-accordions">
           <div class="fhe-faq-item is-open">
             <button type="button" class="fhe-faq-question">
-              <span>🔥 Reheating Instructions</span>
-              <span class="fhe-faq-chevron">▼</span>
+              <span>Reheating Instructions</span>
+              <span class="fhe-faq-chevron" aria-hidden="true">&#9662;</span>
             </button>
             <div class="fhe-faq-answer">
-              <p><strong>Microwave:</strong> Remove outer sleeve, peel back a corner of film, and microwave on HIGH for 2.5 to 3 minutes until steaming hot (165°F). Let rest 1 minute before serving.</p>
-              <p style="margin-top: 8px;"><strong>Oven:</strong> Transfer meal to an oven-safe dish, cover loosely with foil, and bake at 350°F for 12-15 minutes.</p>
+              <p><strong>Microwave:</strong> Remove outer sleeve, peel back a corner of film, and microwave on HIGH for 2.5 to 3 minutes until steaming hot (165&deg;F). Let rest 1 minute before serving.</p>
+              <p style="margin-top: 8px;"><strong>Oven:</strong> Transfer meal to an oven-safe dish, cover loosely with foil, and bake at 350&deg;F for 12-15 minutes.</p>
             </div>
           </div>
 
           <div class="fhe-faq-item">
             <button type="button" class="fhe-faq-question">
-              <span>❄️ Storage & Shelf Life</span>
-              <span class="fhe-faq-chevron">▼</span>
+              <span>Storage &amp; Shelf Life</span>
+              <span class="fhe-faq-chevron" aria-hidden="true">&#9662;</span>
             </button>
             <div class="fhe-faq-answer">
-              Keep refrigerated at or below 40°F immediately upon arrival. Best enjoyed within 5 days of delivery date. Can be frozen for up to 30 days.
+              Keep refrigerated at or below 40&deg;F immediately upon arrival. Best enjoyed within 5 days of delivery date. Can be frozen for up to 30 days.
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Judge.me Main Review Widget -->
     <div class="fhe-pdp-reviews-widget" style="margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--fhe-border);">
-      {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
+      {% render 'product-reviews-app__snippet', product: product %}
     </div>
   </div>
 </div>
@@ -200,3 +198,4 @@
   ]
 }
 {% endschema %}
+

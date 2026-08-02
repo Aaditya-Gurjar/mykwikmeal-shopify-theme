@@ -1,8 +1,8 @@
-{% comment %}
-  KwikMeal Fresh Heat-N-Eat — Full Page Content Snippet
+﻿{% comment %}
+  KwikMeal Fresh Heat-N-Eat  Full Page Content Snippet
   Renders the complete FHE landing experience via {% render %} from page.liquid.
   This bypasses the Shopify template-assignment limitation for unpublished themes.
-  Contains: Hero, How It Works, Cutoff Banner, Menu (12 dummy meals), Testimonials, FAQ, Delivery Checker, CTA.
+  Contains: Hero, How It Works, Cutoff Banner, live menu, Testimonials, FAQ, Delivery Checker, CTA.
 {% endcomment %}
 
 <div class="fhe-landing-wrapper">
@@ -14,12 +14,12 @@
         <div class="fhe-hero-grid">
           <div class="fhe-hero-content">
             <div class="fhe-badge-pill fhe-badge-pill--accent">
-              <span>🌱</span> Fresh Chef-Prepared Meals
+              <span aria-hidden="true">&#127807;</span> Fresh Chef-Prepared Meals
             </div>
             <h1 class="fhe-hero-title">Fresh Chef Prepared Meals Delivered Weekly</h1>
             <p class="fhe-hero-subtitle">Freshly cooked. Delivered cold. Ready in minutes. Order before Sunday's cutoff.</p>
             <div class="fhe-hero-delivery-badge">
-              <span>📦</span>
+              <span aria-hidden="true">&#128230;</span>
               <span>Next Delivery: <strong class="fhe-calculated-delivery-date">Friday Delivery</strong></span>
             </div>
             <div class="fhe-zip-box fhe-hero-zip-box">
@@ -31,12 +31,12 @@
               <div class="fhe-zip-status"></div>
             </div>
             <div class="fhe-hero-actions">
-              <a href="#fhe-menu-section" class="fhe-btn fhe-btn--accent">Browse Available Meals ↓</a>
+              <a href="#fhe-menu-section" class="fhe-btn fhe-btn--accent">Browse Available Meals &darr;</a>
             </div>
             <div class="fhe-hero-trust-strip">
-              <div class="fhe-hero-trust-item"><span>👨‍🍳</span> Chef Prepared</div>
-              <div class="fhe-hero-trust-item"><span>📦</span> Delivered Fresh (Never Frozen)</div>
-              <div class="fhe-hero-trust-item"><span>⏱️</span> Ready in 3 Minutes</div>
+              <div class="fhe-hero-trust-item"><span aria-hidden="true">&#128104;&#8205;&#127859;</span> Chef Prepared</div>
+              <div class="fhe-hero-trust-item"><span aria-hidden="true">&#128230;</span> Delivered Fresh (Never Frozen)</div>
+              <div class="fhe-hero-trust-item"><span aria-hidden="true">&#9201;</span> Ready in 3 Minutes</div>
             </div>
           </div>
           <div class="fhe-hero-media">
@@ -64,22 +64,22 @@
       </div>
       <div class="fhe-steps-grid">
         <div class="fhe-step-card">
-          <div class="fhe-step-num">🔍</div>
+          <div class="fhe-step-num">1</div>
           <h3 class="fhe-step-title">Browse Meals</h3>
           <p class="fhe-step-desc">Explore our chef-curated weekly menu of authentic, delicious Heat-N-Eat meals.</p>
         </div>
         <div class="fhe-step-card">
-          <div class="fhe-step-num">🍱</div>
+          <div class="fhe-step-num">2</div>
           <h3 class="fhe-step-title">Choose Meals</h3>
           <p class="fhe-step-desc">Select single meals, weekly combos, and add-ons like extra rice, naan, and desserts.</p>
         </div>
         <div class="fhe-step-card">
-          <div class="fhe-step-num">⏰</div>
+          <div class="fhe-step-num">3</div>
           <h3 class="fhe-step-title">Order Before Cutoff</h3>
           <p class="fhe-step-desc">Place your order before Sunday 11:00 AM for current week delivery batch.</p>
         </div>
         <div class="fhe-step-card">
-          <div class="fhe-step-num">🚚</div>
+          <div class="fhe-step-num">4</div>
           <h3 class="fhe-step-title">Receive Fresh Meals</h3>
           <p class="fhe-step-desc">Enjoy chilled, chef-prepared meals delivered every Friday ready in 3 minutes!</p>
         </div>
@@ -92,7 +92,7 @@
     <div class="fhe-container">
       <div class="fhe-cutoff-bar">
         <div class="fhe-cutoff-bar__info">
-          <div class="fhe-cutoff-bar__icon">🚚</div>
+          <div class="fhe-cutoff-bar__icon" aria-hidden="true">&#128666;</div>
           <div>
             <div class="fhe-cutoff-bar__text">
               Current Production Batch: Delivery on <span class="fhe-calculated-delivery-date fhe-cutoff-bar__date">Friday Delivery</span>
@@ -103,14 +103,14 @@
           </div>
         </div>
         <div class="fhe-cutoff-timer">
-          <span>⏳</span>
+          <span aria-hidden="true">&#9203;</span>
           <span class="fhe-calculated-cutoff-timer">Calculating cutoff deadline...</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ========== MEAL MENU (12 DUMMY MEALS) ========== -->
+  <!-- ========== MEAL MENU ========== -->
   <div id="fhe-menu-section" class="fhe-menu-section m-section-my">
     <div class="container-fluid">
       <div class="fhe-section-header">
@@ -123,14 +123,14 @@
       <div class="fhe-filter-bar">
         <div class="fhe-filter-pills">
           <button type="button" class="fhe-filter-btn is-active" data-filter="all">All Meals</button>
-          <button type="button" class="fhe-filter-btn" data-filter="high protein">💪 High Protein</button>
-          <button type="button" class="fhe-filter-btn" data-filter="vegetarian">🌱 Vegetarian</button>
-          <button type="button" class="fhe-filter-btn" data-filter="vegan">🌿 Vegan</button>
-          <button type="button" class="fhe-filter-btn" data-filter="gluten free">🌾 Gluten Free</button>
+          <button type="button" class="fhe-filter-btn" data-filter="high protein">&#128170; High Protein</button>
+          <button type="button" class="fhe-filter-btn" data-filter="vegetarian">&#127793; Vegetarian</button>
+          <button type="button" class="fhe-filter-btn" data-filter="vegan">&#127807; Vegan</button>
+          <button type="button" class="fhe-filter-btn" data-filter="gluten free">&#127806; Gluten Free</button>
         </div>
         <div class="fhe-menu-controls">
           <div class="fhe-menu-search-wrap">
-            <input type="text" class="fhe-menu-search-input" placeholder="🔍 Search meals..." aria-label="Search meals">
+            <input type="text" class="fhe-menu-search-input" placeholder="Search meals..." aria-label="Search meals">
           </div>
           <select class="fhe-menu-sort-select" aria-label="Sort meals">
             <option value="default">Sort: Featured</option>
@@ -144,581 +144,29 @@
       <!-- Meal Cards Grid -->
       <div class="fhe-menu-grid">
         {% assign fhe_collection = collections['fresh-heat-n-eat'] %}
-        {% if fhe_collection == blank or fhe_collection.products.size == 0 %}
-          {% assign fhe_collection = collections['heat-n-eat'] %}
-        {% endif %}
-        {% if fhe_collection == blank or fhe_collection.products.size == 0 %}
-          {% assign fhe_collection = collections['fresh-heat-eat'] %}
-        {% endif %}
-
         {% if fhe_collection != blank and fhe_collection.products.size > 0 %}
           {% for product in fhe_collection.products limit: 12 %}
             {% render 'fresh-meal-card', product: product %}
           {% endfor %}
         {% else %}
-          <!-- Meal 1: Butter Chicken with Rice -->
-          <div class="fhe-meal-card" data-product-id="demo-1" data-dietary="high protein" data-base-price="13.99" data-price="13.99" data-calories="580">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Butter Chicken with Basmati Rice">
-              <img src="{{ 'fhe_butter_chicken.png' | asset_url }}" alt="Butter Chicken with Basmati Rice" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag">Popular</span>
-              <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 High Protein</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(48 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Butter Chicken with Basmati Rice</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Tender chicken breast simmered in rich creamy tomato butter sauce served with aged basmati rice.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>580 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>42g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Extra Garlic Naan (+$3.00)" data-title="Extra Garlic Naan" data-price="3.00"><span>Garlic Naan (+$3.00)</span></label>
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Mango Lassi (+$4.00)" data-title="Mango Lassi" data-price="4.00"><span>Mango Lassi (+$4.00)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-1">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="13.99">$13.99</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+          {% assign tagged_meal_count = 0 %}
+          {% for product in collections.all.products limit: 50 %}
+            {% if product.tags contains 'fresh-heat-n-eat' or product.type contains 'Heat-N-Eat' %}
+              {% render 'fresh-meal-card', product: product %}
+              {% assign tagged_meal_count = tagged_meal_count | plus: 1 %}
+              {% if tagged_meal_count == 12 %}
+                {% break %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
 
-        <!-- Meal 2: Paneer Tikka Masala -->
-        <div class="fhe-meal-card" data-product-id="demo-2" data-dietary="vegetarian" data-base-price="12.99" data-price="12.99" data-calories="520">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Paneer Tikka Masala & Jeera Rice">
-              <img src="{{ 'fhe_paneer_tikka.png' | asset_url }}" alt="Paneer Tikka Masala & Jeera Rice" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag">Best Seller</span>
-              <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Vegetarian</span>
+          {% if tagged_meal_count == 0 %}
+            <div class="fhe-menu-empty" role="status">
+              <h3>This week's menu is coming soon.</h3>
+              <p>No active Fresh Heat-N-Eat products are available yet.</p>
             </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(36 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Paneer Tikka Masala & Jeera Rice</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Char-grilled cottage cheese cubes in spiced onion tomato gravy with cumin basmati rice.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>520 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>28g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Butter Naan (+$2.50)" data-title="Butter Naan" data-price="2.50"><span>Butter Naan (+$2.50)</span></label>
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Gulab Jamun (+$3.50)" data-title="Gulab Jamun" data-price="3.50"><span>Gulab Jamun (+$3.50)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-2">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="12.99">$12.99</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 3: Chicken Alfredo Pasta -->
-        <div class="fhe-meal-card" data-product-id="demo-3" data-dietary="high protein" data-base-price="14.49" data-price="14.49" data-calories="640">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Creamy Chicken Alfredo Penne">
-              <img src="{{ 'fhe_chicken_alfredo.png' | asset_url }}" alt="Creamy Chicken Alfredo Penne" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag">New</span>
-              <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 High Protein</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(29 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Creamy Chicken Alfredo Penne</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Penne pasta tossed in garlic parmesan cream sauce topped with grilled chicken breast & broccoli florets.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>640 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>38g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Garlic Bread (+$2.50)" data-title="Garlic Bread" data-price="2.50"><span>Garlic Bread (+$2.50)</span></label>
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Side Salad (+$3.50)" data-title="Side Salad" data-price="3.50"><span>Side Salad (+$3.50)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-3">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="14.49">$14.49</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 4: Grilled Chicken Power Bowl -->
-        <div class="fhe-meal-card" data-product-id="demo-4" data-dietary="high protein gluten free" data-base-price="13.49" data-price="13.49" data-calories="490">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Grilled Chicken & Quinoa Power Bowl">
-              <img src="{{ 'fhe_grilled_chicken.png' | asset_url }}" alt="Grilled Chicken & Quinoa Power Bowl" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 45g Protein</span>
-              <span class="fhe-meal-card__tag">🌾 Gluten Free</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(52 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Grilled Chicken & Quinoa Power Bowl</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Herb marinated grilled chicken breast served over fluffy quinoa, roasted sweet potatoes & green beans.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>490 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>45g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Avocado (+$2.00)" data-title="Avocado" data-price="2.00"><span>Avocado (+$2.00)</span></label>
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Fresh Juice (+$4.00)" data-title="Fresh Juice" data-price="4.00"><span>Fresh Juice (+$4.00)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-4">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="13.49">$13.49</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 5: Teriyaki Chicken Bowl -->
-        <div class="fhe-meal-card" data-product-id="demo-5" data-dietary="high protein" data-base-price="13.99" data-price="13.99" data-calories="510">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Teriyaki Chicken & Jasmine Rice">
-              <img src="{{ 'fhe_teriyaki_chicken.png' | asset_url }}" alt="Teriyaki Chicken & Jasmine Rice" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag">Popular</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(31 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Teriyaki Chicken & Jasmine Rice</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Glazed teriyaki chicken thigh with steamed jasmine rice, sesame broccoli, and carrots.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>510 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>40g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Extra Teriyaki Sauce (+$1.50)" data-title="Extra Teriyaki Sauce" data-price="1.50"><span>Extra Sauce (+$1.50)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-5">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="13.99">$13.99</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 6: Mediterranean Falafel Bowl -->
-        <div class="fhe-meal-card" data-product-id="demo-6" data-dietary="vegan vegetarian gluten free" data-base-price="12.49" data-price="12.49" data-calories="460">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Mediterranean Crispy Falafel Bowl">
-              <img src="{{ 'fhe_falafel_bowl.png' | asset_url }}" alt="Mediterranean Crispy Falafel Bowl" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌿 Vegan</span>
-              <span class="fhe-meal-card__tag">🌾 Gluten Free</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(27 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Mediterranean Crispy Falafel Bowl</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Crispy chickpea falafels served over saffron rice with cucumber salad, hummus, and tahini drizzle.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>460 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>22g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Extra Hummus (+$2.00)" data-title="Extra Hummus" data-price="2.00"><span>Extra Hummus (+$2.00)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-6">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="12.49">$12.49</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 7: Thai Green Curry -->
-        <div class="fhe-meal-card" data-product-id="demo-7" data-dietary="high protein gluten free" data-base-price="13.99" data-price="13.99" data-calories="530">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Thai Green Curry Chicken & Rice">
-              <img src="{{ 'fhe_thai_green_curry.png' | asset_url }}" alt="Thai Green Curry Chicken & Rice" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag">🌶️ Spicy</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(19 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Thai Green Curry Chicken & Rice</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Authentic coconut green curry with chicken, bamboo shoots, Thai basil, and fragrant jasmine rice.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>530 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>32g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Extra Rice (+$2.50)" data-title="Extra Rice" data-price="2.50"><span>Extra Rice (+$2.50)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-7">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="13.99">$13.99</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 8: Veggie Burrito Bowl -->
-        <div class="fhe-meal-card" data-product-id="demo-8" data-dietary="vegetarian gluten free" data-base-price="11.99" data-price="11.99" data-calories="440">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Black Bean & Corn Burrito Bowl">
-              <img src="{{ 'fhe_burrito_bowl.png' | asset_url }}" alt="Black Bean & Corn Burrito Bowl" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Vegetarian</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(41 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Black Bean & Corn Burrito Bowl</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Cilantro lime rice, seasoned black beans, roasted corn salsa, bell peppers & pico de gallo.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>440 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>20g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Guacamole (+$2.50)" data-title="Guacamole" data-price="2.50"><span>Guacamole (+$2.50)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-8">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="11.99">$11.99</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 9: BBQ Chicken Meal -->
-        <div class="fhe-meal-card" data-product-id="demo-9" data-dietary="high protein" data-base-price="14.99" data-price="14.99" data-calories="610">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Smokey BBQ Chicken & Roasted Potatoes">
-              <img src="{{ 'fhe_bbq_chicken.png' | asset_url }}" alt="Smokey BBQ Chicken & Roasted Potatoes" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag">Popular</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(38 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Smokey BBQ Chicken & Roasted Potatoes</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Smokey barbecue breast of chicken served with garlic herb roasted potatoes and sweet corn.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>610 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>48g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Extra BBQ Sauce (+$1.50)" data-title="Extra BBQ Sauce" data-price="1.50"><span>Extra BBQ Sauce (+$1.50)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-9">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="14.99">$14.99</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 10: Mexican Fiesta Rice Bowl -->
-        <div class="fhe-meal-card" data-product-id="demo-10" data-dietary="vegetarian" data-base-price="12.99" data-price="12.99" data-calories="480">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Mexican Fiesta Fajita Rice Bowl">
-              <img src="{{ 'fhe_mexican_rice.png' | asset_url }}" alt="Mexican Fiesta Fajita Rice Bowl" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Vegetarian</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(24 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Mexican Fiesta Fajita Rice Bowl</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Sautéed peppers and onions over seasoned rice, black beans, shredded cheese, and salsa verde.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>480 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>25g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Sour Cream (+$1.50)" data-title="Sour Cream" data-price="1.50"><span>Sour Cream (+$1.50)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-10">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="12.99">$12.99</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 11: Protein Power Salad Bowl -->
-        <div class="fhe-meal-card" data-product-id="demo-11" data-dietary="high protein gluten free" data-base-price="13.99" data-price="13.99" data-calories="420">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Lean Protein Power Salad">
-              <img src="{{ 'fhe_protein_salad.png' | asset_url }}" alt="Lean Protein Power Salad" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 50g Protein</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(33 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Lean Protein Power Salad</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Double grilled chicken breast over mixed greens, hard-boiled egg, cherry tomatoes, and vinaigrette.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>420 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>50g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Extra Dressing (+$1.50)" data-title="Extra Dressing" data-price="1.50"><span>Extra Dressing (+$1.50)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-11">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="13.99">$13.99</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- Meal 12: Classic Veg Thali Combo -->
-        <div class="fhe-meal-card" data-product-id="demo-12" data-dietary="vegetarian" data-base-price="14.99" data-price="14.99" data-calories="590">
-          <div class="fhe-meal-card__media">
-            <a href="{{ product.url | default: '#' }}" aria-label="Classic Royal Veg Thali Meal">
-              <img src="{{ 'fhe_veg_thali.png' | asset_url }}" alt="Classic Royal Veg Thali Meal" loading="lazy" class="fhe-meal-card__img">
-            </a>
-            <div class="fhe-meal-card__badges">
-              <span class="fhe-meal-card__tag">Best Seller</span>
-              <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Vegetarian</span>
-            </div>
-          </div>
-          <div class="fhe-meal-card__content">
-            <div class="fhe-meal-card__header">
-              <div class="fhe-meal-card__rating">★★★★★ <small>(64 reviews)</small></div>
-              <h3 class="fhe-meal-card__title">
-                <a href="{{ product.url | default: '#' }}">Classic Royal Veg Thali Meal</a>
-              </h3>
-              <p class="fhe-meal-card__desc">Paneer tikka curry, Dal makhani, cumin basmati rice, 2 rotis, and sweet gulab jamun dessert.</p>
-            </div>
-            <div class="fhe-meal-card__macros">
-              <div class="fhe-meal-card__macro-item"><span>🔥</span> <span>590 Cal</span></div>
-              <div class="fhe-meal-card__macro-item"><span>🥩</span> <span>30g Protein</span></div>
-            </div>
-            <div class="fhe-meal-card__addons-wrapper">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div class="fhe-addon-checkboxes">
-                <label class="fhe-addon-checkbox-item"><input type="checkbox" class="fhe-addon-checkbox" value="Extra Naan (+$3.00)" data-title="Extra Naan" data-price="3.00"><span>Garlic Naan (+$3.00)</span></label>
-              </div>
-            </div>
-            <form method="post" action="/cart/add" class="fhe-meal-card__form">
-              <input type="hidden" name="id" value="demo-variant-12">
-              <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-              <div class="fhe-meal-card__footer">
-                <div class="fhe-meal-card__price" data-original-price="14.99">$14.99</div>
-                <div class="fhe-meal-card__actions">
-                  <div class="fhe-qty-picker">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                    <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                    <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                  </div>
-                  <button type="submit" class="fhe-btn fhe-btn--primary">+ Add</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+          {% endif %}
         {% endif %}
-
       </div>
     </div>
   </div>
@@ -733,7 +181,7 @@
       </div>
       <div class="fhe-testimonials-grid">
         <div class="fhe-testimonial-card">
-          <div class="fhe-testimonial-card__rating">★★★★★</div>
+          <div class="fhe-testimonial-card__rating" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="fhe-testimonial-card__quote">"The Butter Chicken heat-and-eat meal is restaurant-quality! Delivered cold on Friday, heated in 3 minutes after work. Game changer!"</p>
           <div class="fhe-testimonial-card__author">
             <div class="fhe-testimonial-card__avatar">S</div>
@@ -744,7 +192,7 @@
           </div>
         </div>
         <div class="fhe-testimonial-card">
-          <div class="fhe-testimonial-card__rating">★★★★★</div>
+          <div class="fhe-testimonial-card__rating" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="fhe-testimonial-card__quote">"No subscriptions, no hidden fees, just ordering delicious weekly Indian meals before Sunday's cutoff. Highly recommended!"</p>
           <div class="fhe-testimonial-card__author">
             <div class="fhe-testimonial-card__avatar">R</div>
@@ -755,7 +203,7 @@
           </div>
         </div>
         <div class="fhe-testimonial-card">
-          <div class="fhe-testimonial-card__rating">★★★★★</div>
+          <div class="fhe-testimonial-card__rating" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="fhe-testimonial-card__quote">"Love the macro breakdown and high protein meals. Packaging keeps everything cold and fresh until Friday delivery."</p>
           <div class="fhe-testimonial-card__author">
             <div class="fhe-testimonial-card__avatar">A</div>
@@ -781,7 +229,7 @@
         <div class="fhe-faq-item is-open">
           <button type="button" class="fhe-faq-question" aria-expanded="true">
             <span>How does weekly pre-ordering work?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron" aria-hidden="true">&#9662;</span>
           </button>
           <div class="fhe-faq-answer">
             We operate on a weekly production cycle. Place your order before Sunday 11:00 AM, and our chefs prepare your fresh meals for delivery on Friday. Orders after the cutoff automatically move to the following week's delivery.
@@ -790,7 +238,7 @@
         <div class="fhe-faq-item">
           <button type="button" class="fhe-faq-question" aria-expanded="false">
             <span>Is this a subscription service?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron" aria-hidden="true">&#9662;</span>
           </button>
           <div class="fhe-faq-answer">
             No! Unlike BlueApron or Factor, there are no mandatory subscriptions or recurring commitments. Order as many or as few meals as you'd like whenever you want.
@@ -799,7 +247,7 @@
         <div class="fhe-faq-item">
           <button type="button" class="fhe-faq-question" aria-expanded="false">
             <span>How are meals packaged and delivered?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron" aria-hidden="true">&#9662;</span>
           </button>
           <div class="fhe-faq-answer">
             Meals are delivered fresh and chilled (never frozen) in insulated temperature-controlled packaging with ice packs to ensure maximum freshness.
@@ -808,16 +256,16 @@
         <div class="fhe-faq-item">
           <button type="button" class="fhe-faq-question" aria-expanded="false">
             <span>How do I reheat my meals?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron" aria-hidden="true">&#9662;</span>
           </button>
           <div class="fhe-faq-answer">
-            Simply remove outer sleeve, peel back a corner of film, and microwave for 2.5 to 3 minutes until hot (165°F). Alternatively, heat in a preheated oven at 350°F for 12-15 minutes.
+            Simply remove outer sleeve, peel back a corner of film, and microwave for 2.5 to 3 minutes until hot (165F). Alternatively, heat in a preheated oven at 350F for 12-15 minutes.
           </div>
         </div>
         <div class="fhe-faq-item">
           <button type="button" class="fhe-faq-question" aria-expanded="false">
             <span>Which ZIP codes do you deliver to?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron" aria-hidden="true">&#9662;</span>
           </button>
           <div class="fhe-faq-answer">
             We currently deliver to select ZIP codes in Michigan including Canton (48187, 48189), Livonia (48150-48154), Farmington Hills (48331-48336), Plymouth (48170), Novi (48374-48377), and Northville (48167, 48168). Check your ZIP code in our availability checker above!
@@ -861,16 +309,16 @@
         <div class="fhe-cta-card__glow"></div>
         <div class="fhe-cta-content">
           <div class="fhe-badge-pill fhe-badge-pill--accent">
-            <span>⏰</span> Weekly Pre-Order System
+            <span aria-hidden="true">&#9200;</span> Weekly Pre-Order System
           </div>
           <h2 class="fhe-cta-title">Ready to Eat Fresh Chef-Prepared Meals This Friday?</h2>
           <p class="fhe-cta-subtitle">Order before Sunday's cutoff. Delivered fresh & chilled to your door.</p>
           <div class="fhe-cta-cutoff-pill">
-            <span>📦</span>
+            <span aria-hidden="true">&#128230;</span>
             <span class="fhe-calculated-cutoff-timer">Order by Sunday 11:00 AM for Friday Delivery</span>
           </div>
           <div class="fhe-cta-actions">
-            <a href="#fhe-menu-section" class="fhe-btn fhe-btn--accent fhe-cta-btn">Browse This Week's Menu →</a>
+            <a href="#fhe-menu-section" class="fhe-btn fhe-btn--accent fhe-cta-btn">Browse This Week's Menu &rarr;</a>
           </div>
         </div>
       </div>
@@ -886,7 +334,7 @@
           <img id="fhe-modal-img" src="" alt="Meal Detail Image">
         </div>
         <div class="fhe-modal-info">
-          <div id="fhe-modal-rating" class="fhe-meal-card__rating" style="margin-bottom: 8px;">★★★★★</div>
+          <div id="fhe-modal-rating" class="fhe-meal-card__rating" style="margin-bottom: 8px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <h2 id="fhe-modal-title" class="fhe-modal-title">Meal Title</h2>
           <p id="fhe-modal-desc" class="fhe-modal-desc">Meal Description</p>
           
@@ -896,12 +344,12 @@
           </div>
 
           <div class="fhe-modal-section">
-            <h4>🔥 Heating Instructions</h4>
-            <p id="fhe-modal-heating" class="fhe-modal-text">1. Peel back lid corner. 2. Microwave on HIGH for 2:30–3:00 minutes. 3. Let stand 1 minute before serving.</p>
+            <h4>Heating Instructions</h4>
+            <p id="fhe-modal-heating" class="fhe-modal-text">1. Peel back lid corner. 2. Microwave on HIGH for 2:30-3:00 minutes. 3. Let stand 1 minute before serving.</p>
           </div>
 
           <div class="fhe-modal-section">
-            <h4>🥗 Ingredients</h4>
+            <h4>Ingredients</h4>
             <p id="fhe-modal-ingredients" class="fhe-modal-text">Chef selected fresh ingredients.</p>
           </div>
 
@@ -930,3 +378,5 @@
   </div>
 
 </div>
+
+

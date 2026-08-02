@@ -34,7 +34,14 @@
   endif
 %}
 
-<div class="fhe-meal-card" data-product-id="{{ product.id }}" data-dietary="{{ dietary_tags }}">
+<div
+  class="fhe-meal-card"
+  data-product-id="{{ product.id }}"
+  data-product-url="{{ product.url }}"
+  data-dietary="{{ dietary_tags }}"
+  data-base-price="{{ product.price | divided_by: 100.0 }}"
+  data-price="{{ product.price | divided_by: 100.0 }}"
+>
   <div class="fhe-meal-card__media">
     <a href="{{ product.url }}" aria-label="{{ product.title }}">
       {% if product.featured_image != blank %}
@@ -50,9 +57,9 @@
         {% if tag_lower == 'popular' or tag_lower == 'best seller' or tag_lower == 'new' %}
           <span class="fhe-meal-card__tag">{{ tag }}</span>
         {% elsif tag_lower == 'vegetarian' or tag_lower == 'veg' %}
-          <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">🌱 Veg</span>
+          <span class="fhe-meal-card__tag fhe-meal-card__tag--veg">&#127793; Vegetarian</span>
         {% elsif tag_lower == 'high protein' %}
-          <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">💪 High Protein</span>
+          <span class="fhe-meal-card__tag fhe-meal-card__tag--protein">&#128170; High Protein</span>
         {% endif %}
       {% endfor %}
     </div>
@@ -60,9 +67,8 @@
 
   <div class="fhe-meal-card__content">
     <div class="fhe-meal-card__header">
-      <!-- Judge.me Rating Preview Badge -->
       <div class="fhe-meal-card__rating">
-        {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+        {% render 'product-reviews-app__badge', product: product %}
       </div>
 
       <a href="{{ product.url }}" class="fhe-meal-card__title">
@@ -80,13 +86,13 @@
       <div class="fhe-meal-card__macros">
         {% if calories != blank %}
           <div class="fhe-meal-card__macro-item">
-            <span>🔥</span>
+            <span aria-hidden="true">&#128293;</span>
             <span>{{ calories }} Cal</span>
           </div>
         {% endif %}
         {% if protein != blank %}
           <div class="fhe-meal-card__macro-item">
-            <span>🥩</span>
+            <span aria-hidden="true">&#129385;</span>
             <span>{{ protein }} Protein</span>
           </div>
         {% endif %}
@@ -98,15 +104,15 @@
       <label class="fhe-addon-label">Optional Add-ons:</label>
       <div class="fhe-addon-checkboxes">
         <label class="fhe-addon-checkbox-item">
-          <input type="checkbox" class="fhe-addon-checkbox" data-addon-title="Extra Basmati Rice" data-addon-price="2.50" value="Extra Rice (+$2.50)">
+          <input type="checkbox" class="fhe-addon-checkbox" data-title="Extra Basmati Rice" data-price="2.50" value="Extra Rice (+$2.50)">
           <span>Extra Basmati Rice (+$2.50)</span>
         </label>
         <label class="fhe-addon-checkbox-item">
-          <input type="checkbox" class="fhe-addon-checkbox" data-addon-title="Extra Garlic Naan" data-addon-price="3.00" value="Extra Naan (+$3.00)">
+          <input type="checkbox" class="fhe-addon-checkbox" data-title="Extra Garlic Naan" data-price="3.00" value="Extra Naan (+$3.00)">
           <span>Extra Garlic Naan (+$3.00)</span>
         </label>
         <label class="fhe-addon-checkbox-item">
-          <input type="checkbox" class="fhe-addon-checkbox" data-addon-title="Gulab Jamun Dessert" data-addon-price="3.50" value="Dessert (+$3.50)">
+          <input type="checkbox" class="fhe-addon-checkbox" data-title="Gulab Jamun Dessert" data-price="3.50" value="Dessert (+$3.50)">
           <span>Gulab Jamun Dessert (+$3.50)</span>
         </label>
       </div>
@@ -138,3 +144,4 @@
     </form>
   </div>
 </div>
+

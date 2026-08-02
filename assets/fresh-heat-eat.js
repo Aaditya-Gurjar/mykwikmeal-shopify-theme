@@ -1,4 +1,4 @@
-/**
+﻿/**
  * KWIKMEAL FRESH HEAT-N-EAT CORE ENGINE
  * Handles ZIP code validation, weekly cutoff & delivery calculation,
  * multi-addon checkboxes, quantity adjusters, search, sorting, and AJAX cart submission.
@@ -50,7 +50,7 @@
 
     const toast = document.createElement('div');
     toast.className = `fhe-toast fhe-toast--${type}`;
-    toast.innerHTML = `<span>✨</span> <div>${message}</div>`;
+    toast.innerHTML = `<span></span> <div>${message}</div>`;
     container.appendChild(toast);
 
     setTimeout(() => {
@@ -364,7 +364,7 @@
             }
 
             const mealTitle = card ? (card.querySelector('.fhe-meal-card__title, h1, h2, h3')?.textContent || 'Meal') : 'Meal';
-            FHEEngine.showToast(`Added ${quantity}× ${mealTitle} to your order!`);
+            FHEEngine.showToast(`Added ${quantity} ${mealTitle} to your order!`);
 
             // Refresh & open Minimog Cart Drawer
             const cartDrawer = document.querySelector('m-cart-drawer');
@@ -397,7 +397,7 @@
 
             if (mealVariantId.toString().includes('demo')) {
               const mealTitle = card ? (card.querySelector('.fhe-meal-card__title')?.textContent || 'Meal') : 'Meal';
-              FHEEngine.showToast(`Added ${quantity}× ${mealTitle} to your draft order!`);
+              FHEEngine.showToast(`Added ${quantity} ${mealTitle} to your draft order!`);
 
               const cartDrawer = document.querySelector('m-cart-drawer');
               if (cartDrawer && typeof cartDrawer.open === 'function') {
@@ -432,9 +432,9 @@
         'demo-5': 'Glazed tender chicken thighs, steamed jasmine rice, broccoli florets, julienne carrots, sesame seeds, teriyaki reduction sauce.',
         'demo-6': 'Crispy chickpea falafel, saffron basmati rice, English cucumber, cherry tomatoes, house tahini sauce, hummus, fresh parsley.',
         'demo-7': 'Tender chicken breast, coconut milk, green curry paste, bamboo shoots, Thai basil, red bell pepper, jasmine rice.',
-        'demo-8': 'Cilantro lime rice, seasoned black beans, sweet corn salsa, sautéed bell peppers, pico de gallo, lime dressing.',
+        'demo-8': 'Cilantro lime rice, seasoned black beans, sweet corn salsa, sauted bell peppers, pico de gallo, lime dressing.',
         'demo-9': 'Smokey BBQ marinated chicken breast, roasted Yukon gold potatoes, sweet corn, honey barbecue glaze.',
-        'demo-10': 'Seasoned rice, sautéed bell peppers & onions, black beans, shredded jack cheese, salsa verde.',
+        'demo-10': 'Seasoned rice, sauted bell peppers & onions, black beans, shredded jack cheese, salsa verde.',
         'demo-11': 'Double grilled chicken breast, romaine & baby spinach, hard-boiled egg, cherry tomatoes, cucumbers, house vinaigrette.',
         'demo-12': 'Paneer tikka curry, Dal makhani, cumin basmati rice, 2 whole wheat rotis, sweet gulab jamun.'
       };
@@ -630,3 +630,4 @@
     setInterval(FHEEngine.initUI, 60000);
   });
 })();
+

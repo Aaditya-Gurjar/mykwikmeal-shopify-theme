@@ -1,4 +1,4 @@
-{% comment %}
+﻿{% comment %}
   KwikMeal Fresh Heat-N-Eat Bottom CTA Section
 {% endcomment %}
 
@@ -18,7 +18,7 @@
       
       <div class="fhe-cta-content">
         <div class="fhe-badge-pill fhe-badge-pill--accent">
-          <span>⏰</span> {{ section.settings.badge | default: "Weekly Pre-Order System" }}
+          <span></span> {{ section.settings.badge | default: "Weekly Pre-Order System" }}
         </div>
 
         <h2 class="fhe-cta-title">
@@ -31,13 +31,13 @@
 
         <!-- Countdown Pill -->
         <div class="fhe-cta-cutoff-pill">
-          <span>📦</span>
+          <span></span>
           <span class="fhe-calculated-cutoff-timer">Order by Sunday 11:00 AM for Friday Delivery</span>
         </div>
 
         <div class="fhe-cta-actions">
           <a href="#fhe-menu-section" class="fhe-btn fhe-btn--accent fhe-cta-btn">
-            {{ section.settings.button_label | default: "Browse This Week's Menu" }} →
+            {{ section.settings.button_label | default: "Browse This Week's Menu" }} 
           </a>
         </div>
       </div>
@@ -101,3 +101,4 @@
   ]
 }
 {% endschema %}
+

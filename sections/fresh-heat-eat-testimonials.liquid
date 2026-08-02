@@ -1,4 +1,4 @@
-{% comment %}
+﻿{% comment %}
   KwikMeal Fresh Heat-N-Eat Testimonials & Reviews Section
   Integrated with Judge.me widgets and custom review cards.
 {% endcomment %}
@@ -30,11 +30,6 @@
       {% endif %}
     </div>
 
-    <!-- Judge.me Featured Carousel / Widget Integration -->
-    <div class="fhe-judgeme-carousel-wrapper">
-      {% render 'judgeme_widgets', widget_type: 'judgeme_featured_carousel', concierge_install: true %}
-    </div>
-
     <!-- Testimonials Grid -->
     <div class="fhe-testimonials-grid">
       {% if section.blocks.size > 0 %}
@@ -42,7 +37,7 @@
           <div class="fhe-testimonial-card" {{ block.shopify_attributes }}>
             <div class="fhe-testimonial-card__rating">
               {% assign rating = block.settings.rating | default: 5 %}
-              {% for i in (1..rating) %}★{% endfor %}
+              {% for i in (1..rating) %}&#9733;{% endfor %}
             </div>
             <p class="fhe-testimonial-card__quote">"{{ block.settings.quote }}"</p>
             <div class="fhe-testimonial-card__author">
@@ -58,7 +53,7 @@
         {% endfor %}
       {% else %}
         <div class="fhe-testimonial-card">
-          <div class="fhe-testimonial-card__rating">★★★★★</div>
+          <div class="fhe-testimonial-card__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="fhe-testimonial-card__quote">"The Butter Chicken heat-and-eat meal is resturant-quality! Delivered cold on Friday, heated in 3 minutes after work. Game changer!"</p>
           <div class="fhe-testimonial-card__author">
             <div class="fhe-testimonial-card__avatar">S</div>
@@ -70,7 +65,7 @@
         </div>
 
         <div class="fhe-testimonial-card">
-          <div class="fhe-testimonial-card__rating">★★★★★</div>
+          <div class="fhe-testimonial-card__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="fhe-testimonial-card__quote">"No subscriptions, no hidden fees, just ordering delicious weekly Indian meals before Sunday's cutoff. Highly recommended!"</p>
           <div class="fhe-testimonial-card__author">
             <div class="fhe-testimonial-card__avatar">R</div>
@@ -82,7 +77,7 @@
         </div>
 
         <div class="fhe-testimonial-card">
-          <div class="fhe-testimonial-card__rating">★★★★★</div>
+          <div class="fhe-testimonial-card__rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
           <p class="fhe-testimonial-card__quote">"Love the macro breakdown and high protein meals. Packaging keeps everything cold and fresh until Friday delivery."</p>
           <div class="fhe-testimonial-card__author">
             <div class="fhe-testimonial-card__avatar">A</div>
@@ -211,3 +206,4 @@
   ]
 }
 {% endschema %}
+

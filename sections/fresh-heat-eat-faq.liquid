@@ -1,4 +1,4 @@
-{% comment %}
+﻿{% comment %}
   KwikMeal Fresh Heat-N-Eat FAQ Section
   Supports customizable blocks and outputs Google FAQPage JSON-LD schema.
 {% endcomment %}
@@ -36,7 +36,7 @@
           <div class="fhe-faq-item {% if forloop.first %}is-open{% endif %}" {{ block.shopify_attributes }}>
             <button type="button" class="fhe-faq-question" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}">
               <span>{{ block.settings.question }}</span>
-              <span class="fhe-faq-chevron">▼</span>
+              <span class="fhe-faq-chevron"></span>
             </button>
             <div class="fhe-faq-answer">
               {{ block.settings.answer }}
@@ -47,7 +47,7 @@
         <div class="fhe-faq-item is-open">
           <button type="button" class="fhe-faq-question">
             <span>How does weekly pre-ordering work?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron"></span>
           </button>
           <div class="fhe-faq-answer">
             We operate on a weekly production cycle. Place your order before Sunday 11:00 AM, and our chefs prepare your fresh meals for delivery on Friday. Orders after the cutoff automatically move to the following week's delivery.
@@ -57,7 +57,7 @@
         <div class="fhe-faq-item">
           <button type="button" class="fhe-faq-question">
             <span>Is this a subscription service?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron"></span>
           </button>
           <div class="fhe-faq-answer">
             No! Unlike BlueApron or Factor, there are no mandatory subscriptions or recurring commitments. Order as many or as few meals as you'd like whenever you want.
@@ -67,7 +67,7 @@
         <div class="fhe-faq-item">
           <button type="button" class="fhe-faq-question">
             <span>How are meals packaged and delivered?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron"></span>
           </button>
           <div class="fhe-faq-answer">
             Meals are delivered fresh and chilled (never frozen) in insulated temperature-controlled packaging with ice packs to ensure maximum freshness.
@@ -77,17 +77,17 @@
         <div class="fhe-faq-item">
           <button type="button" class="fhe-faq-question">
             <span>How do I reheat my meals?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron"></span>
           </button>
           <div class="fhe-faq-answer">
-            Simply remove outer sleeve, peel back a corner of film, and microwave for 2.5 to 3 minutes until hot (165°F). Alternatively, heat in a preheated oven at 350°F for 12-15 minutes.
+            Simply remove outer sleeve, peel back a corner of film, and microwave for 2.5 to 3 minutes until hot (165F). Alternatively, heat in a preheated oven at 350F for 12-15 minutes.
           </div>
         </div>
 
         <div class="fhe-faq-item">
           <button type="button" class="fhe-faq-question">
             <span>Which ZIP codes do you deliver to?</span>
-            <span class="fhe-faq-chevron">▼</span>
+            <span class="fhe-faq-chevron"></span>
           </button>
           <div class="fhe-faq-answer">
             We currently deliver to select ZIP codes in Michigan including Canton (48187, 48189), Livonia (48150-48154), Farmington Hills (48331-48336), Plymouth (48170), Novi (48374-48377), and Northville (48167, 48168). Check your ZIP code in our availability checker above!
@@ -221,7 +221,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How do I reheat my meals?",
-            "answer": "Simply remove outer sleeve, peel back a corner of film, and microwave for 2.5 to 3 minutes until hot (165°F). Alternatively, heat in a preheated oven at 350°F for 12-15 minutes."
+            "answer": "Simply remove outer sleeve, peel back a corner of film, and microwave for 2.5 to 3 minutes until hot (165F). Alternatively, heat in a preheated oven at 350F for 12-15 minutes."
           }
         },
         {
@@ -236,3 +236,4 @@
   ]
 }
 {% endschema %}
+

@@ -2288,3 +2288,93 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Product menu grid: four cards on desktop, two on tablet, one on mobile. */
+.fhe-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+.fhe-menu-grid > .fhe-meal-card {
+  min-width: 0;
+  height: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .fhe-menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .fhe-menu-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* High-DPI desktop displays can report a tablet-sized CSS viewport. */
+@media screen and (min-width: 640px) and (hover: hover) and (pointer: fine) {
+  .fhe-menu-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .fhe-meal-card__content {
+    padding: 16px;
+  }
+
+  .fhe-meal-card__title {
+    font-size: 16px;
+  }
+
+  .fhe-meal-card__desc {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .fhe-meal-card__macros {
+    gap: 10px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+  }
+
+  .fhe-meal-card__addons-wrapper {
+    margin-bottom: 10px;
+  }
+
+  .fhe-addon-checkbox-item {
+    font-size: 11px;
+  }
+
+  .fhe-meal-card__footer {
+    gap: 8px;
+  }
+
+  .fhe-meal-card__price {
+    font-size: 18px;
+  }
+
+  .fhe-meal-card__actions {
+    gap: 5px;
+  }
+
+  .fhe-qty-btn {
+    width: 26px;
+    height: 30px;
+  }
+
+  .fhe-qty-input {
+    width: 26px;
+    font-size: 12px;
+  }
+
+  .fhe-meal-card__footer .fhe-btn {
+    padding: 8px 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+}
