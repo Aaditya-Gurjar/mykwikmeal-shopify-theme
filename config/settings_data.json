@@ -85,10 +85,10 @@
     "theme_currencies": "USD | EUR | GBP | VND",
     "fhe_enable": true,
     "fhe_cutoff_day": "Sunday",
-    "fhe_cutoff_time": "11:00 AM",
+    "fhe_cutoff_time": "11:59 PM",
     "fhe_delivery_day": "Friday",
     "fhe_allowed_zips": "48187, 48189, 48150, 48151, 48152, 48153, 48154, 48331, 48332, 48334, 48335, 48336, 48170, 48374, 48375, 48376, 48377, 48167, 48168",
-    "fhe_announcement_text": "Order by Sunday 11:00 AM for Friday Delivery!",
+    "fhe_announcement_text": "Order by Sunday Midnight for Friday Delivery!",
     "content_for_index": [],
     "blocks": {
       "14060646107696862457": {

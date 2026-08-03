@@ -2793,7 +2793,7 @@
         "type": "text",
         "id": "fhe_cutoff_time",
         "label": "Weekly Cutoff Time",
-        "default": "11:00 AM"
+        "default": "11:59 PM"
       },
       {
         "type": "select",
@@ -2829,7 +2829,7 @@
         "type": "text",
         "id": "fhe_announcement_text",
         "label": "Cutoff Announcement Text",
-        "default": "Order by Sunday 11:00 AM for Friday Delivery!"
+        "default": "Order by Sunday Midnight for Friday Delivery!"
       }
     ]
   }

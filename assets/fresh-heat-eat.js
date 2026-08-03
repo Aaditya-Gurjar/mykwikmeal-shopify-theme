@@ -1,4 +1,4 @@
-﻿/**
+/**
  * KWIKMEAL FRESH HEAT-N-EAT CORE ENGINE
  * Handles ZIP code validation, weekly cutoff & delivery calculation,
  * multi-addon checkboxes, quantity adjusters, search, sorting, and AJAX cart submission.
@@ -11,7 +11,7 @@
 
   const DEFAULT_CONFIG = {
     cutoffDay: 'Sunday',     // e.g. Sunday
-    cutoffTime: '11:00 AM',  // e.g. 11:00 AM
+    cutoffTime: '11:59 PM',  // e.g. 11:59 PM
     deliveryDay: 'Friday',   // e.g. Friday
     allowedZips: [
       '48187', '48189', '48150', '48151', '48152', '48153', '48154',
@@ -94,7 +94,7 @@
     const cutoffDayNum = DAYS_MAP[config.cutoffDay.toLowerCase()] ?? 0;
     const deliveryDayNum = DAYS_MAP[config.deliveryDay.toLowerCase()] ?? 5;
 
-    // Parse cutoff time e.g. "11:00 AM"
+    // Parse cutoff time e.g. "11:59 PM"
     let cutoffHour = 11;
     let cutoffMin = 0;
     if (config.cutoffTime) {

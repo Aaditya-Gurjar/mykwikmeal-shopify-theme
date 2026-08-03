@@ -1,4 +1,4 @@
-﻿{% comment %}
+{% comment %}
   KwikMeal Fresh Heat-N-Eat FAQ Section
   Supports customizable blocks and outputs Google FAQPage JSON-LD schema.
 {% endcomment %}
@@ -50,7 +50,17 @@
             <span class="fhe-faq-chevron"></span>
           </button>
           <div class="fhe-faq-answer">
-            We operate on a weekly production cycle. Place your order before Sunday 11:00 AM, and our chefs prepare your fresh meals for delivery on Friday. Orders after the cutoff automatically move to the following week's delivery.
+            We operate on a weekly production cycle. Place your order before Sunday Midnight (11:59 PM), and our chefs prepare your fresh meals for delivery on Friday. Orders placed after Sunday Midnight automatically move to the following week's delivery.
+          </div>
+        </div>
+
+        <div class="fhe-faq-item">
+          <button type="button" class="fhe-faq-question">
+            <span>Can I cancel my order and get a refund?</span>
+            <span class="fhe-faq-chevron"></span>
+          </button>
+          <div class="fhe-faq-answer">
+            Since all meals are made to order, once the ordering cutoff (Sunday Midnight) has passed, cancellations and refunds are not available. However, if you cancel your order before the cutoff day and time, we will refund your payment in full to your original mode of payment.
           </div>
         </div>
 
@@ -70,7 +80,27 @@
             <span class="fhe-faq-chevron"></span>
           </button>
           <div class="fhe-faq-answer">
-            Meals are delivered fresh and chilled (never frozen) in insulated temperature-controlled packaging with ice packs to ensure maximum freshness.
+            Meals are delivered fresh and chilled (never frozen) in insulated temperature-controlled packaging with ice packs to ensure maximum freshness. Since meals are delivered at refrigerated temperature, someone must be available at your doorstep to receive the delivery. Meals will not be left on the porch due to food safety reasons. We will send you an SMS about the approximate time of delivery within a 1-hour window.
+          </div>
+        </div>
+
+        <div class="fhe-faq-item">
+          <button type="button" class="fhe-faq-question">
+            <span>Is there a delivery charge?</span>
+            <span class="fhe-faq-chevron"></span>
+          </button>
+          <div class="fhe-faq-answer">
+            Yes, there is a flat $10 handling and delivery charge per order, regardless of the quantity of meals ordered. This charge will appear at the payment checkout.
+          </div>
+        </div>
+
+        <div class="fhe-faq-item">
+          <button type="button" class="fhe-faq-question">
+            <span>Can I order other grocery items along with my meals?</span>
+            <span class="fhe-faq-chevron"></span>
+          </button>
+          <div class="fhe-faq-answer">
+            Absolutely! In addition to your Heat-N-Eat meals, you can also order other grocery items from our website. They will be delivered together with your meal order on Friday.
           </div>
         </div>
 
@@ -121,7 +151,7 @@
         "name": "How does weekly pre-ordering work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Place your order before Sunday 11:00 AM, and our chefs prepare your fresh meals for delivery on Friday."
+          "text": "Place your order before Sunday Midnight (11:59 PM), and our chefs prepare your fresh meals for delivery on Friday."
         }
       }
     {% endif %}
@@ -187,9 +217,9 @@
           "type": "textarea",
           "id": "answer",
           "label": "Answer",
-          "default": "Place your order before Sunday 11:00 AM for current week delivery."
+          "default": "Place your order before Sunday Midnight (11:59 PM) for current week delivery."
         }
-      ]
+        ]
     }
   ],
   "presets": [
@@ -200,7 +230,14 @@
           "type": "faq_item",
           "settings": {
             "question": "How does weekly pre-ordering work?",
-            "answer": "We operate on a weekly production cycle. Place your order before Sunday 11:00 AM, and our chefs prepare your fresh meals for delivery on Friday. Orders after the cutoff automatically move to the following week's delivery."
+            "answer": "We operate on a weekly production cycle. Place your order before Sunday Midnight (11:59 PM), and our chefs prepare your fresh meals for delivery on Friday. Orders placed after Sunday Midnight automatically move to the following week's delivery."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I cancel my order and get a refund?",
+            "answer": "Since all meals are made to order, once the ordering cutoff (Sunday Midnight) has passed, cancellations and refunds are not available. However, if you cancel your order before the cutoff day and time, we will refund your payment in full to your original mode of payment."
           }
         },
         {
@@ -214,7 +251,14 @@
           "type": "faq_item",
           "settings": {
             "question": "How are meals packaged and delivered?",
-            "answer": "Meals are delivered fresh and chilled (never frozen) in insulated temperature-controlled packaging with ice packs to ensure maximum freshness."
+            "answer": "Meals are delivered fresh and chilled (never frozen) in insulated temperature-controlled packaging with ice packs to ensure maximum freshness. Since meals are delivered at refrigerated temperature, someone must be available at your doorstep to receive the delivery. Meals will not be left on the porch due to food safety reasons. We will send you an SMS about the approximate time of delivery within a 1-hour window."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is there a delivery charge?",
+            "answer": "Yes, there is a flat $10 handling and delivery charge per order, regardless of the quantity of meals ordered. This charge will appear at the payment checkout."
           }
         },
         {
@@ -222,6 +266,13 @@
           "settings": {
             "question": "How do I reheat my meals?",
             "answer": "Simply remove outer sleeve, peel back a corner of film, and microwave for 2.5 to 3 minutes until hot (165F). Alternatively, heat in a preheated oven at 350F for 12-15 minutes."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I order other grocery items along with my meals?",
+            "answer": "Absolutely! In addition to your Heat-N-Eat meals, you can also order other grocery items from our website. They will be delivered together with your meal order on Friday."
           }
         },
         {

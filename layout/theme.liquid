@@ -51,7 +51,7 @@
       <script>
         window.FHE_SETTINGS = {
           cutoffDay: {{ settings.fhe_cutoff_day | default: 'Sunday' | json }},
-          cutoffTime: {{ settings.fhe_cutoff_time | default: '11:00 AM' | json }},
+          cutoffTime: {{ settings.fhe_cutoff_time | default: '11:59 PM' | json }},
           deliveryDay: {{ settings.fhe_delivery_day | default: 'Friday' | json }},
           allowedZips: {{ settings.fhe_allowed_zips | default: '48187,48189,48150,48151,48152,48153,48154,48331,48332,48334,48335,48336,48170,48374,48375,48376,48377,48167,48168' | replace: ' ', '' | split: ',' | json }}
         };
