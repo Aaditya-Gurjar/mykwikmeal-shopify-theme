@@ -210,7 +210,7 @@
     // Realtime Add-on & Quantity Price Engine
     function updateCardPrice(card) {
       const basePrice = parseFloat(card.dataset.basePrice || card.dataset.price || 0);
-      const priceElem = card.querySelector('.fhe-meal-card__price');
+      const priceElem = card.querySelector('.fhe-meal-card__price, .fhe-pdp-price');
       const qtyInput = card.querySelector('.fhe-qty-input, input[name="quantity"]');
       const qty = parseInt(qtyInput ? qtyInput.value : 1, 10) || 1;
       const checkboxes = card.querySelectorAll('.fhe-addon-checkbox');
@@ -281,6 +281,38 @@
       updateCardPrice(card);
     });
 
+    // Helper to resolve real Variant ID for an add-on checkbox
+    const addonVariantCache = {};
+    async function resolveAddonVariantId(cb) {
+      let rawId = (cb.dataset.variantId || '').trim();
+      const rawTitle = cb.dataset.title || cb.value || '';
+      const handle = rawTitle.split('(')[0].trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+      if (!handle) return rawId;
+
+      if (addonVariantCache[handle]) {
+        return addonVariantCache[handle];
+      }
+
+      // Try fetching product JSON to get variants[0].id
+      try {
+        const res = await fetch('/products/' + handle + '.js');
+        if (res.ok) {
+          const prodData = await res.json();
+          if (prodData && prodData.variants && prodData.variants.length > 0) {
+            const realVariantId = String(prodData.variants[0].id);
+            addonVariantCache[handle] = realVariantId;
+            cb.dataset.variantId = realVariantId;
+            return realVariantId;
+          }
+        }
+      } catch (err) {
+        console.warn('Add-on variant resolution fallback for:', handle, err);
+      }
+
+      return rawId;
+    }
+
     // AJAX Form submission logic with Multi-Item Payload & Cart Drawer Refresh
     document.querySelectorAll('form[action*="/cart/add"]').forEach(form => {
       if (form.classList.contains('fhe-processed-form')) return;
@@ -304,7 +336,7 @@
       }
       weekProp.value = calc.weekLabel;
 
-      form.addEventListener('submit', function (e) {
+      form.addEventListener('submit', async function (e) {
         e.preventDefault();
         const card = form.closest('.fhe-meal-card, .fhe-product-info') || form.parentElement;
         const submitBtn = form.querySelector('button[type="submit"]');
@@ -321,20 +353,20 @@
         const selectedAddons = [];
         const items = [];
 
-        // Collect checked add-on variants
-        const checkboxes = card ? card.querySelectorAll('.fhe-addon-checkbox:checked') : [];
-        checkboxes.forEach(cb => {
+        // Collect checked add-on variants asynchronously
+        const checkboxes = card ? Array.from(card.querySelectorAll('.fhe-addon-checkbox:checked')) : [];
+        for (const cb of checkboxes) {
           const addonTitle = cb.dataset.title || cb.value;
-          const addonVariantId = cb.dataset.variantId || null;
           selectedAddons.push(addonTitle);
 
-          if (addonVariantId) {
+          const resolvedVariantId = await resolveAddonVariantId(cb);
+          if (resolvedVariantId && !resolvedVariantId.startsWith('demo')) {
             items.push({
-              id: addonVariantId,
+              id: resolvedVariantId,
               quantity: quantity
             });
           }
-        });
+        }
 
         // Main meal variant item
         const mainItem = {
@@ -348,71 +380,95 @@
         };
         items.unshift(mainItem);
 
-        // Submit via AJAX /cart/add.js
-        fetch('/cart/add.js', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({ items: items })
-        })
-          .then(response => {
-            if (!response.ok) {
-              return response.json().then(err => { throw err; });
-            }
-            return response.json();
-          })
-          .then(data => {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.classList.remove('is-loading');
-            }
+        // Function to handle cart UI update after success
+        const handleCartSuccess = () => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('is-loading');
+          }
 
-            const mealTitle = card ? (card.querySelector('.fhe-meal-card__title, h1, h2, h3')?.textContent || 'Meal') : 'Meal';
-            FHEEngine.showToast(`Added ${quantity} ${mealTitle} to your order!`);
+          const mealTitle = card ? (card.querySelector('.fhe-meal-card__title, h1, h2, h3')?.textContent || 'Meal') : 'Meal';
+          FHEEngine.showToast(`Added ${quantity} ${mealTitle} to your order!`);
 
-            // Refresh & open Minimog Cart Drawer
-            const cartDrawer = document.querySelector('m-cart-drawer');
-            if (cartDrawer) {
-              if (typeof cartDrawer.onCartDrawerUpdate === 'function') {
-                cartDrawer.onCartDrawerUpdate();
-              }
-              if (typeof cartDrawer.open === 'function') {
-                cartDrawer.open();
-              }
-            } else {
-              // Fallback cart count update
-              fetch('/cart.js')
-                .then(res => res.json())
-                .then(cart => {
-                  document.querySelectorAll('.m-cart-count-bubble, .cart-count, .cart-count-bubble').forEach(el => {
-                    el.textContent = cart.item_count;
-                    el.classList.remove('m:hidden', 'hidden');
-                  });
+          const cartDrawer = document.querySelector('m-cart-drawer');
+          if (cartDrawer) {
+            if (typeof cartDrawer.onCartDrawerUpdate === 'function') {
+              cartDrawer.onCartDrawerUpdate();
+            }
+            if (typeof cartDrawer.open === 'function') {
+              cartDrawer.open();
+            }
+          } else {
+            fetch('/cart.js')
+              .then(res => res.json())
+              .then(cart => {
+                document.querySelectorAll('.m-cart-count-bubble, .cart-count, .cart-count-bubble').forEach(el => {
+                  el.textContent = cart.item_count;
+                  el.classList.remove('m:hidden', 'hidden');
                 });
-            }
-          })
-          .catch(error => {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.classList.remove('is-loading');
-            }
-            console.error('Cart Addition Exception:', error);
-            const errMessage = error.description || error.message || 'Could not add item to cart';
+              });
+          }
+        };
 
-            if (mealVariantId.toString().includes('demo')) {
-              const mealTitle = card ? (card.querySelector('.fhe-meal-card__title')?.textContent || 'Meal') : 'Meal';
-              FHEEngine.showToast(`Added ${quantity} ${mealTitle} to your draft order!`);
-
-              const cartDrawer = document.querySelector('m-cart-drawer');
-              if (cartDrawer && typeof cartDrawer.open === 'function') {
-                cartDrawer.open();
-              }
-            } else {
-              FHEEngine.showToast(errMessage, true);
-            }
+        // Submit via AJAX /cart/add.js
+        try {
+          const response = await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({ items: items })
           });
+
+          if (!response.ok) {
+            const errData = await response.json();
+            throw errData;
+          }
+
+          handleCartSuccess();
+        } catch (error) {
+          console.warn('Primary multi-item cart add failed, attempting fallback:', error);
+
+          // Fallback: If add-on variant failed, try adding just the main meal
+          if (items.length > 1) {
+            try {
+              const fallbackResponse = await fetch('/cart/add.js', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                body: JSON.stringify({ items: [mainItem] })
+              });
+
+              if (fallbackResponse.ok) {
+                handleCartSuccess();
+                return;
+              }
+            } catch (fallbackErr) {
+              console.error('Fallback cart add failed:', fallbackErr);
+            }
+          }
+
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('is-loading');
+          }
+
+          const errMessage = error.description || error.message || 'Could not add item to cart';
+          if (mealVariantId.toString().includes('demo')) {
+            const mealTitle = card ? (card.querySelector('.fhe-meal-card__title')?.textContent || 'Meal') : 'Meal';
+            FHEEngine.showToast(`Added ${quantity} ${mealTitle} to your draft order!`);
+
+            const cartDrawer = document.querySelector('m-cart-drawer');
+            if (cartDrawer && typeof cartDrawer.open === 'function') {
+              cartDrawer.open();
+            }
+          } else {
+            FHEEngine.showToast(errMessage, true);
+          }
+        }
       });
     });
 

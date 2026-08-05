@@ -55,7 +55,7 @@
       </div>
 
       <!-- Product Info & Add-to-Cart Form -->
-      <div class="fhe-product-info">
+      <div class="fhe-product-info" data-base-price="{{ product.price | divided_by: 100.0 }}" data-price="{{ product.price | divided_by: 100.0 }}">
         <div class="fhe-badge-pill">Chef Prepared Heat-N-Eat Meal</div>
 
         {% for tag in product.tags %}
@@ -115,15 +115,15 @@
             <label class="fhe-addon-label">Customize Optional Add-ons:</label>
             <div class="fhe-addon-checkboxes">
               <label class="fhe-addon-checkbox-item">
-                <input type="checkbox" class="fhe-addon-checkbox" data-title="Raita" data-price="2.00" data-variant-id="" value="Raita (+$2.00)">
+                <input type="checkbox" class="fhe-addon-checkbox" data-title="Raita" data-price="2.00" data-variant-id="8690526453933" value="Raita (+$2.00)">
                 <span>Raita (+$2.00)</span>
               </label>
               <label class="fhe-addon-checkbox-item">
-                <input type="checkbox" class="fhe-addon-checkbox" data-title="Salad" data-price="2.00" data-variant-id="" value="Salad (+$2.00)">
+                <input type="checkbox" class="fhe-addon-checkbox" data-title="Salad" data-price="2.00" data-variant-id="8690526585005" value="Salad (+$2.00)">
                 <span>Salad (+$2.00)</span>
               </label>
               <label class="fhe-addon-checkbox-item">
-                <input type="checkbox" class="fhe-addon-checkbox" data-title="Roti" data-price="2.00" data-variant-id="" value="Roti (+$2.00)">
+                <input type="checkbox" class="fhe-addon-checkbox" data-title="Roti" data-price="2.00" data-variant-id="8690527076525" value="Roti (+$2.00)">
                 <span>Roti (+$2.00)</span>
               </label>
             </div>
