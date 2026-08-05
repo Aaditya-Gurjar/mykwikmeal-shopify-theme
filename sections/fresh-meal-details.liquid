@@ -1,4 +1,4 @@
-﻿{% comment %}
+{% comment %}
   KwikMeal Fresh Heat-N-Eat Product Details Section
 {% endcomment %}
 
@@ -56,7 +56,14 @@
 
       <!-- Product Info & Add-to-Cart Form -->
       <div class="fhe-product-info">
-        <div class="fhe-badge-pill">Chef-Prepared Heat-N-Eat Meal</div>
+        <div class="fhe-badge-pill">Chef Prepared Heat-N-Eat Meal</div>
+
+        {% for tag in product.tags %}
+          {% assign tag_lower = tag | downcase %}
+          {% if tag_lower == 'high protein' or tag_lower == 'high-protein badge' %}
+            <span class="fhe-badge-pill fhe-badge-pill--protein">🏋️ High Protein</span>
+          {% endif %}
+        {% endfor %}
 
         <h1 class="fhe-pdp-title">
           {{ product.title }}
@@ -97,7 +104,7 @@
           <span>Delivered Fresh: <strong class="fhe-calculated-delivery-date">Friday Delivery</strong></span>
         </div>
 
-        <!-- Add to Cart Form (Option B Multi-Addons) -->
+        <!-- Add to Cart Form (Top) -->
         <form method="post" action="/cart/add" class="fhe-pdp-form">
           <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
           <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
@@ -108,20 +115,16 @@
             <label class="fhe-addon-label">Customize Optional Add-ons:</label>
             <div class="fhe-addon-checkboxes">
               <label class="fhe-addon-checkbox-item">
-                <input type="checkbox" class="fhe-addon-checkbox" value="Extra Rice (+$2.50)">
-                <span>Extra Basmati Rice (+$2.50)</span>
+                <input type="checkbox" class="fhe-addon-checkbox" data-title="Raita" data-price="2.00" data-variant-id="" value="Raita (+$2.00)">
+                <span>Raita (+$2.00)</span>
               </label>
               <label class="fhe-addon-checkbox-item">
-                <input type="checkbox" class="fhe-addon-checkbox" value="Extra Naan (+$3.00)">
-                <span>Extra Garlic Naan (+$3.00)</span>
+                <input type="checkbox" class="fhe-addon-checkbox" data-title="Salad" data-price="2.00" data-variant-id="" value="Salad (+$2.00)">
+                <span>Salad (+$2.00)</span>
               </label>
               <label class="fhe-addon-checkbox-item">
-                <input type="checkbox" class="fhe-addon-checkbox" value="Extra Sauce (+$1.50)">
-                <span>Extra Sauce (+$1.50)</span>
-              </label>
-              <label class="fhe-addon-checkbox-item">
-                <input type="checkbox" class="fhe-addon-checkbox" value="Dessert (+$3.50)">
-                <span>Gulab Jamun Dessert (+$3.50)</span>
+                <input type="checkbox" class="fhe-addon-checkbox" data-title="Roti" data-price="2.00" data-variant-id="" value="Roti (+$2.00)">
+                <span>Roti (+$2.00)</span>
               </label>
             </div>
           </div>
@@ -147,8 +150,8 @@
               <span class="fhe-faq-chevron" aria-hidden="true">&#9662;</span>
             </button>
             <div class="fhe-faq-answer">
-              <p><strong>Microwave:</strong> Remove outer sleeve, peel back a corner of film, and microwave on HIGH for 2.5 to 3 minutes until steaming hot (165&deg;F). Let rest 1 minute before serving.</p>
-              <p style="margin-top: 8px;"><strong>Oven:</strong> Transfer meal to an oven-safe dish, cover loosely with foil, and bake at 350&deg;F for 12-15 minutes.</p>
+              <p><strong>Microwave:</strong> Peel back film of both compartments or single compartment tray about an inch. Microwave on HIGH for 2&ndash;3 minutes. Tray and contents will be hot. Carefully remove tray. Let stand for 1 minute before serving.</p>
+              <p style="margin-top: 8px;"><strong>Oven:</strong> You can also heat it in a preheated oven. Cover tray with aluminum foil. Internal food temperature must reach 165&deg;F (74&deg;C).</p>
             </div>
           </div>
 
@@ -161,6 +164,33 @@
               Keep refrigerated at or below 40&deg;F immediately upon arrival. Best enjoyed within 5 days of delivery date. Can be frozen for up to 30 days.
             </div>
           </div>
+        </div>
+
+        <!-- Bottom Add to Cart (Point 8B) -->
+        <div class="fhe-pdp-bottom-actions">
+          <form method="post" action="/cart/add" class="fhe-pdp-form fhe-pdp-bottom-form">
+            <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+            <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
+            <input type="hidden" name="properties[Expected Delivery Date]" class="fhe-delivery-date-hidden-input" value="">
+            <input type="hidden" name="properties[Delivery Week]" class="fhe-delivery-week-hidden-input" value="">
+
+            <div class="fhe-pdp-form-row">
+              <div class="fhe-qty-picker">
+                <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
+                <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
+                <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
+              </div>
+
+              <button type="submit" class="fhe-btn fhe-btn--primary fhe-pdp-submit-btn">
+                + Add to Weekly Order
+              </button>
+            </div>
+          </form>
+
+          <!-- Go Back to Menu Link (Point 8C) -->
+          <a href="/pages/fresh-heat-n-eat" class="fhe-btn fhe-btn--outline fhe-back-to-menu-btn">
+            &larr; Go Back to Menu
+          </a>
         </div>
       </div>
     </div>

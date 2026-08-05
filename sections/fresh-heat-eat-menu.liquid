@@ -1,4 +1,4 @@
-﻿{% comment %}
+{% comment %}
   KwikMeal Fresh Heat-N-Eat Meal Menu Section
   Renders real products from the selected Fresh Heat-N-Eat collection.
 {% endcomment %}
@@ -31,7 +31,7 @@
         </div>
       {% endif %}
       <h2 class="fhe-title-section">
-        {{ section.settings.heading | default: "Chef-Prepared Heat-N-Eat Meals" }}
+        {{ section.settings.heading | default: "Chef Prepared Heat-N-Eat Meals" }}
       </h2>
       <p class="fhe-subtitle">
         {{ section.settings.subheading | default: "Delivered fresh, ready to heat and serve in 3 minutes." }}
@@ -61,6 +61,14 @@
         </select>
       </div>
     </div>
+
+    <!-- Delivery Charge Banner -->
+    {% if section.settings.delivery_charge != blank %}
+      <div class="fhe-delivery-charge-card" style="margin-bottom: 28px;">
+        <span aria-hidden="true">&#128230;</span>
+        <span>Flat Handling &amp; Delivery Charges: <strong>{{ section.settings.delivery_charge }}</strong> per order</span>
+      </div>
+    {% endif %}
 
     <!-- Meal Cards Grid -->
     <div class="fhe-menu-grid">
@@ -124,7 +132,7 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Chef-Prepared Heat-N-Eat Meals"
+      "default": "Chef Prepared Heat-N-Eat Meals"
     },
     {
       "type": "textarea",
@@ -140,6 +148,13 @@
       "max": 24,
       "step": 2,
       "default": 12
+    },
+    {
+      "type": "text",
+      "id": "delivery_charge",
+      "label": "Delivery Charge Display",
+      "default": "$10.00",
+      "info": "Flat handling and delivery charge shown above the menu. Leave blank to hide."
     }
   ],
   "presets": [

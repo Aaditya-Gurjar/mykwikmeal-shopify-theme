@@ -14,9 +14,9 @@
     cutoffTime: '11:59 PM',  // e.g. 11:59 PM
     deliveryDay: 'Friday',   // e.g. Friday
     allowedZips: [
-      '48187', '48189', '48150', '48151', '48152', '48153', '48154',
-      '48331', '48332', '48334', '48335', '48336', '48170', '48374',
-      '48375', '48376', '48377', '48167', '48168'
+      '48187', '48188', '48150', '48151', '48152', '48153', '48154',
+      '48025', '48331', '48334', '48335', '48336', '48170', '48374',
+      '48375', '48376', '48377', '48167', '48168', '48185', '48186'
     ]
   };
 
@@ -26,7 +26,7 @@
   };
 
   const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   // Initialize configuration from theme globals
   FHEEngine.getConfig = function () {
@@ -152,6 +152,7 @@
     return {
       isPastCutoff,
       deliveryDateStr: formattedDeliveryDate,
+      cutoffDateStr: `${DAY_NAMES[nextCutoff.getDay()]}, ${MONTH_NAMES[nextCutoff.getMonth()]} ${nextCutoff.getDate()}`,
       weekLabel,
       hoursLeft: Math.max(0, diffHours),
       minsLeft: Math.max(0, diffMins),
@@ -170,9 +171,14 @@
       el.textContent = calc.deliveryDateStr;
     });
 
-    // Update countdown timers
+    // Update countdown timers with delivery date
     document.querySelectorAll('.fhe-calculated-cutoff-timer').forEach(el => {
-      el.textContent = `${calc.hoursLeft}h ${calc.minsLeft}m remaining for ${calc.deliveryDateStr} delivery`;
+      el.textContent = `${calc.hoursLeft} Hr ${calc.minsLeft} Min remaining for order cutoff for delivery on ${calc.deliveryDateStr}`;
+    });
+
+    // Update dynamic cutoff deadline elements (Step 3)
+    document.querySelectorAll('.fhe-calculated-cutoff-deadline').forEach(el => {
+      el.innerHTML = `Order before ${calc.cutoffDateStr} (${calc.cutoffTime})<br>for ${calc.deliveryDateStr} Delivery`;
     });
 
     // Initialize ZIP Code input forms across page
