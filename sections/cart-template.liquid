@@ -34,7 +34,8 @@
         <div class="m-cart__body" data-minimog-cart-items>
           {%- if cart.item_count > 0 -%}
             <div class="m-cart__items">
-              {% for item in cart.items %}
+              {% assign sorted_items = cart.items | sort: 'final_price' | reverse %}
+              {% for item in sorted_items %}
                 {% render 'cart-line-item', item: item %}
               {% endfor %}
             </div>
@@ -192,14 +193,23 @@
               {% assign show_terms = true %}
             {% endif %}
             <div
-              class="m-cart__checkout-button{% if show_terms %} show-terms-conditions{% endif %}"
+              class="m-cart__checkout-button fhe-cart-action-buttons-wrap{% if show_terms %} show-terms-conditions{% endif %}"
               {% if show_terms %}
                 data-terms-action disabled
               {% endif %}
             >
-              <button type="submit" name="checkout" class="m:w-full m-button m-button--primary">
-                <span>{{ 'cart.general.checkout' | t | upcase }}</span>
+              <button type="submit" name="checkout" class="m:w-full m-button m-button--primary fhe-pay-now-btn">
+                <span>Pay Now</span>
               </button>
+
+              <div class="fhe-cart-extra-buttons">
+                <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="m-button m-button--secondary fhe-continue-shopping-btn">
+                  <span>Continue Shopping</span>
+                </a>
+                <a href="/pages/fresh-heat-n-eat" class="m-button m-button--outline fhe-back-to-menu-cart-btn">
+                  <span>&larr; Go Back to Menu</span>
+                </a>
+              </div>
             </div>
             {%- if additional_checkout_buttons -%}
               <div class="additional-checkout-buttons m:w-full">

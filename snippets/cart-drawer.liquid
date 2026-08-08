@@ -43,7 +43,8 @@
         <form action="{{ routes.cart_url }}" method="post" id="cart-drawer-form" class="m:w-full" novalidate>
           {%- if cart.items.size > 0 -%}
             <div class="m-cart-drawer__items">
-              {% for item in cart.items %}
+              {% assign sorted_items = cart.items | sort: 'final_price' | reverse %}
+              {% for item in sorted_items %}
                 {% render 'cart-drawer-item',
                   item: item,
                   gift_wrap_id: gift_wrap_id,
@@ -177,20 +178,28 @@
           <button
             type="submit"
             form="cart-drawer-form"
-            class="m-button m-button--primary m:w-full"
+            class="m-button m-button--primary m:w-full fhe-pay-now-btn"
             name="checkout"
             {% if show_terms %}
               data-terms-action disabled
             {% endif %}
           >
-            <span>{{ 'cart.general.checkout' | t }}</span>
+            <span>Pay Now</span>
           </button>
+          <div class="fhe-cart-extra-buttons m:w-full m:flex m:flex-col m:gap-2 m:mt-2">
+            <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="m-button m-button--secondary m:w-full fhe-continue-shopping-btn">
+              <span>Continue Shopping</span>
+            </a>
+            <a href="/pages/fresh-heat-n-eat" class="m-button m-button--outline m:w-full fhe-back-to-menu-cart-btn">
+              <span>&larr; Go Back to Menu</span>
+            </a>
+          </div>
           {%- if settings.cart_drawer_show_accelerated_button and additional_checkout_buttons -%}
             <div class="additional-checkout-buttons m:w-full">
               {{ content_for_additional_checkout_buttons }}
             </div>
           {%- endif -%}
-          <a class="m-cart-drawer__link-to-cart m-button m-button--link" href="{{ routes.cart_url }}">
+          <a class="m-cart-drawer__link-to-cart m-button m-button--link m:mt-2" href="{{ routes.cart_url }}">
             {{ 'cart.general.viewcart' | t }}
           </a>
         </div>

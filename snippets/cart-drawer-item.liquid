@@ -237,8 +237,10 @@
         <m-cart-remove-button
           id="MinimogCartDrawer-Remove-{{ item.index | plus: 1 }}"
           data-index="{{ item.index | plus: 1 }}"
+          class="fhe-cart-remove-wrapper"
         >
-          <span class="m-cart-item__remove m-button--link{% unless gift_wrap_id == nil or item.id != gift_wrap_id %} m:hidden{% endunless %}">
+          <span class="m-cart-item__remove m-button--link fhe-cart-remove-btn{% unless gift_wrap_id == nil or item.id != gift_wrap_id %} m:hidden{% endunless %}">
+            <svg class="fhe-remove-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block; vertical-align:-2px; margin-right:4px;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
             {{- 'cart.general.remove' | t -}}
           </span>
         </m-cart-remove-button>

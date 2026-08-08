@@ -92,9 +92,11 @@
           <td style="padding: 10px;">
             {% assign addons_found = false %}
             {% for prop in item.properties %}
-              {% if prop.first == 'Add-ons' and prop.last != 'None' and prop.last != blank %}
-                <span style="background: #fff3cd; padding: 2px 6px; border-radius: 4px; font-weight: 600;">{{ prop.last }}</span>
-                {% assign addons_found = true %}
+              {% if prop.first == 'Add-ons' or prop.first == '_Add-ons' %}
+                {% if prop.last != 'None' and prop.last != blank %}
+                  <span style="background: #fff3cd; padding: 2px 6px; border-radius: 4px; font-weight: 600;">{{ prop.last }}</span>
+                  {% assign addons_found = true %}
+                {% endif %}
               {% endif %}
             {% endfor %}
             {% unless addons_found %}

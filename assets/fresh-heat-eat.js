@@ -223,22 +223,31 @@
       });
 
       const unitPrice = basePrice + addOnTotal;
+      const totalPrice = unitPrice * qty;
       if (priceElem) {
-        priceElem.textContent = '$' + unitPrice.toFixed(2);
+        priceElem.textContent = '$' + totalPrice.toFixed(2);
       }
     }
 
+    function syncQty(container, value) {
+      container.querySelectorAll('.fhe-qty-input, input[name="quantity"]').forEach(input => {
+        if(input.value !== value) input.value = value;
+      });
+    }
+
     // Quantity +/- picker handlers
-    document.querySelectorAll('.fhe-meal-card, .fhe-product-info').forEach(container => {
-      const minusBtn = container.querySelector('.fhe-qty-btn--minus');
-      const plusBtn = container.querySelector('.fhe-qty-btn--plus');
-      const qtyInput = container.querySelector('.fhe-qty-input, input[name="quantity"]');
+    document.querySelectorAll('.fhe-qty-picker').forEach(picker => {
+      const minusBtn = picker.querySelector('.fhe-qty-btn--minus');
+      const plusBtn = picker.querySelector('.fhe-qty-btn--plus');
+      const qtyInput = picker.querySelector('.fhe-qty-input, input[name="quantity"]');
+      const container = picker.closest('.fhe-meal-card, .fhe-product-info, #fhe-meal-modal') || document;
 
       if (minusBtn && qtyInput) {
         minusBtn.addEventListener('click', function () {
           let currentVal = parseInt(qtyInput.value, 10) || 1;
           if (currentVal > 1) {
             qtyInput.value = currentVal - 1;
+            syncQty(container, qtyInput.value);
             updateCardPrice(container);
           }
         });
@@ -248,12 +257,14 @@
         plusBtn.addEventListener('click', function () {
           let currentVal = parseInt(qtyInput.value, 10) || 1;
           qtyInput.value = currentVal + 1;
+          syncQty(container, qtyInput.value);
           updateCardPrice(container);
         });
       }
 
       if (qtyInput) {
         qtyInput.addEventListener('input', function () {
+          syncQty(container, qtyInput.value);
           updateCardPrice(container);
         });
       }

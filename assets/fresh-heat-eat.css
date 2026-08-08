@@ -2399,6 +2399,48 @@
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
+   PRODUCT DETAIL PAGE — TOP "GO BACK TO MENU" NAVIGATION
+   ══════════════════════════════════════════════════════════════════════════ */
+.fhe-pdp-top-nav {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--fhe-border);
+}
+
+.fhe-back-to-menu-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: var(--fhe-radius-full);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fhe-primary);
+  text-decoration: none;
+  background: rgba(13, 92, 70, 0.06);
+  border: 1.5px solid rgba(13, 92, 70, 0.15);
+  transition: var(--fhe-transition);
+  cursor: pointer;
+}
+
+.fhe-back-to-menu-link:hover {
+  background: var(--fhe-primary);
+  color: #ffffff;
+  border-color: var(--fhe-primary);
+  transform: translateX(-4px);
+  box-shadow: 0 4px 14px rgba(13, 92, 70, 0.2);
+}
+
+.fhe-back-to-menu-link span[aria-hidden] {
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.fhe-back-to-menu-link:hover span[aria-hidden] {
+  transform: translateX(-3px);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
    PRODUCT DETAIL PAGE — BOTTOM ACTIONS (Point 8B, 8C)
    ══════════════════════════════════════════════════════════════════════════ */
 .fhe-pdp-bottom-actions {
@@ -2481,6 +2523,18 @@
 }
 
 @media (max-width: 768px) {
+  .fhe-pdp-top-nav {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+  }
+
+  .fhe-back-to-menu-link {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+
   .fhe-pdp-bottom-actions {
     margin-top: 28px;
     padding-top: 24px;
@@ -2499,4 +2553,98 @@
   .fhe-delivery-charge-card strong {
     font-size: 17px;
   }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CART ITEM REMOVE BUTTON & ACTION BUTTONS
+   ══════════════════════════════════════════════════════════════════════════ */
+.fhe-cart-remove-wrapper {
+  display: inline-block;
+  margin-top: 6px;
+}
+
+.fhe-cart-remove-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #dc2626 !important;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.fhe-cart-remove-btn:hover {
+  color: #991b1b !important;
+  opacity: 0.85;
+}
+
+.fhe-cart-action-buttons-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.fhe-cart-extra-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.fhe-pay-now-btn {
+  background: var(--fhe-primary) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: var(--fhe-radius-full) !important;
+  padding: 14px 24px !important;
+  text-align: center;
+  transition: var(--fhe-transition);
+}
+
+.fhe-pay-now-btn:hover {
+  background: #094736 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 92, 70, 0.3);
+}
+
+.fhe-continue-shopping-btn {
+  background: #f3f4f6 !important;
+  color: #1f2937 !important;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: var(--fhe-radius-full) !important;
+  padding: 12px 20px !important;
+  text-align: center;
+  text-decoration: none;
+  transition: var(--fhe-transition);
+  border: 1px solid #e5e7eb !important;
+}
+
+.fhe-continue-shopping-btn:hover {
+  background: #e5e7eb !important;
+  color: #111827 !important;
+}
+
+.fhe-back-to-menu-cart-btn {
+  background: transparent !important;
+  color: var(--fhe-primary) !important;
+  border: 1.5px solid var(--fhe-primary) !important;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: var(--fhe-radius-full) !important;
+  padding: 12px 20px !important;
+  text-align: center;
+  text-decoration: none;
+  transition: var(--fhe-transition);
+}
+
+.fhe-back-to-menu-cart-btn:hover {
+  background: var(--fhe-primary) !important;
+  color: #ffffff !important;
 }
