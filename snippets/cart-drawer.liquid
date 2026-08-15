@@ -29,8 +29,18 @@
       </svg>
     </button>
     <div class="m:flex m:flex-col m:h-full">
-      <div class="m-cart-drawer__header">
-        <h3 class="m-cart-drawer__title m:text-xl md:m:text-2xl m:font-medium">{{ 'cart.general.title' | t }}</h3>
+      <div class="m-cart-drawer__header" style="display: flex; align-items: center; gap: 12px; padding-right: 52px;">
+        <h3 class="m-cart-drawer__title m:text-xl md:m:text-2xl m:font-medium" style="margin-right: auto;">{{ 'cart.general.title' | t }}</h3>
+        {% if cart.item_count > 0 %}
+          <button
+            type="button"
+            class="m-button m-button--outline"
+            style="color: #dc2626; border-color: #dc2626; padding: 6px 10px; font-size: 13px; line-height: 1.2;"
+            data-cart-clear-all
+          >
+            Clear All
+          </button>
+        {% endif %}
         {% if template.name != 'cart' %}
           <foxkit-cart-countdown></foxkit-cart-countdown>
         {% endif %}
@@ -43,8 +53,12 @@
         <form action="{{ routes.cart_url }}" method="post" id="cart-drawer-form" class="m:w-full" novalidate>
           {%- if cart.items.size > 0 -%}
             <div class="m-cart-drawer__items">
-              {% assign sorted_items = cart.items | sort: 'final_price' | reverse %}
-              {% for item in sorted_items %}
+              {% comment %}
+                IMPORTANT: Do NOT sort cart.items here. The quantity inputs use name="updates[]"
+                which Shopify maps POSITIONALLY to the original cart order. Sorting would cause
+                the form submission to assign quantities to the wrong items.
+              {% endcomment %}
+              {% for item in cart.items %}
                 {% render 'cart-drawer-item',
                   item: item,
                   gift_wrap_id: gift_wrap_id,
@@ -59,6 +73,9 @@
             </div>
           {%- endif -%}
         </form>
+
+
+
       </m-cart-drawer-items>
       <div class="m-cart-drawer__footer" id="MinimogCartDrawerFooter">
         {% render 'cart-addons', form_id: 'cart-drawer-form' %}
@@ -190,7 +207,7 @@
             <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="m-button m-button--secondary m:w-full fhe-continue-shopping-btn">
               <span>Continue Shopping</span>
             </a>
-            <a href="/pages/fresh-heat-n-eat" class="m-button m-button--outline m:w-full fhe-back-to-menu-cart-btn">
+            <a href="/pages/fresh-heat-n-eat#fhe-menu-section" class="m-button m-button--outline m:w-full fhe-back-to-menu-cart-btn">
               <span>&larr; Go Back to Menu</span>
             </a>
           </div>

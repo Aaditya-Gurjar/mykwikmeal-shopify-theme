@@ -15,12 +15,23 @@
 
 -%}
 
+{% liquid
+  assign is_addon = false
+  if item.properties['Item Type'] == 'Add-on' and item.properties['_bundle_id'] != blank
+    assign is_addon = true
+  endif
+  assign bundle_id = item.properties['_bundle_id']
+%}
+
 <div
-  class="m-cart-item m:flex"
+  class="m-cart-item m:flex{% if is_addon %} fhe-cart-item--bundle-addon{% endif %}"
   data-index="{{ forloop.index }}"
   data-product-id="{{- item.product_id -}}"
+  data-variant-id="{{- item.variant_id -}}"
   data-cart-item
+  data-bundle-id="{{ bundle_id }}"
   id="MinimogCart-Item-{{ item.index | plus: 1 }}"
+  {% if is_addon %}style="display: none !important;"{% endif %}
 >
   <div class="m-cart__column m-cart__column--product">
     <div class="m-cart-item__product">
@@ -116,6 +127,35 @@
             {%- endif -%}
           {%- endfor -%}
         </ul>
+
+        {% comment %} Virtual Bundle Add-ons List & Edit Action for Cart Page {% endcomment %}
+        {% if bundle_id != blank and is_addon == false %}
+          <div class="fhe-cart-bundle-addons" data-bundle-id="{{ bundle_id }}">
+            <span class="fhe-cart-bundle-addons__label">Add-ons &amp; Sides:</span>
+            <ul class="fhe-cart-bundle-addons__list">
+              {% assign addon_found = false %}
+              {% for cart_item in cart.items %}
+                {% if cart_item.properties['_bundle_id'] == bundle_id and cart_item.properties['Item Type'] == 'Add-on' %}
+                  {% assign addon_found = true %}
+                  <li class="fhe-cart-bundle-addon-row">
+                    <span class="fhe-cart-bundle-addon-name">• {{ cart_item.product.title }} x{{ cart_item.quantity }} (+{{ cart_item.final_line_price | money }})</span>
+                    <button type="button" class="fhe-remove-single-addon-btn" data-key="{{ cart_item.key }}" data-index="{{ cart_item.index | plus: 1 }}" data-bundle-id="{{ bundle_id }}" title="Remove {{ cart_item.product.title }}">✕</button>
+                  </li>
+                {% endif %}
+              {% endfor %}
+              {% unless addon_found %}
+                <li class="fhe-cart-bundle-addon-none"><em>No sides selected</em></li>
+              {% endunless %}
+            </ul>
+            <button type="button" class="fhe-btn fhe-btn--outline fhe-btn--sm fhe-edit-addons-btn" data-bundle-id="{{ bundle_id }}" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.variant_id }}" data-product-title="{{ item.product.title | escape }}" data-product-price="{{ item.product.price | money_without_currency | replace: ',', '' }}" style="margin-top: 6px;">
+              ✏️ Edit Add-ons
+            </button>
+          </div>
+        {% elsif is_addon == false and item.properties['Add-ons'] != blank and item.properties['Add-ons'] != 'None' %}
+          <div class="fhe-cart-bundle-addons">
+            <span class="fhe-cart-bundle-addons__label">Add-ons: {{ item.properties['Add-ons'] }}</span>
+          </div>
+        {% endif %}
         <m-cart-remove-button
           id="MinimogCart-Remove-{{ item.index | plus: 1 }}"
           data-index="{{ item.index | plus: 1 }}"

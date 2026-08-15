@@ -55,6 +55,8 @@
         data-selected-variant="{{ selected_variant_id }}"
         disabled
       >
+      {% render 'fhe-meal-customizer', context: 'pdp', product: product %}
+
       <div class="m-product-form--wrapper m:display-flex m:flex-wrap m:items-end">
         {% if show_quantity_selector == true %}
           <div class="m-product-form--input">
@@ -72,7 +74,7 @@
             endif
           %}
           <button
-            type="submit"
+            type="{% if settings.fhe_enable and addon_collection and addon_collection.products.size > 0 %}button{% else %}submit{% endif %}"
             name="add"
             class="m-add-to-cart m-spinner-button m-button {{ btn_class }}{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}"
             data-atc-text="{{ 'products.product.add_to_cart' | t }}"

@@ -8,11 +8,51 @@ class MCartDrawer extends HTMLElement {
 
     this.setHeaderCartIconAccessibility();
     this.cartDrawerCloseIcon.addEventListener("click", this.close.bind(this));
+    this.addEventListener("click", this.onClearCart.bind(this));
     this.addEventListener("click", (event) => {
       if (event.target.closest(".m-cart-drawer__inner") !== this.cartDrawerInner) {
         this.close();
       }
     });
+  }
+
+  async onClearCart(event) {
+    const button = event.target.closest("[data-cart-clear-all]");
+    if (!button || button.disabled) return;
+
+    event.preventDefault();
+    const defaultLabel = button.textContent.trim();
+    button.disabled = true;
+    button.textContent = "Clearing...";
+
+    try {
+      const response = await fetch(this.rootUrl + "cart/clear.js", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) throw new Error("Unable to clear the cart.");
+
+      const cart = await response.json();
+      this.classList.toggle("m-cart--empty", cart.item_count === 0);
+      this.updateCartCount(cart.item_count);
+      button.remove();
+      this.onCartDrawerUpdate();
+      window.MinimogEvents.emit(MinimogTheme.pubSubEvents.cartUpdate, {
+        ...cart,
+        source: "cart-clear-all",
+      });
+    } catch (error) {
+      console.error("Cart clear error:", error);
+      button.disabled = false;
+      button.textContent = defaultLabel;
+      if (window.MinimogTheme && MinimogTheme.Notification) {
+        MinimogTheme.Notification.show({
+          target: button.parentElement,
+          type: "error",
+          message: "Unable to clear your cart. Please try again.",
+        });
+      }
+    }
   }
 
   setHeaderCartIconAccessibility() {

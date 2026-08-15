@@ -354,77 +354,95 @@
   visibility: visible;
 }
 
-.fhe-modal-card {
+.fhe-modal-card.fhe-meal-modal-card {
   background: #ffffff;
-  border-radius: var(--fhe-radius-lg);
-  max-width: 920px;
-  width: 100%;
+  border-radius: 24px;
+  max-width: 1040px;
+  width: 94%;
   max-height: 90vh;
-  overflow-y: auto;
   position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  transform: translateY(20px) scale(0.96);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.35);
+  transform: translateY(15px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
 }
 
-.fhe-modal-backdrop.is-open .fhe-modal-card {
+.fhe-modal-backdrop.is-open .fhe-meal-modal-card {
   transform: translateY(0) scale(1);
 }
 
 .fhe-modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 36px;
-  height: 36px;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: rgba(15, 23, 42, 0.1);
-  border: none;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   font-size: 24px;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
-  color: var(--fhe-dark);
-  transition: var(--fhe-transition-fast);
+  z-index: 100;
+  color: #1e293b;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
 }
 
 .fhe-modal-close:hover {
   background: var(--fhe-primary);
   color: #ffffff;
+  transform: scale(1.08);
 }
 
 .fhe-modal-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-}
-
-@media (max-width: 768px) {
-  .fhe-modal-grid {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: 440px 1fr;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .fhe-modal-media {
   position: relative;
-  background: #f8fafc;
-  min-height: 360px;
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  height: 100%;
+  min-height: 440px;
+  padding: 16px;
 }
 
 .fhe-modal-media img {
+  max-width: 100%;
+  max-height: 100%;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   display: block;
+  border-radius: 16px;
+  transition: transform 0.4s ease;
 }
 
 .fhe-modal-info {
-  padding: 36px;
+  padding: 36px 40px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
+  background: #ffffff;
+  position: relative;
+  max-height: calc(90vh - 84px);
 }
 
 .fhe-modal-title {
@@ -882,20 +900,74 @@
 .fhe-meal-card__macros {
   display: flex;
   align-items: center;
-  gap: 16px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--fhe-body-text);
-  margin-bottom: 14px;
-  padding: 10px 14px;
-  background: var(--fhe-light-bg);
-  border-radius: var(--fhe-radius-sm);
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-bottom: 16px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
 }
 
 .fhe-meal-card__macro-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 30px;
+  transition: all var(--fhe-transition-fast);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.fhe-meal-card__macro-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.fhe-meal-card__macro-item .fhe-macro-icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.fhe-meal-card__macro-item .fhe-macro-label strong {
+  font-weight: 800;
+  font-size: 14px;
+}
+
+/* Calories Macro Pill - Warm Orange Flame */
+.fhe-meal-card__macro-item--calories {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  color: #c2410c;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+/* Protein Macro Pill - High-Impact Amber Gold */
+.fhe-meal-card__macro-item--protein {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #854d0e;
+  border: 1px solid rgba(217, 119, 6, 0.35);
+}
+
+/* Product Detail Page Macros Overrides */
+.fhe-pdp-macros {
+  margin: 18px 0 22px;
+  gap: 12px;
+}
+
+.fhe-pdp-macros .fhe-meal-card__macro-item {
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.fhe-pdp-macros .fhe-meal-card__macro-item .fhe-macro-icon {
+  font-size: 19px;
+}
+
+.fhe-pdp-macros .fhe-meal-card__macro-item .fhe-macro-label strong {
+  font-size: 17px;
 }
 
 /* Add-ons */
@@ -908,7 +980,7 @@
   font-weight: 700;
   color: var(--fhe-dark-muted);
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -916,9 +988,125 @@
 .fhe-addon-checkboxes {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 }
 
+/* --- Addon Row (replaces .fhe-addon-checkbox-item) --- */
+.fhe-addon-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--fhe-border, #e8e8e8);
+  background: var(--fhe-light-bg, #fafafa);
+  transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  cursor: pointer;
+}
+
+.fhe-addon-row--active {
+  border-color: var(--fhe-primary, #e67e22);
+  background: rgba(230, 126, 34, 0.05);
+  box-shadow: 0 0 0 2px rgba(230, 126, 34, 0.12);
+}
+
+.fhe-addon-row:hover {
+  border-color: var(--fhe-primary, #e67e22);
+}
+
+/* Left side: checkbox + name */
+.fhe-addon-row__check {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+}
+
+.fhe-addon-checkbox {
+  accent-color: var(--fhe-primary, #e67e22);
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  cursor: pointer;
+  margin-top: 2px; /* vertically aligns with first line of text */
+}
+
+.fhe-addon-row__name {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--fhe-body-text, #333);
+  line-height: 1.35;
+  /* Allow text to wrap so full name is always visible */
+  white-space: normal;
+  word-break: break-word;
+}
+
+.fhe-addon-row__price {
+  font-style: normal;
+  font-size: 10.5px;
+  color: var(--fhe-dark-muted, #888);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* Right side: compact qty stepper */
+.fhe-addon-qty {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid var(--fhe-border, #ddd);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  flex-shrink: 0;
+  transition: border-color 0.18s ease, opacity 0.18s ease;
+}
+
+.fhe-addon-row--active .fhe-addon-qty {
+  border-color: var(--fhe-primary, #e67e22);
+}
+
+.fhe-addon-qty__btn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fhe-dark, #222);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.fhe-addon-qty__btn:not(:disabled):hover {
+  background: var(--fhe-primary, #e67e22);
+  color: #fff;
+}
+
+.fhe-addon-qty__btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.fhe-addon-qty__val {
+  min-width: 22px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fhe-dark, #222);
+  user-select: none;
+  line-height: 26px;
+}
+
+/* Keep backward-compat for any place still using old class */
 .fhe-addon-checkbox-item {
   display: flex;
   align-items: center;
@@ -929,12 +1117,6 @@
   padding: 4px 0;
 }
 
-.fhe-addon-checkbox {
-  accent-color: var(--fhe-primary);
-  width: 15px;
-  height: 15px;
-  flex-shrink: 0;
-}
 
 /* Card Footer */
 .fhe-meal-card__form {
@@ -2383,19 +2565,31 @@
    HIGH PROTEIN BADGE (Point 8E)
    ══════════════════════════════════════════════════════════════════════════ */
 .fhe-badge-pill--protein {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  color: #92400e;
-  border-color: rgba(217, 119, 6, 0.2);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 6px 16px;
-  margin-bottom: 12px;
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 100%) !important;
+  color: #713f12 !important;
+  border: 1.5px solid rgba(202, 138, 4, 0.6) !important;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 8px 18px;
+  margin-bottom: 14px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .fhe-meal-card__tag--protein {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
-  color: #92400e !important;
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 100%) !important;
+  color: #713f12 !important;
+  border: 1px solid rgba(202, 138, 4, 0.5) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  padding: 6px 14px !important;
+  box-shadow: 0 3px 10px rgba(234, 179, 8, 0.35) !important;
+  letter-spacing: 0.04em !important;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -2495,22 +2689,54 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 16px 24px;
+  gap: 12px;
+  padding: 16px 28px;
   background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
-  border: 1px solid rgba(217, 119, 6, 0.15);
+  border: 1.5px solid rgba(217, 119, 6, 0.25);
   border-radius: var(--fhe-radius-md);
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   color: #92400e;
   text-align: center;
-  box-shadow: var(--fhe-shadow-xs);
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.12);
 }
 
-.fhe-delivery-charge-card strong {
+/* Reverse High-Contrast Theme (Dark Emerald Gradient + Glowing Yellow Badge) */
+.fhe-delivery-charge-card--reverse {
+  background: linear-gradient(135deg, #093d2e 0%, #0d5c46 50%, #064e3b 100%);
+  border: 1.5px solid rgba(52, 211, 153, 0.45);
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(13, 92, 70, 0.35);
+}
+
+.fhe-delivery-charge-card .fhe-delivery-icon {
+  font-size: 24px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.fhe-delivery-charge-card .fhe-delivery-text {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+
+.fhe-delivery-charge-card strong,
+.fhe-delivery-charge-card .fhe-delivery-badge {
+  display: inline-block;
   font-size: 20px;
-  font-weight: 800;
-  color: #78350f;
+  font-weight: 900;
+  color: #713f12 !important;
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 100%);
+  padding: 4px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(202, 138, 4, 0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.02em;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -2550,8 +2776,10 @@
     padding: 14px 18px;
   }
 
-  .fhe-delivery-charge-card strong {
+  .fhe-delivery-charge-card strong,
+  .fhe-delivery-charge-card .fhe-delivery-badge {
     font-size: 17px;
+    padding: 3px 12px;
   }
 }
 
@@ -2648,3 +2876,646 @@
   background: var(--fhe-primary) !important;
   color: #ffffff !important;
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   STANDALONE SIDES & EXTRAS CROSS-SELL (Cart Drawer & PDP)
+   ══════════════════════════════════════════════════════════════════════════ */
+.fhe-cart-sides-crosssell {
+  margin: 16px 16px 12px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  border: 1px solid var(--fhe-border);
+  border-radius: var(--fhe-radius-md);
+}
+
+.fhe-cart-sides-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.fhe-cart-sides-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fhe-dark);
+}
+
+.fhe-cart-sides-subtitle {
+  font-size: 11px;
+  color: var(--fhe-dark-muted);
+}
+
+.fhe-cart-sides-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fhe-cart-side-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: var(--fhe-radius-sm);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.fhe-cart-side-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fhe-cart-side-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fhe-dark);
+}
+
+.fhe-cart-side-price {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fhe-primary);
+}
+
+.fhe-cart-side-card .fhe-btn {
+  padding: 5px 12px !important;
+  font-size: 12px !important;
+  border-radius: 20px !important;
+  white-space: nowrap;
+}
+
+/* PDP Standalone Sides Card */
+.fhe-pdp-standalone-sides-card {
+  margin: 22px 0 24px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--fhe-radius-md);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.fhe-pdp-sides-header {
+  margin-bottom: 14px;
+}
+
+.fhe-pdp-sides-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--fhe-dark);
+  margin: 0 0 4px;
+}
+
+.fhe-pdp-sides-subtitle {
+  font-size: 13px;
+  color: var(--fhe-dark-muted);
+  margin: 0;
+}
+
+.fhe-pdp-sides-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fhe-pdp-side-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 12px 16px;
+  border-radius: var(--fhe-radius-sm);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.fhe-pdp-side-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fhe-pdp-side-details strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--fhe-dark);
+}
+
+.fhe-pdp-side-details span {
+  font-size: 12px;
+  color: var(--fhe-dark-muted);
+}
+
+.fhe-pdp-side-item .fhe-btn {
+  padding: 7px 16px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  border-radius: 30px !important;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .fhe-pdp-side-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .fhe-pdp-side-item .fhe-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   MEAL CUSTOMIZER & VIRTUAL BUNDLE CART DESIGN SYSTEM
+   ========================================================================== */
+
+/* ── Modal Backdrop & Open State ────────────────────────────────────────── */
+.fhe-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.fhe-modal-backdrop.is-open {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.fhe-modal-backdrop .fhe-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: #f1f5f9;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+  transition: all 0.2s ease;
+}
+
+.fhe-modal-backdrop .fhe-modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* ── Meal Card Customizer Buttons ───────────────────────────────────────── */
+.fhe-meal-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.fhe-customize-btn {
+  flex: 1;
+  padding: 10px 14px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  border-radius: var(--fhe-radius-full) !important;
+  justify-content: center;
+}
+
+.fhe-quick-add-btn {
+  padding: 9px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border-radius: var(--fhe-radius-full) !important;
+  white-space: nowrap;
+}
+
+/* ── Reusable Meal Customizer Component ─────────────────────────────────── */
+.fhe-meal-customizer {
+  background: var(--fhe-light-bg);
+  border: 1px solid var(--fhe-border);
+  border-radius: var(--fhe-radius-md);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.fhe-meal-customizer__header {
+  margin-bottom: 14px;
+}
+
+.fhe-meal-customizer__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fhe-dark);
+  margin: 0 0 4px;
+}
+
+.fhe-meal-customizer__subtitle {
+  font-size: 13px;
+  color: var(--fhe-dark-muted);
+  margin: 0;
+}
+
+.fhe-meal-customizer__addons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* ── Live Price Breakdown ───────────────────────────────────────────────── */
+.fhe-meal-customizer__summary {
+  border-top: 1px dashed var(--fhe-border);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fhe-customizer-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--fhe-dark-muted);
+}
+
+.fhe-customizer-summary-row--total {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--fhe-primary);
+  border-top: 1px solid var(--fhe-border);
+  padding-top: 6px;
+  margin-top: 4px;
+}
+
+/* ── Permanent Sticky Footer Bar ────────────────────────────────────────── */
+.fhe-modal-footer-sticky {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #ffffff;
+  padding: 16px 28px;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 50;
+  flex-shrink: 0;
+}
+
+.fhe-submit-customizer-btn {
+  flex: 1;
+  padding: 14px 20px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  border-radius: var(--fhe-radius-full) !important;
+}
+
+/* ── Cart Drawer Bundle Grouping & Actions ──────────────────────────────── */
+.fhe-cart-bundle-addons {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--fhe-radius-sm);
+}
+
+.fhe-cart-bundle-addons__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--fhe-dark);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.fhe-cart-bundle-addons__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fhe-cart-bundle-addon-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--fhe-body-text);
+}
+
+.fhe-cart-bundle-addon-none {
+  font-size: 12px;
+  color: var(--fhe-dark-muted);
+}
+
+.fhe-remove-single-addon-btn {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 2px 6px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: var(--fhe-transition-fast);
+}
+
+.fhe-remove-single-addon-btn:hover {
+  background: #fef2f2;
+}
+
+.fhe-edit-addons-btn {
+  padding: 5px 10px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border-radius: 20px !important;
+  width: fit-content;
+}
+
+.fhe-cart-item--bundle-addon {
+  display: none !important;
+}
+
+/* ── Cart Edit Drawer / Modal Overlay ──────────────────────────────────── */
+.fhe-modal-card.fhe-cart-edit-drawer {
+  max-width: 520px;
+  width: 92%;
+  max-height: 85vh;
+  padding: 0 !important;
+  border-radius: 20px;
+  overflow: hidden !important;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+
+.fhe-cart-edit-header {
+  padding: 24px 28px 16px 28px;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.fhe-cart-edit-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+
+.fhe-cart-edit-subtitle {
+  font-size: 14px;
+  color: var(--fhe-primary);
+  font-weight: 600;
+  margin: 0;
+}
+
+.fhe-cart-edit-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #475569;
+  transition: all 0.2s ease;
+}
+
+.fhe-cart-edit-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.fhe-cart-edit-body {
+  padding: 20px 28px;
+  max-height: calc(85vh - 150px);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.fhe-cart-edit-drawer .fhe-meal-customizer {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.fhe-cart-edit-footer {
+  padding: 16px 28px;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.fhe-save-cart-edit-btn {
+  width: 100%;
+  padding: 14px 20px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  border-radius: 30px !important;
+}
+
+/* ── Responsive Multi-Tier Breakpoints for Meal Customizer Modal ──────────── */
+@media (max-width: 1200px) {
+  .fhe-modal-card.fhe-meal-modal-card {
+    max-width: 920px;
+    max-height: 88vh;
+  }
+
+  .fhe-modal-grid {
+    grid-template-columns: 380px 1fr;
+  }
+
+  .fhe-modal-media {
+    min-height: 380px;
+    padding: 14px;
+  }
+
+  .fhe-modal-info {
+    padding: 28px 32px;
+    max-height: calc(88vh - 76px);
+  }
+}
+
+@media (max-width: 992px) {
+  .fhe-modal-card.fhe-meal-modal-card {
+    max-width: 740px;
+    width: 94%;
+    max-height: 86vh;
+  }
+
+  .fhe-modal-grid {
+    grid-template-columns: 320px 1fr;
+  }
+
+  .fhe-modal-media {
+    min-height: 320px;
+    padding: 12px;
+  }
+
+  .fhe-modal-info {
+    padding: 24px 24px;
+    max-height: calc(86vh - 72px);
+  }
+
+  .fhe-modal-title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fhe-modal-backdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .fhe-modal-card.fhe-meal-modal-card {
+    max-width: 100%;
+    width: 100%;
+    max-height: 92vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    transform: translateY(100%);
+    margin-top: auto;
+  }
+
+  .fhe-modal-backdrop.is-open .fhe-meal-modal-card {
+    transform: translateY(0);
+  }
+
+  .fhe-modal-grid {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 92vh;
+    overflow-y: auto;
+  }
+
+  .fhe-modal-media {
+    width: 100%;
+    height: 210px;
+    min-height: 210px;
+    padding: 0;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+
+  .fhe-modal-media img {
+    border-radius: 0;
+    object-fit: cover;
+  }
+
+  .fhe-modal-info {
+    padding: 20px 18px 80px 18px;
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .fhe-modal-close {
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+  }
+
+  .fhe-modal-footer-sticky {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 12px 16px;
+    background: #ffffff;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #e2e8f0;
+    z-index: 60;
+  }
+
+  .fhe-addon-row__name {
+    font-size: 13px;
+  }
+
+  .fhe-customize-btn,
+  .fhe-quick-add-btn {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fhe-modal-card.fhe-meal-modal-card {
+    max-height: 94vh;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+  }
+
+  .fhe-modal-media {
+    height: 180px;
+    min-height: 180px;
+  }
+
+  .fhe-modal-info {
+    padding: 16px 14px 76px 14px;
+  }
+
+  .fhe-modal-title {
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .fhe-modal-desc {
+    font-size: 13px;
+  }
+
+  .fhe-modal-footer-sticky {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .fhe-submit-customizer-btn {
+    font-size: 14px !important;
+    padding: 12px 14px !important;
+    min-height: 44px;
+  }
+}
+

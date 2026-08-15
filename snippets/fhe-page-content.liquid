@@ -36,7 +36,7 @@
             <div class="fhe-hero-trust-strip">
               <div class="fhe-hero-trust-item"><span aria-hidden="true">&#128104;&#8205;&#127859;</span> Chef Prepared</div>
               <div class="fhe-hero-trust-item"><span aria-hidden="true">&#128230;</span> Delivered Fresh (Never Frozen)</div>
-              <div class="fhe-hero-trust-item"><span aria-hidden="true">&#9201;</span> Ready in 3 Minutes</div>
+              <div class="fhe-hero-trust-item"><span aria-hidden="true">&#9201;</span> Ready in 2 Minutes</div>
             </div>
           </div>
           <div class="fhe-hero-media">
@@ -81,7 +81,7 @@
         <div class="fhe-step-card">
           <div class="fhe-step-num">4</div>
           <h3 class="fhe-step-title">Receive Fresh Meals</h3>
-          <p class="fhe-step-desc">Enjoy chef-prepared meals delivered every Friday. Ready in 3 minutes!</p>
+          <p class="fhe-step-desc">Enjoy chef-prepared meals delivered every Friday. Ready in 2 minutes!</p>
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@
           <div class="fhe-cutoff-bar__icon" aria-hidden="true">&#128666;</div>
           <div>
             <div class="fhe-cutoff-bar__text">
-              Current Production Batch: Delivery on <span class="fhe-calculated-delivery-date fhe-cutoff-bar__date">Friday Delivery</span>
+              Next Delivery Date: <span class="fhe-calculated-delivery-date fhe-cutoff-bar__date">Friday Delivery</span>
             </div>
             <div style="font-size: 13px; opacity: 0.85; margin-top: 2px;">
               Orders placed after Sunday Midnight automatically move to the following week's delivery.
@@ -113,9 +113,9 @@
   <!-- ========== DELIVERY CHARGE BANNER ========== -->
   <div class="fhe-delivery-charge-banner">
     <div class="container-fluid">
-      <div class="fhe-delivery-charge-card">
-        <span aria-hidden="true">&#128230;</span>
-        <span>Flat Handling &amp; Delivery Charges: <strong>$10.00</strong> per order</span>
+      <div class="fhe-delivery-charge-card fhe-delivery-charge-card--reverse">
+        <span class="fhe-delivery-icon" aria-hidden="true">&#128230;</span>
+        <span class="fhe-delivery-text">Flat Handling &amp; Delivery Charges: <strong class="fhe-delivery-badge">$10.00</strong> per order</span>
       </div>
     </div>
   </div>
@@ -126,7 +126,7 @@
       <div class="fhe-section-header">
         <div class="fhe-badge-pill">This Week's Menu</div>
         <h2 class="fhe-title-section">Chef Prepared Heat-N-Eat Meals</h2>
-        <p class="fhe-subtitle">Delivered fresh, ready to heat and serve in 3 minutes.</p>
+        <p class="fhe-subtitle">Delivered fresh, ready to heat and serve in 2 minutes.</p>
       </div>
 
       <!-- Filter, Search & Sort Toolbar -->
@@ -155,18 +155,15 @@
       <div class="fhe-menu-grid">
         {% assign fhe_collection = collections['fresh-heat-n-eat'] %}
         {% if fhe_collection != blank and fhe_collection.products.size > 0 %}
-          {% for product in fhe_collection.products limit: 12 %}
+          {% for product in fhe_collection.products limit: 50 %}
             {% render 'fresh-meal-card', product: product %}
           {% endfor %}
         {% else %}
           {% assign tagged_meal_count = 0 %}
-          {% for product in collections.all.products limit: 50 %}
+          {% for product in collections.all.products limit: 250 %}
             {% if product.tags contains 'fresh-heat-n-eat' or product.type contains 'Heat-N-Eat' %}
               {% render 'fresh-meal-card', product: product %}
               {% assign tagged_meal_count = tagged_meal_count | plus: 1 %}
-              {% if tagged_meal_count == 12 %}
-                {% break %}
-              {% endif %}
             {% endif %}
           {% endfor %}
 
@@ -192,7 +189,7 @@
       <div class="fhe-testimonials-grid">
         <div class="fhe-testimonial-card">
           <div class="fhe-testimonial-card__rating" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="fhe-testimonial-card__quote">"The Butter Chicken heat-and-eat meal is restaurant-quality! Delivered cold on Friday, heated in 3 minutes after work. Game changer!"</p>
+          <p class="fhe-testimonial-card__quote">"The Butter Chicken heat-and-eat meal is restaurant-quality! Delivered cold on Friday, heated in 2 minutes after work. Game changer!"</p>
           <div class="fhe-testimonial-card__author">
             <div class="fhe-testimonial-card__avatar">S</div>
             <div>
@@ -364,10 +361,10 @@
     </div>
   </div>
 
-  <!-- FRESH HEAT-N-EAT MEAL QUICK VIEW DETAIL MODAL -->
+  <!-- FRESH HEAT-N-EAT MEAL CUSTOMIZE & ADD DRAWER / MODAL -->
   <div id="fhe-meal-modal" class="fhe-modal-backdrop" aria-hidden="true">
-    <div class="fhe-modal-card">
-      <button type="button" class="fhe-modal-close" aria-label="Close modal">&times;</button>
+    <div class="fhe-modal-card fhe-customizer-drawer">
+      <button type="button" class="fhe-modal-close" aria-label="Close customization drawer">&times;</button>
       <div class="fhe-modal-grid">
         <div class="fhe-modal-media">
           <img id="fhe-modal-img" src="" alt="Meal Detail Image">
@@ -384,7 +381,7 @@
 
           <div class="fhe-modal-section">
             <h4>Heating Instructions</h4>
-            <p id="fhe-modal-heating" class="fhe-modal-text">1. Peel back lid corner. 2. Microwave on HIGH for 2:30-3:00 minutes. 3. Let stand 1 minute before serving.</p>
+            <p id="fhe-modal-heating" class="fhe-modal-text">1. Peel back lid corner. 2. Microwave on HIGH for 1:30-2:00 minutes. 3. Let stand 1 minute before serving.</p>
           </div>
 
           <div class="fhe-modal-section">
@@ -392,25 +389,22 @@
             <p id="fhe-modal-ingredients" class="fhe-modal-text">Chef selected fresh ingredients.</p>
           </div>
 
-          <form id="fhe-modal-form" action="/cart/add" method="post" class="fhe-meal-card__form" style="margin-top: 16px;">
-            <input type="hidden" name="id" id="fhe-modal-variant-id" value="demo-variant-1">
-            <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-            <div class="fhe-meal-card__addons-wrapper" style="margin-bottom: 20px;">
-              <label class="fhe-addon-label">Optional Add-ons:</label>
-              <div id="fhe-modal-addons" class="fhe-addon-checkboxes"></div>
+          <div class="fhe-modal-customizer-wrap" style="margin-top: 16px;">
+            <input type="hidden" id="fhe-modal-variant-id" value="">
+            <input type="hidden" id="fhe-modal-product-id" value="">
+            {% render 'fhe-meal-customizer', context: 'modal' %}
+          </div>
+
+          <div class="fhe-modal-footer-sticky">
+            <div class="fhe-qty-picker">
+              <button type="button" class="fhe-qty-btn fhe-qty-btn--minus" aria-label="Decrease meal quantity">-</button>
+              <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input" aria-label="Meal quantity">
+              <button type="button" class="fhe-qty-btn fhe-qty-btn--plus" aria-label="Increase meal quantity">+</button>
             </div>
-            <div class="fhe-meal-card__footer">
-              <div id="fhe-modal-price" class="fhe-meal-card__price">$0.00</div>
-              <div class="fhe-meal-card__actions">
-                <div class="fhe-qty-picker">
-                  <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-                  <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-                  <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-                </div>
-                <button type="submit" class="fhe-btn fhe-btn--primary">+ Add to Order</button>
-              </div>
-            </div>
-          </form>
+            <button type="button" class="fhe-btn fhe-btn--primary fhe-submit-customizer-btn">
+              Add to Cart — <span class="fhe-customizer-btn-price">$0.00</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -39,8 +39,8 @@
   data-product-id="{{ product.id }}"
   data-product-url="{{ product.url }}"
   data-dietary="{{ dietary_tags }}"
-  data-base-price="{{ product.price | divided_by: 100.0 }}"
-  data-price="{{ product.price | divided_by: 100.0 }}"
+  data-base-price="{{ product.price | times: 1.0 | divided_by: 100.0 }}"
+  data-price="{{ product.price | times: 1.0 | divided_by: 100.0 }}"
 >
   <div class="fhe-meal-card__media">
     <a href="{{ product.url }}" aria-label="{{ product.title }}">
@@ -85,63 +85,49 @@
     {% if calories != blank or protein != blank %}
       <div class="fhe-meal-card__macros">
         {% if calories != blank %}
-          <div class="fhe-meal-card__macro-item">
-            <span aria-hidden="true">&#128293;</span>
-            <span>{{ calories }} Cal</span>
+          <div class="fhe-meal-card__macro-item fhe-meal-card__macro-item--calories">
+            <span class="fhe-macro-icon" aria-hidden="true">&#128293;</span>
+            <span class="fhe-macro-label"><strong>{{ calories }}</strong> Cal</span>
           </div>
         {% endif %}
         {% if protein != blank %}
-          <div class="fhe-meal-card__macro-item">
-            <span aria-hidden="true">&#129385;</span>
-            <span>{{ protein }} Protein</span>
+          <div class="fhe-meal-card__macro-item fhe-meal-card__macro-item--protein">
+            <span class="fhe-macro-icon" aria-hidden="true">&#129385;</span>
+            <span class="fhe-macro-label"><strong>{{ protein }}</strong> Protein</span>
           </div>
         {% endif %}
       </div>
     {% endif %}
 
-    <!-- Add-ons Selection -->
-    <div class="fhe-meal-card__addons-wrapper">
-      <label class="fhe-addon-label">Optional Add-ons:</label>
-      <div class="fhe-addon-checkboxes">
-        <label class="fhe-addon-checkbox-item">
-          <input type="checkbox" class="fhe-addon-checkbox" data-title="Raita" data-price="2.00" data-variant-id="8690526453933" value="Raita (+$2.00)">
-          <span>Raita (+$2.00)</span>
-        </label>
-        <label class="fhe-addon-checkbox-item">
-          <input type="checkbox" class="fhe-addon-checkbox" data-title="Salad" data-price="2.00" data-variant-id="8690526585005" value="Salad (+$2.00)">
-          <span>Salad (+$2.00)</span>
-        </label>
-        <label class="fhe-addon-checkbox-item">
-          <input type="checkbox" class="fhe-addon-checkbox" data-title="Roti" data-price="2.00" data-variant-id="8690527076525" value="Roti (+$2.00)">
-          <span>Roti (+$2.00)</span>
-        </label>
+    {% assign card_variant = product.selected_or_first_available_variant | default: product.variants.first %}
+    <div class="fhe-meal-card__footer" style="margin-top: auto;">
+      <div class="fhe-meal-card__price">
+        {{ product.price | money }}
+      </div>
+
+      <div class="fhe-meal-card__actions">
+        <button
+          type="button"
+          class="fhe-btn fhe-btn--primary fhe-customize-btn"
+          data-variant-id="{{ card_variant.id }}"
+          data-product-id="{{ product.id }}"
+          data-product-title="{{ product.title | escape }}"
+          data-product-price="{{ product.price | times: 1.0 | divided_by: 100.0 }}"
+          data-product-url="{{ product.url }}"
+        >
+          Customize &amp; Add
+        </button>
+        <button
+          type="button"
+          class="fhe-btn fhe-btn--outline fhe-quick-add-btn"
+          data-variant-id="{{ card_variant.id }}"
+          data-product-title="{{ product.title | escape }}"
+          title="Quick add without sides"
+        >
+          + Quick Add
+        </button>
       </div>
     </div>
-
-    <form method="post" action="/cart/add" class="fhe-meal-card__form" style="margin-top: auto;">
-      <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
-      <input type="hidden" name="properties[Add-ons]" class="fhe-addon-hidden-input" value="None">
-      <input type="hidden" name="properties[Expected Delivery Date]" class="fhe-delivery-date-hidden-input" value="">
-      <input type="hidden" name="properties[Delivery Week]" class="fhe-delivery-week-hidden-input" value="">
-
-      <div class="fhe-meal-card__footer">
-        <div class="fhe-meal-card__price">
-          {{ product.price | money }}
-        </div>
-
-        <div class="fhe-meal-card__actions">
-          <div class="fhe-qty-picker">
-            <button type="button" class="fhe-qty-btn fhe-qty-btn--minus">-</button>
-            <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input">
-            <button type="button" class="fhe-qty-btn fhe-qty-btn--plus">+</button>
-          </div>
-
-          <button type="submit" class="fhe-btn fhe-btn--primary fhe-add-to-cart-btn">
-            + Add to Order
-          </button>
-        </div>
-      </div>
-    </form>
   </div>
 </div>
 

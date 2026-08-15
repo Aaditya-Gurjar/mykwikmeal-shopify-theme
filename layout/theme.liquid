@@ -126,5 +126,8 @@
     {%- if settings.enable_cart_drawer and template != 'cart' -%}
       {% render 'cart-drawer' %}
     {%- endif -%}
+    {%- if settings.fhe_enable -%}
+      {% render 'fhe-customize-modal' %}
+    {%- endif -%}
   {%- render "ecom_footer"-%}</body>
 </html>

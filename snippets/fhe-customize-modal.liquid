@@ -1,0 +1,77 @@
+{% comment %}
+  KwikMeal Global Fresh Heat-N-Eat Meal Customization Modal/Drawer
+  Rendered globally in layout/theme.liquid to guarantee Customize & Add works on every page.
+{% endcomment %}
+
+<div id="fhe-meal-modal" class="fhe-modal-backdrop" aria-hidden="true">
+  <div class="fhe-modal-card fhe-meal-modal-card">
+    <button type="button" class="fhe-modal-close" aria-label="Close customization drawer">&times;</button>
+    <div class="fhe-modal-grid">
+      <div class="fhe-modal-media">
+        <img id="fhe-modal-img" src="" alt="Meal Detail Image">
+      </div>
+      <div class="fhe-modal-info">
+        <div id="fhe-modal-rating" class="fhe-meal-card__rating" style="margin-bottom: 8px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <h2 id="fhe-modal-title" class="fhe-modal-title">Meal Title</h2>
+        <p id="fhe-modal-desc" class="fhe-modal-desc">Meal Description</p>
+        
+        <div class="fhe-modal-section">
+          <h4>Nutrition Macros</h4>
+          <div id="fhe-modal-macros" class="fhe-meal-card__macros" style="margin-bottom: 0;"></div>
+        </div>
+
+        <div class="fhe-modal-section">
+          <h4>Heating Instructions</h4>
+          <p id="fhe-modal-heating" class="fhe-modal-text">1. Peel back lid corner. 2. Microwave on HIGH for 1:30-2:00 minutes. 3. Let stand 1 minute before serving.</p>
+        </div>
+
+        <div class="fhe-modal-section">
+          <h4>Ingredients</h4>
+          <p id="fhe-modal-ingredients" class="fhe-modal-text">Chef selected fresh ingredients.</p>
+        </div>
+
+        <div class="fhe-modal-customizer-wrap" style="margin-top: 16px;">
+          <input type="hidden" id="fhe-modal-variant-id" value="">
+          <input type="hidden" id="fhe-modal-product-id" value="">
+          {% render 'fhe-meal-customizer', context: 'modal' %}
+        </div>
+      </div>
+    </div>
+
+    <div class="fhe-modal-footer-sticky">
+      <div class="fhe-qty-picker">
+        <button type="button" class="fhe-qty-btn fhe-qty-btn--minus" aria-label="Decrease meal quantity">-</button>
+        <input type="number" name="quantity" value="1" min="1" class="fhe-qty-input" aria-label="Meal quantity">
+        <button type="button" class="fhe-qty-btn fhe-qty-btn--plus" aria-label="Increase meal quantity">+</button>
+      </div>
+      <button type="button" class="fhe-btn fhe-btn--primary fhe-submit-customizer-btn">
+        Add to Cart — <span class="fhe-customizer-btn-price">$0.00</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- GLOBAL CART EDIT ADD-ONS DRAWER -->
+<div id="fhe-cart-edit-drawer" class="fhe-modal-backdrop fhe-cart-edit-backdrop" aria-hidden="true">
+  <div class="fhe-modal-card fhe-customizer-drawer fhe-cart-edit-drawer">
+    <button type="button" class="fhe-modal-close fhe-cart-edit-close" aria-label="Close add-on editor">&times;</button>
+    <div class="fhe-cart-edit-header">
+      <h3 class="fhe-cart-edit-title">Edit Your Meal Sides</h3>
+      <p class="fhe-cart-edit-subtitle" id="fhe-edit-meal-name">Slow-Cooked Dal Makhani</p>
+    </div>
+
+    <div class="fhe-cart-edit-body">
+      <input type="hidden" id="fhe-edit-bundle-id" value="">
+      <input type="hidden" id="fhe-edit-product-id" value="">
+      <input type="hidden" id="fhe-edit-variant-id" value="">
+      <input type="hidden" id="fhe-edit-meal-title" value="">
+      {% render 'fhe-meal-customizer', context: 'cart_edit' %}
+    </div>
+
+    <div class="fhe-cart-edit-footer">
+      <button type="button" class="fhe-btn fhe-btn--primary fhe-save-cart-edit-btn" style="width: 100%;">
+        Save Changes
+      </button>
+    </div>
+  </div>
+</div>

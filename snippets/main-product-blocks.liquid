@@ -346,6 +346,8 @@
               {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
             {%- endif -%}
 
+            {% render 'fhe-meal-customizer', context: 'pdp', product: product %}
+
             <div class="m-product-form--wrapper m:display-flex m:flex-wrap m:items-end">
               {% if block.settings.show_quantity_selector %}
                 <div class="m-product-form--input">
@@ -363,7 +365,7 @@
                   endif
                 %}
                 <button
-                  type="submit"
+                  type="{% if settings.fhe_enable and addon_collection and addon_collection.products.size > 0 %}button{% else %}submit{% endif %}"
                   name="add"
                   class="m-add-to-cart m-spinner-button m-button {{ btn_class }} {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}"
                   data-atc-text="{{ 'products.product.add_to_cart' | t }}"
@@ -414,6 +416,45 @@
             <div class="m-product-form-message"></div>
           {%- endform -%}
         </product-form>
+
+        <!-- Standalone Sides & Desserts Section -->
+        <div class="fhe-pdp-standalone-sides-card" style="margin-top: 24px;">
+          <div class="fhe-pdp-sides-header">
+            <h4 class="fhe-pdp-sides-title">🍛 Want Only Sides &amp; Desserts?</h4>
+            <p class="fhe-pdp-sides-subtitle">Add standalone sides directly to your cart without re-adding your main meal!</p>
+          </div>
+          <div class="fhe-pdp-sides-grid">
+            <div class="fhe-pdp-side-item">
+              <div class="fhe-pdp-side-details">
+                <strong>Fresh Raita</strong>
+                <span>Cool yogurt with cucumber &amp; roasted cumin ($2.00)</span>
+              </div>
+              <button type="button" class="fhe-btn fhe-btn--secondary fhe-add-standalone-side-btn" data-variant-id="8690526453933" data-title="Fresh Raita" data-price="2.00">
+                + Add Raita ($2.00)
+              </button>
+            </div>
+
+            <div class="fhe-pdp-side-item">
+              <div class="fhe-pdp-side-details">
+                <strong>Fresh Garden Salad</strong>
+                <span>Sliced onions, cucumber, tomato &amp; lemon ($2.00)</span>
+              </div>
+              <button type="button" class="fhe-btn fhe-btn--secondary fhe-add-standalone-side-btn" data-variant-id="8690526585005" data-title="Fresh Salad" data-price="2.00">
+                + Add Salad ($2.00)
+              </button>
+            </div>
+
+            <div class="fhe-pdp-side-item">
+              <div class="fhe-pdp-side-details">
+                <strong>Tandoori Roti (2 Pcs)</strong>
+                <span>Freshly baked whole wheat flatbread ($2.00)</span>
+              </div>
+              <button type="button" class="fhe-btn fhe-btn--secondary fhe-add-standalone-side-btn" data-variant-id="8690527076525" data-title="Roti (2 pcs)" data-price="2.00">
+                + Add Roti ($2.00)
+              </button>
+            </div>
+          </div>
+        </div>
         <link
           rel="stylesheet"
           href="{{ 'pickup-availability.css' | asset_url }}"

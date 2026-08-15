@@ -34,8 +34,11 @@
         <div class="m-cart__body" data-minimog-cart-items>
           {%- if cart.item_count > 0 -%}
             <div class="m-cart__items">
-              {% assign sorted_items = cart.items | sort: 'final_price' | reverse %}
-              {% for item in sorted_items %}
+              {% comment %}
+                IMPORTANT: Do NOT sort cart.items. The quantity inputs use name="updates[]"
+                which Shopify maps POSITIONALLY. Sorting breaks quantity assignment.
+              {% endcomment %}
+              {% for item in cart.items %}
                 {% render 'cart-line-item', item: item %}
               {% endfor %}
             </div>
@@ -206,7 +209,7 @@
                 <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="m-button m-button--secondary fhe-continue-shopping-btn">
                   <span>Continue Shopping</span>
                 </a>
-                <a href="/pages/fresh-heat-n-eat" class="m-button m-button--outline fhe-back-to-menu-cart-btn">
+                <a href="/pages/fresh-heat-n-eat#fhe-menu-section" class="m-button m-button--outline fhe-back-to-menu-cart-btn">
                   <span>&larr; Go Back to Menu</span>
                 </a>
               </div>

@@ -34,7 +34,7 @@
         {{ section.settings.heading | default: "Chef Prepared Heat-N-Eat Meals" }}
       </h2>
       <p class="fhe-subtitle">
-        {{ section.settings.subheading | default: "Delivered fresh, ready to heat and serve in 3 minutes." }}
+        {{ section.settings.subheading | default: "Delivered fresh, ready to heat and serve in 2 minutes." }}
       </p>
     </div>
 
@@ -62,9 +62,9 @@
 
     <!-- Delivery Charge Banner -->
     {% if section.settings.delivery_charge != blank %}
-      <div class="fhe-delivery-charge-card" style="margin-bottom: 28px;">
-        <span aria-hidden="true">&#128230;</span>
-        <span>Flat Handling &amp; Delivery Charges: <strong>{{ section.settings.delivery_charge }}</strong> per order</span>
+      <div class="fhe-delivery-charge-card fhe-delivery-charge-card--reverse" style="margin-bottom: 28px;">
+        <span class="fhe-delivery-icon" aria-hidden="true">&#128230;</span>
+        <span class="fhe-delivery-text">Flat Handling &amp; Delivery Charges: <strong class="fhe-delivery-badge">{{ section.settings.delivery_charge }}</strong> per order</span>
       </div>
     {% endif %}
 
@@ -136,7 +136,7 @@
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Delivered fresh, ready to heat and serve in 3 minutes."
+      "default": "Delivered fresh, ready to heat and serve in 2 minutes."
     },
     {
       "type": "range",

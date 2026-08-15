@@ -1,0 +1,65 @@
+{% comment %}
+  KwikMeal Reusable Meal Customizer Component
+  Accepts:
+  - product: {Object} Product object (optional/required depending on context)
+  - context: {String} 'pdp', 'modal', or 'cart_edit'
+{% endcomment %}
+
+<div class="fhe-meal-customizer" data-customizer-context="{{ context | default: 'card' }}">
+  {%- unless context == 'cart_edit' -%}
+    <div class="fhe-meal-customizer__header">
+      <h4 class="fhe-meal-customizer__title">Add Sides & Extras</h4>
+      <p class="fhe-meal-customizer__subtitle">Choose any sides you'd like with your meal.</p>
+    </div>
+  {%- endunless -%}
+
+  {%- assign addon_collection = collections['addons'] -%}
+  {%- if addon_collection and addon_collection.products.size > 0 -%}
+    <div class="fhe-meal-customizer__addons">
+      {%- for addon_product in addon_collection.products -%}
+        {%- assign addon_variant = addon_product.first_available_variant -%}
+        {%- if addon_variant -%}
+          {%- assign addon_price_display = addon_variant.price | money_without_trailing_zeros -%}
+          {%- assign addon_price_decimal = addon_variant.price | times: 1.0 | divided_by: 100.0 -%}
+          <div class="fhe-addon-row" data-addon-id="{{ addon_product.id }}">
+            <label class="fhe-addon-row__check">
+              <input
+                type="checkbox"
+                class="fhe-addon-checkbox"
+                data-title="{{ addon_product.title | escape }}"
+                data-price="{{ addon_price_decimal }}"
+                data-variant-id="{{ addon_variant.id }}"
+                data-product-id="{{ addon_product.id }}"
+                value="{{ addon_product.title | escape }}"
+              >
+              <span class="fhe-addon-row__name">
+                {{ addon_product.title | escape }}
+                <em class="fhe-addon-row__price">(+{{ addon_price_display }}/each)</em>
+              </span>
+            </label>
+            <div class="fhe-addon-qty" aria-label="Add-on quantity">
+              <button type="button" class="fhe-addon-qty__btn fhe-addon-qty__btn--minus" disabled aria-label="Decrease quantity of {{ addon_product.title | escape }}">−</button>
+              <span class="fhe-addon-qty__val" aria-live="polite">1</span>
+              <button type="button" class="fhe-addon-qty__btn fhe-addon-qty__btn--plus" disabled aria-label="Increase quantity of {{ addon_product.title | escape }}">+</button>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <div class="fhe-meal-customizer__summary">
+    <div class="fhe-customizer-summary-row">
+      <span>Meal Price:</span>
+      <span class="fhe-customizer-meal-price">$0.00</span>
+    </div>
+    <div class="fhe-customizer-summary-row">
+      <span>Sides & Extras:</span>
+      <span class="fhe-customizer-addons-price">$0.00</span>
+    </div>
+    <div class="fhe-customizer-summary-row fhe-customizer-summary-row--total">
+      <span>Total Price:</span>
+      <span class="fhe-customizer-total-price">$0.00</span>
+    </div>
+  </div>
+</div>
