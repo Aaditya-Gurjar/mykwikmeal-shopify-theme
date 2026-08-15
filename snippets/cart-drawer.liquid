@@ -204,10 +204,10 @@
             <span>Pay Now</span>
           </button>
           <div class="fhe-cart-extra-buttons m:w-full m:flex m:flex-col m:gap-2 m:mt-2">
-            <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}" class="m-button m-button--secondary m:w-full fhe-continue-shopping-btn">
+            <button type="button" class="m-button m-button--secondary m:w-full fhe-continue-shopping-btn" onclick="document.querySelector('m-cart-drawer')?.close()">
               <span>Continue Shopping</span>
-            </a>
-            <a href="/pages/fresh-heat-n-eat#fhe-menu-section" class="m-button m-button--outline m:w-full fhe-back-to-menu-cart-btn">
+            </button>
+            <a href="/pages/fresh-heat-n-eat#fhe-menu-section" class="m-button m-button--outline m:w-full fhe-back-to-menu-cart-btn" onclick="document.querySelector('m-cart-drawer')?.close()">
               <span>&larr; Go Back to Menu</span>
             </a>
           </div>

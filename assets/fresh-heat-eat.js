@@ -834,6 +834,21 @@
     }
   });
 
+  // Helper: Refresh Cart Drawer UI and re-open drawer smoothly
+  function refreshAndOpenCartDrawer() {
+    const cartDrawer = document.querySelector('m-cart-drawer');
+    if (cartDrawer) {
+      if (typeof cartDrawer.onCartDrawerUpdate === 'function') {
+        cartDrawer.onCartDrawerUpdate();
+      }
+      if (typeof cartDrawer.open === 'function') {
+        cartDrawer.open();
+      }
+    } else {
+      window.location.reload();
+    }
+  }
+
   // I. Remove Single Side Item [×]
   document.addEventListener('click', async function (e) {
     const btn = e.target.closest('.fhe-remove-single-addon-btn');
@@ -841,13 +856,18 @@
 
     e.preventDefault();
     const key = btn.dataset.key;
+    const lineIndex = btn.dataset.index;
     const bundleId = btn.dataset.bundleId;
 
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+
     try {
+      const changePayload = key ? { id: key, quantity: 0 } : { line: parseInt(lineIndex, 10), quantity: 0 };
       await fetch('/cart/change.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ id: key, quantity: 0 })
+        body: JSON.stringify(changePayload)
       });
 
       const cartRes = await fetch('/cart.js');
@@ -880,6 +900,8 @@
       refreshAndOpenCartDrawer();
     } catch (err) {
       console.error('Error removing single side:', err);
+      btn.disabled = false;
+      btn.style.opacity = '1';
     }
   });
 
@@ -1020,5 +1042,16 @@
       el.textContent = `${calc.hoursLeft} Hr ${calc.minsLeft} Min remaining for order cutoff for delivery on ${calc.deliveryDateStr}`;
     });
   }, 60000);
+
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.fhe-continue-shopping-btn');
+    if (btn) {
+      e.preventDefault();
+      const cartDrawer = document.querySelector('m-cart-drawer');
+      if (cartDrawer && typeof cartDrawer.close === 'function') {
+        cartDrawer.close();
+      }
+    }
+  });
 
 })();
